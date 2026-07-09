@@ -1,0 +1,9 @@
+top,status,latency_min,latency_avg,latency_max,interval_min,interval_max,bram_18k,bram_18k_avail,bram_18k_pct,dsp,dsp_avail,dsp_pct,ff,ff_avail,ff_pct,lut,lut_avail,lut_pct,uram,uram_avail,uram_pct,clock_target_ns,clock_estimated_ns,report_dir
+bert_ffn_down_v15_tilemajor_uram_bindop_kernel,ok_rpt_only,1586139,1586139,1586139,1586140,1586140,76,,1,1280,,10,145884,,4,98451,,5,32,,2,,,/home/minhphat/ffn/proj_bert_ffn_down_v15_tilemajor_uram_bindop_kernel
+bert_ffn_down_v18_staged_tilemajor_kernel,ok_rpt_only,1787910,1787910,1787910,1787911,1787911,100,,1,1280,,10,145855,,4,98663,,5,32,,2,,,/home/minhphat/ffn/proj_bert_ffn_down_v18_staged_tilemajor_kernel
+bert_ffn_down_v20_fmul5_kernel,ok_rpt_only,1627612,1627612,1627612,1627613,1627613,76,,1,1280,,10,183625,,5,92851,,5,32,,2,,,/home/minhphat/ffn/proj_bert_ffn_down_v20_fmul5_kernel
+bert_ffn_down_v21_dotpipe_kernel,ok_rpt_only,1632220,1632220,1632220,1632221,1632221,76,,1,1280,,10,200011,,5,92851,,5,32,,2,,,/home/minhphat/ffn/proj_bert_ffn_down_v21_dotpipe_kernel
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel,ok_rpt_only,1501064,1501064,1501064,1501065,1501065,302,,5,1280,,10,115221,,3,95238,,5,32,,2,,,/home/minhphat/ffn/proj_bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel
+bert_ffn_up_gelu_v18_staged_tilemajor_kernel,ok_rpt_only,1660040,1660040,1660040,1660041,1660041,310,,5,1280,,10,115249,,3,95341,,5,32,,2,,,/home/minhphat/ffn/proj_bert_ffn_up_gelu_v18_staged_tilemajor_kernel
+bert_ffn_up_gelu_v20_fmul5_kernel,ok_rpt_only,1522568,1522568,1522568,1522569,1522569,302,,5,1280,,10,154429,,4,89617,,5,32,,2,,,/home/minhphat/ffn/proj_bert_ffn_up_gelu_v20_fmul5_kernel
+bert_ffn_up_gelu_v21_dotpipe_kernel,ok_rpt_only,1524872,1524872,1524872,1524873,1524873,302,,5,1376,,11,175391,,5,90769,,5,32,,2,,,/home/minhphat/ffn/proj_bert_ffn_up_gelu_v21_dotpipe_kernel

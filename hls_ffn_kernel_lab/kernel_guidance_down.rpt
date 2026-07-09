@@ -1,0 +1,5 @@
+Accelerator    
+bert_ffn_down_v15_tilemajor_uram_bindop_kernel  Open HLS project for bert_ffn_down_v15_tilemajor_uram_bindop_kernel  
+Latency    
+Latency  Cannot flatten loop 'v15_down_ffn_tile' (bert_ffn_kernel_hls_packed.cpp:1462) in function 'v15_ffn_down_tilemajor_consumer' more than one sub loop. See here for more help on vitis_hls 200-960 guidance. 
+Latency  Cannot flatten loop 'v15_down_output_tile' (bert_ffn_kernel_hls_packed.cpp:1482) in function 'v15_ffn_down_tilemajor_consumer' more than one sub loop. See here for more help on vitis_hls 200-960 guidance. 

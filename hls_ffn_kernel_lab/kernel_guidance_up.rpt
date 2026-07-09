@@ -1,0 +1,5 @@
+Accelerator    
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  Open HLS project for bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  
+Latency    
+Latency  Cannot flatten loop 'v15_up_hidden_tile' (bert_ffn_kernel_hls_packed.cpp:1342) in function 'v15_ffn_up_tilemajor_producer' more than one sub loop. See here for more help on vitis_hls 200-960 guidance. 
+Latency  Cannot flatten loop 'v15_up_output_tile' (bert_ffn_kernel_hls_packed.cpp:1321) in function 'v15_ffn_up_tilemajor_producer' more than one sub loop. See here for more help on vitis_hls 200-960 guidance. 

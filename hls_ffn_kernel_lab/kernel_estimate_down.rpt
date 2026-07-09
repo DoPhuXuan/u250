@@ -1,0 +1,57 @@
+===============================================================================
+Version:    v++ v2021.2 (64-bit)
+Build:      SW Build 3363252 on 2021-10-14-04:41:01
+Copyright:  Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+Created:    Wed Jul  8 14:23:52 2026
+===============================================================================
+
+-------------------------------------------------------------------------------
+Design Name:             bert_ffn_up_v15
+Target Device:           xilinx:u250:gen3x16_xdma_3_1:202020.1
+Target Clock:            300.000000MHz
+Total number of kernels: 1
+-------------------------------------------------------------------------------
+
+Kernel Summary
+Kernel Name                                        Type  Target              OpenCL Library   Compute Units
+-------------------------------------------------  ----  ------------------  ---------------  -------------
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  c     fpga0:OCL_REGION_0  bert_ffn_up_v15  1
+
+
+-------------------------------------------------------------------------------
+OpenCL Binary:     bert_ffn_up_v15
+Kernels mapped to: clc_region
+
+Timing Information (MHz)
+Compute Unit                                         Kernel Name                                        Module Name                                                       Target Frequency  Estimated Frequency
+---------------------------------------------------  -------------------------------------------------  ----------------------------------------------------------------  ----------------  -------------------
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v11_load_input_stream_matrix                                      300.300293        498.753082
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v15_ffn_up_tilemajor_producer_Pipeline_v15_up_init_s              300.300293        562.746216
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v15_ffn_up_tilemajor_producer_Pipeline_v15_up_load_w_k            300.300293        411.015198
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v15_ffn_up_tilemajor_producer_Pipeline_v15_up_k_chunk_v15_up_seq  300.300293        426.985474
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v15_ffn_up_tilemajor_producer_Pipeline_v15_up_write_gelu_s        300.300293        426.985474
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v15_ffn_up_tilemajor_producer                                     300.300293        411.015198
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel                 300.300293        411.015198
+
+Latency Information
+Compute Unit                                         Kernel Name                                        Module Name                                                       Start Interval  Best (cycles)  Avg (cycles)  Worst (cycles)  Best (absolute)  Avg (absolute)  Worst (absolute)
+---------------------------------------------------  -------------------------------------------------  ----------------------------------------------------------------  --------------  -------------  ------------  --------------  ---------------  --------------  ----------------
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v11_load_input_stream_matrix                                      6146            6146           6146          6146            20.485 us        20.485 us       20.485 us
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v15_ffn_up_tilemajor_producer_Pipeline_v15_up_init_s              130             130            130           130             0.433 us         0.433 us        0.433 us
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v15_ffn_up_tilemajor_producer_Pipeline_v15_up_load_w_k            137             137            137           137             0.457 us         0.457 us        0.457 us
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v15_ffn_up_tilemajor_producer_Pipeline_v15_up_k_chunk_v15_up_seq  556             556            556           556             1.853 us         1.853 us        1.853 us
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v15_ffn_up_tilemajor_producer_Pipeline_v15_up_write_gelu_s        147             147            147           147             0.490 us         0.490 us        0.490 us
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v15_ffn_up_tilemajor_producer                                     1673665         1673665        1673665       1673665         5.578 ms         5.578 ms        5.578 ms
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel                 1679817         1679816        1679816       1679816         5.599 ms         5.599 ms        5.599 ms
+
+Area Information
+Compute Unit                                         Kernel Name                                        Module Name                                                       FF      LUT    DSP  BRAM  URAM
+---------------------------------------------------  -------------------------------------------------  ----------------------------------------------------------------  ------  -----  ---  ----  ----
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v11_load_input_stream_matrix                                      555     205    0    0     0
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v15_ffn_up_tilemajor_producer_Pipeline_v15_up_init_s              10      53     0    0     0
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v15_ffn_up_tilemajor_producer_Pipeline_v15_up_load_w_k            864     153    0    0     0
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v15_ffn_up_tilemajor_producer_Pipeline_v15_up_k_chunk_v15_up_seq  135287  65746  0    0     0
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v15_ffn_up_tilemajor_producer_Pipeline_v15_up_write_gelu_s        5197    3195   0    0     0
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  v15_ffn_up_tilemajor_producer                                     152313  85936  0    272   0
+bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel_1  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel  bert_ffn_up_gelu_v15_tilemajor_uram_bindop_kernel                 154622  89925  0    302   32
+-------------------------------------------------------------------------------
