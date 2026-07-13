@@ -21,6 +21,18 @@
 #define V15_INTERMEDIATE_TILES (INTERMEDIATE_SIZE / V13_TILE_I)
 #define V15_HIDDEN_TILES (HIDDEN_SIZE / V13_TILE_O)
 #define V14_MAC_GROUP 8
+#define V21_TILE_I 96
+#define V21_TILE_O 96
+#define V21_MAC_GROUP 24
+#define V21_W1_TILE_PACKS (V21_TILE_I / PACK_FLOATS)
+#define V21_W2_TILE_PACKS (V21_TILE_O / PACK_FLOATS)
+#define V21_WEIGHT_GROUP_PACKS 2
+#define V21_W1_WEIGHT_GROUPS (V21_TILE_I / V21_MAC_GROUP)
+#define V21_W2_WEIGHT_GROUPS (V21_TILE_O / V21_MAC_GROUP)
+#define V21_W1_WEIGHT_PACKS (V21_W1_WEIGHT_GROUPS * V21_WEIGHT_GROUP_PACKS)
+#define V21_W2_WEIGHT_PACKS (V21_W2_WEIGHT_GROUPS * V21_WEIGHT_GROUP_PACKS)
+#define V21_INTERMEDIATE_TILES (INTERMEDIATE_SIZE / V21_TILE_I)
+#define V21_HIDDEN_TILES (HIDDEN_SIZE / V21_TILE_O)
 
 #if ((HIDDEN_SIZE % V10_TILE_K) != 0)
 #error "HIDDEN_SIZE must be divisible by V10_TILE_K"
@@ -76,6 +88,38 @@
 
 #if ((V10_TILE_OUT % V14_MAC_GROUP) != 0)
 #error "V10_TILE_OUT must be divisible by V14_MAC_GROUP"
+#endif
+
+#if ((INTERMEDIATE_SIZE % V21_TILE_I) != 0)
+#error "INTERMEDIATE_SIZE must be divisible by V21_TILE_I"
+#endif
+
+#if ((HIDDEN_SIZE % V21_TILE_O) != 0)
+#error "HIDDEN_SIZE must be divisible by V21_TILE_O"
+#endif
+
+#if ((V21_TILE_I % V21_MAC_GROUP) != 0)
+#error "V21_TILE_I must be divisible by V21_MAC_GROUP"
+#endif
+
+#if ((V21_TILE_O % V21_MAC_GROUP) != 0)
+#error "V21_TILE_O must be divisible by V21_MAC_GROUP"
+#endif
+
+#if ((V21_TILE_I % PACK_FLOATS) != 0)
+#error "V21_TILE_I must be divisible by PACK_FLOATS"
+#endif
+
+#if ((V21_TILE_O % PACK_FLOATS) != 0)
+#error "V21_TILE_O must be divisible by PACK_FLOATS"
+#endif
+
+#if ((V21_MAC_GROUP != 24) || (V21_WEIGHT_GROUP_PACKS != 2))
+#error "V21 padded weight loader requires 24 lanes stored in two packed words"
+#endif
+
+#if ((V21_W1_WEIGHT_PACKS != 8) || (V21_W2_WEIGHT_PACKS != 8))
+#error "V21 padded weight loader address decode requires eight words per tile row"
 #endif
 
 typedef ap_uint<PACK_BITS> packed_float16_t;
@@ -776,22 +820,22 @@ static float v13_dot16_tree_margin(
 #pragma HLS ARRAY_PARTITION variable=s4 complete dim=1
 #pragma HLS ARRAY_PARTITION variable=s2 complete dim=1
 #ifdef FFN_V21_DOT_PIPELINE
-#pragma HLS BIND_OP variable=p0 op=fmul impl=fulldsp latency=7
-#pragma HLS BIND_OP variable=p1 op=fmul impl=fulldsp latency=7
-#pragma HLS BIND_OP variable=p2 op=fmul impl=fulldsp latency=7
-#pragma HLS BIND_OP variable=p3 op=fmul impl=fulldsp latency=7
-#pragma HLS BIND_OP variable=p4 op=fmul impl=fulldsp latency=7
-#pragma HLS BIND_OP variable=p5 op=fmul impl=fulldsp latency=7
-#pragma HLS BIND_OP variable=p6 op=fmul impl=fulldsp latency=7
-#pragma HLS BIND_OP variable=p7 op=fmul impl=fulldsp latency=7
-#pragma HLS BIND_OP variable=p8 op=fmul impl=fulldsp latency=7
-#pragma HLS BIND_OP variable=p9 op=fmul impl=fulldsp latency=7
-#pragma HLS BIND_OP variable=p10 op=fmul impl=fulldsp latency=7
-#pragma HLS BIND_OP variable=p11 op=fmul impl=fulldsp latency=7
-#pragma HLS BIND_OP variable=p12 op=fmul impl=fulldsp latency=7
-#pragma HLS BIND_OP variable=p13 op=fmul impl=fulldsp latency=7
-#pragma HLS BIND_OP variable=p14 op=fmul impl=fulldsp latency=7
-#pragma HLS BIND_OP variable=p15 op=fmul impl=fulldsp latency=7
+#pragma HLS BIND_OP variable=p0 op=fmul impl=meddsp latency=7
+#pragma HLS BIND_OP variable=p1 op=fmul impl=meddsp latency=7
+#pragma HLS BIND_OP variable=p2 op=fmul impl=meddsp latency=7
+#pragma HLS BIND_OP variable=p3 op=fmul impl=meddsp latency=7
+#pragma HLS BIND_OP variable=p4 op=fmul impl=meddsp latency=7
+#pragma HLS BIND_OP variable=p5 op=fmul impl=meddsp latency=7
+#pragma HLS BIND_OP variable=p6 op=fmul impl=meddsp latency=7
+#pragma HLS BIND_OP variable=p7 op=fmul impl=meddsp latency=7
+#pragma HLS BIND_OP variable=p8 op=fmul impl=meddsp latency=7
+#pragma HLS BIND_OP variable=p9 op=fmul impl=meddsp latency=7
+#pragma HLS BIND_OP variable=p10 op=fmul impl=meddsp latency=7
+#pragma HLS BIND_OP variable=p11 op=fmul impl=meddsp latency=7
+#pragma HLS BIND_OP variable=p12 op=fmul impl=meddsp latency=7
+#pragma HLS BIND_OP variable=p13 op=fmul impl=meddsp latency=7
+#pragma HLS BIND_OP variable=p14 op=fmul impl=meddsp latency=7
+#pragma HLS BIND_OP variable=p15 op=fmul impl=meddsp latency=7
 #elif defined(FFN_V20_COMPUTE_MARGIN)
 #pragma HLS BIND_OP variable=product op=fmul impl=maxdsp latency=5
 #else
@@ -1624,6 +1668,318 @@ static void v15_projection_dataflow_tilemajor(
     v15_ffn_up_tilemajor_producer(input_buf, w1, b1, gelu_stream);
     v15_ffn_down_tilemajor_consumer(gelu_stream, w2, b2, output_buf);
 }
+
+#ifdef FFN_V21_TILE96_EXPERIMENT
+static void v21_ffn_up_tile96_producer(
+    float input_buf[SEQ_LEN][HIDDEN_SIZE],
+    packed_float16_t *w1,
+    packed_float16_t *b1,
+    packed_float_stream_t &gelu_stream)
+{
+#pragma HLS INLINE off
+    float w_tile[V21_TILE_I][V10_TILE_K];
+    float acc[SEQ_LEN][V21_TILE_I];
+#pragma HLS BIND_STORAGE variable=w_tile type=RAM_1P impl=LUTRAM latency=1
+#pragma HLS BIND_STORAGE variable=acc type=RAM_2P impl=BRAM latency=2
+#pragma HLS ARRAY_PARTITION variable=w_tile cyclic factor=24 dim=1
+#pragma HLS ARRAY_PARTITION variable=w_tile cyclic factor=16 dim=2
+#pragma HLS ARRAY_PARTITION variable=acc cyclic factor=24 dim=2
+
+v21_up_output_tile:
+    for (int i0 = 0; i0 < INTERMEDIATE_SIZE; i0 += V21_TILE_I) {
+        int i0_pack = i0 / PACK_FLOATS;
+        int i_tile = i0 / V21_TILE_I;
+    v21_up_init_s:
+        for (int s = 0; s < SEQ_LEN; s++) {
+        v21_up_init_pack:
+            for (int i_pack = 0; i_pack < V21_W1_TILE_PACKS; i_pack++) {
+#pragma HLS PIPELINE II=1
+                float lanes[PACK_FLOATS];
+#pragma HLS ARRAY_PARTITION variable=lanes complete dim=1
+                packed_float16_t word = b1[i0_pack + i_pack];
+                unpack_packed_float16(word, lanes);
+            v21_up_init_lane:
+                for (int lane = 0; lane < PACK_FLOATS; lane++) {
+#pragma HLS UNROLL
+                    acc[s][i_pack * PACK_FLOATS + lane] = lanes[lane];
+                }
+            }
+        }
+
+        v21_up_hidden_tile:
+        for (int h0 = 0; h0 < HIDDEN_SIZE; h0 += V10_TILE_K) {
+            int packed_base =
+                i_tile * HIDDEN_SIZE * V21_W1_WEIGHT_PACKS
+                + h0 * V21_W1_WEIGHT_PACKS;
+        v21_up_load_w_full:
+            for (int word_offset = 0;
+                 word_offset < V10_TILE_K * V21_W1_WEIGHT_GROUPS;
+                 word_offset++) {
+#pragma HLS PIPELINE II=1
+                int tk = word_offset >> 2;
+                int group = word_offset & 3;
+                int group_base = group * V21_MAC_GROUP;
+                float lanes[PACK_FLOATS];
+#pragma HLS ARRAY_PARTITION variable=lanes complete dim=1
+                unpack_packed_float16(
+                    w1[packed_base + tk * V21_W1_WEIGHT_PACKS + group * V21_WEIGHT_GROUP_PACKS],
+                    lanes);
+            v21_up_load_w_full_lane:
+                for (int lane = 0; lane < PACK_FLOATS; lane++) {
+#pragma HLS UNROLL
+                    w_tile[group_base + lane][tk] = lanes[lane];
+                }
+            }
+
+        v21_up_load_w_tail:
+            for (int word_offset = 0;
+                 word_offset < V10_TILE_K * V21_W1_WEIGHT_GROUPS;
+                 word_offset++) {
+#pragma HLS PIPELINE II=1
+                int tk = word_offset >> 2;
+                int group = word_offset & 3;
+                int group_base = group * V21_MAC_GROUP + PACK_FLOATS;
+                float lanes[PACK_FLOATS];
+#pragma HLS ARRAY_PARTITION variable=lanes complete dim=1
+                unpack_packed_float16(
+                    w1[packed_base + tk * V21_W1_WEIGHT_PACKS + group * V21_WEIGHT_GROUP_PACKS + 1],
+                    lanes);
+            v21_up_load_w_tail_lane:
+                for (int lane = 0; lane < V21_MAC_GROUP - PACK_FLOATS; lane++) {
+#pragma HLS UNROLL
+                    w_tile[group_base + lane][tk] = lanes[lane];
+                }
+            }
+
+        v21_up_k_chunk:
+            for (int tk = 0; tk < V10_TILE_K; tk += V10_K_PAR) {
+            v21_up_seq:
+                for (int s = 0; s < SEQ_LEN; s++) {
+                v21_up_mac_group:
+                    for (int io = 0; io < V21_TILE_I; io += V21_MAC_GROUP) {
+#pragma HLS PIPELINE II=1
+                        float x_vec[V10_K_PAR];
+                        float acc_vec[V21_MAC_GROUP];
+#pragma HLS ARRAY_PARTITION variable=x_vec complete dim=1
+#pragma HLS ARRAY_PARTITION variable=acc_vec complete dim=1
+#pragma HLS BIND_OP variable=acc_vec op=fadd impl=fulldsp latency=5
+
+                    v21_up_load_x_vec:
+                        for (int kk = 0; kk < V10_K_PAR; kk++) {
+#pragma HLS UNROLL
+                            x_vec[kk] = input_buf[s][h0 + tk + kk];
+                        }
+
+                    v21_up_load_acc_vec:
+                        for (int jj = 0; jj < V21_MAC_GROUP; jj++) {
+#pragma HLS UNROLL
+                            acc_vec[jj] = acc[s][io + jj];
+                        }
+
+                    v21_up_mac_vec:
+                        for (int jj = 0; jj < V21_MAC_GROUP; jj++) {
+#pragma HLS UNROLL
+                            float w_vec[V10_K_PAR];
+#pragma HLS ARRAY_PARTITION variable=w_vec complete dim=1
+                        v21_up_load_w_vec:
+                            for (int kk = 0; kk < V10_K_PAR; kk++) {
+#pragma HLS UNROLL
+                                w_vec[kk] = w_tile[io + jj][tk + kk];
+                            }
+                            acc_vec[jj] += v13_dot16_tree_margin(x_vec, w_vec);
+                        }
+
+                    v21_up_store_acc_vec:
+                        for (int jj = 0; jj < V21_MAC_GROUP; jj++) {
+#pragma HLS UNROLL
+                            acc[s][io + jj] = acc_vec[jj];
+                        }
+                    }
+                }
+            }
+        }
+
+    v21_up_write_gelu_s:
+        for (int s = 0; s < SEQ_LEN; s++) {
+        v21_up_write_gelu_pack:
+            for (int i_pack = 0; i_pack < V21_W1_TILE_PACKS; i_pack++) {
+#pragma HLS PIPELINE II=1
+                float lanes[PACK_FLOATS];
+#pragma HLS ARRAY_PARTITION variable=lanes complete dim=1
+            v21_up_write_gelu_lane:
+                for (int lane = 0; lane < PACK_FLOATS; lane++) {
+#pragma HLS UNROLL
+                    lanes[lane] =
+                        gelu_pwl_packed(acc[s][i_pack * PACK_FLOATS + lane]);
+                }
+                gelu_stream.write(pack_packed_float16(lanes));
+            }
+        }
+    }
+}
+
+static void v21_ffn_down_tile96_consumer(
+    packed_float_stream_t &gelu_stream,
+    packed_float16_t *w2,
+    packed_float16_t *b2,
+    float output_buf[SEQ_LEN][HIDDEN_SIZE])
+{
+#pragma HLS INLINE off
+    float activation[SEQ_LEN][V21_TILE_I];
+    float w_tile[V21_TILE_O][V21_TILE_I];
+#pragma HLS BIND_STORAGE variable=activation type=RAM_2P impl=BRAM latency=2
+#pragma HLS BIND_STORAGE variable=w_tile type=RAM_1P impl=LUTRAM latency=1
+#pragma HLS ARRAY_PARTITION variable=activation cyclic factor=16 dim=2
+#pragma HLS ARRAY_PARTITION variable=w_tile cyclic factor=24 dim=1
+#pragma HLS ARRAY_PARTITION variable=w_tile cyclic factor=16 dim=2
+
+v21_down_init_s:
+    for (int s = 0; s < SEQ_LEN; s++) {
+    v21_down_init_pack:
+        for (int h_pack = 0; h_pack < HIDDEN_PACKS; h_pack++) {
+#pragma HLS PIPELINE II=1
+            float lanes[PACK_FLOATS];
+#pragma HLS ARRAY_PARTITION variable=lanes complete dim=1
+            unpack_packed_float16(b2[h_pack], lanes);
+        v21_down_init_lane:
+            for (int lane = 0; lane < PACK_FLOATS; lane++) {
+#pragma HLS UNROLL
+                output_buf[s][h_pack * PACK_FLOATS + lane] = lanes[lane];
+            }
+        }
+    }
+
+v21_down_ffn_tile:
+    for (int i0 = 0; i0 < INTERMEDIATE_SIZE; i0 += V21_TILE_I) {
+        int i_tile = i0 / V21_TILE_I;
+    v21_down_read_gelu_s:
+        for (int s = 0; s < SEQ_LEN; s++) {
+        v21_down_read_gelu_pack:
+            for (int i_pack = 0; i_pack < V21_W1_TILE_PACKS; i_pack++) {
+#pragma HLS PIPELINE II=1
+                float lanes[PACK_FLOATS];
+#pragma HLS ARRAY_PARTITION variable=lanes complete dim=1
+                unpack_packed_float16(gelu_stream.read(), lanes);
+            v21_down_read_gelu_lane:
+                for (int lane = 0; lane < PACK_FLOATS; lane++) {
+#pragma HLS UNROLL
+                    activation[s][i_pack * PACK_FLOATS + lane] = lanes[lane];
+                }
+            }
+        }
+
+        v21_down_output_tile:
+        for (int o0 = 0; o0 < HIDDEN_SIZE; o0 += V21_TILE_O) {
+            int o_tile = o0 / V21_TILE_O;
+            int packed_base =
+                ((i_tile * V21_HIDDEN_TILES + o_tile) * V21_TILE_I)
+                * V21_W2_WEIGHT_PACKS;
+        v21_down_load_w_full:
+            for (int word_offset = 0;
+                 word_offset < V21_TILE_I * V21_W2_WEIGHT_GROUPS;
+                 word_offset++) {
+#pragma HLS PIPELINE II=1
+                int tk = word_offset >> 2;
+                int group = word_offset & 3;
+                int group_base = group * V21_MAC_GROUP;
+                float lanes[PACK_FLOATS];
+#pragma HLS ARRAY_PARTITION variable=lanes complete dim=1
+                unpack_packed_float16(
+                    w2[packed_base + tk * V21_W2_WEIGHT_PACKS + group * V21_WEIGHT_GROUP_PACKS],
+                    lanes);
+            v21_down_load_w_full_lane:
+                for (int lane = 0; lane < PACK_FLOATS; lane++) {
+#pragma HLS UNROLL
+                    w_tile[group_base + lane][tk] = lanes[lane];
+                }
+            }
+
+        v21_down_load_w_tail:
+            for (int word_offset = 0;
+                 word_offset < V21_TILE_I * V21_W2_WEIGHT_GROUPS;
+                 word_offset++) {
+#pragma HLS PIPELINE II=1
+                int tk = word_offset >> 2;
+                int group = word_offset & 3;
+                int group_base = group * V21_MAC_GROUP + PACK_FLOATS;
+                float lanes[PACK_FLOATS];
+#pragma HLS ARRAY_PARTITION variable=lanes complete dim=1
+                unpack_packed_float16(
+                    w2[packed_base + tk * V21_W2_WEIGHT_PACKS + group * V21_WEIGHT_GROUP_PACKS + 1],
+                    lanes);
+            v21_down_load_w_tail_lane:
+                for (int lane = 0; lane < V21_MAC_GROUP - PACK_FLOATS; lane++) {
+#pragma HLS UNROLL
+                    w_tile[group_base + lane][tk] = lanes[lane];
+                }
+            }
+
+        v21_down_k_chunk:
+            for (int tk = 0; tk < V21_TILE_I; tk += V10_K_PAR) {
+            v21_down_seq:
+                for (int s = 0; s < SEQ_LEN; s++) {
+                v21_down_mac_group:
+                    for (int oo = 0; oo < V21_TILE_O; oo += V21_MAC_GROUP) {
+#pragma HLS PIPELINE II=1
+                        float x_vec[V10_K_PAR];
+                        float acc_vec[V21_MAC_GROUP];
+#pragma HLS ARRAY_PARTITION variable=x_vec complete dim=1
+#pragma HLS ARRAY_PARTITION variable=acc_vec complete dim=1
+#pragma HLS BIND_OP variable=acc_vec op=fadd impl=fulldsp latency=5
+
+                    v21_down_load_x_vec:
+                        for (int kk = 0; kk < V10_K_PAR; kk++) {
+#pragma HLS UNROLL
+                            x_vec[kk] = activation[s][tk + kk];
+                        }
+
+                    v21_down_load_acc_vec:
+                        for (int jj = 0; jj < V21_MAC_GROUP; jj++) {
+#pragma HLS UNROLL
+                            acc_vec[jj] = output_buf[s][o0 + oo + jj];
+                        }
+
+                    v21_down_mac_vec:
+                        for (int jj = 0; jj < V21_MAC_GROUP; jj++) {
+#pragma HLS UNROLL
+                            float w_vec[V10_K_PAR];
+#pragma HLS ARRAY_PARTITION variable=w_vec complete dim=1
+                        v21_down_load_w_vec:
+                            for (int kk = 0; kk < V10_K_PAR; kk++) {
+#pragma HLS UNROLL
+                                w_vec[kk] = w_tile[oo + jj][tk + kk];
+                            }
+                            acc_vec[jj] += v13_dot16_tree_margin(x_vec, w_vec);
+                        }
+
+                    v21_down_store_acc_vec:
+                        for (int jj = 0; jj < V21_MAC_GROUP; jj++) {
+#pragma HLS UNROLL
+                            output_buf[s][o0 + oo + jj] = acc_vec[jj];
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+static void v21_projection_dataflow_tile96(
+    float input_buf[SEQ_LEN][HIDDEN_SIZE],
+    packed_float16_t *w1,
+    packed_float16_t *b1,
+    packed_float16_t *w2,
+    packed_float16_t *b2,
+    float output_buf[SEQ_LEN][HIDDEN_SIZE])
+{
+#pragma HLS INLINE off
+    packed_float_stream_t gelu_stream("v21_gelu_stream");
+#pragma HLS STREAM variable=gelu_stream depth=512
+#pragma HLS DATAFLOW
+    v21_ffn_up_tile96_producer(input_buf, w1, b1, gelu_stream);
+    v21_ffn_down_tile96_consumer(gelu_stream, w2, b2, output_buf);
+}
+#endif
 
 static void v16_ffn_up_tilemajor_directpack_producer(
     float input_buf[SEQ_LEN][HIDDEN_SIZE],

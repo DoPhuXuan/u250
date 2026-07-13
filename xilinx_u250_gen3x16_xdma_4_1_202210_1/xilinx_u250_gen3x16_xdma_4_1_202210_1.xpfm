@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdx:platform sdx:vendor="xilinx"
+              sdx:library="u250"
+              sdx:name="gen3x16_xdma_4_1"
+              sdx:version="202210.1"
+              sdx:schemaVersion="1.0"
+              xmlns:sdx="http://www.xilinx.com/sdx">
+    <sdx:description>
+This platform targets the Alveo U250 Data Center Accelerator Card. This high-performance acceleration platform features up to four channels of DDR4-2400 SDRAM which are instantiated as required by the user kernels for high fabric resource availability, and Xilinx DMA Subsystem for PCI Express with PCIe Gen3 x16 connectivity.
+    </sdx:description>
+    <sdx:hardwarePlatforms sdx:defaultRP="0">
+        <sdx:reconfigurablePartition sdx:id="0">
+                <sdx:hardwarePlatform sdx:path="hw" sdx:name="hw.xsa"/>
+                <sdx:hwEmuPlatform sdx:path="hw_emu" sdx:name="hw_emu.xsa"/>
+        </sdx:reconfigurablePartition>
+    </sdx:hardwarePlatforms>
+    <sdx:softwarePlatforms>
+        <sdx:softwarePlatform sdx:path="sw" sdx:name="sw.spfm"/>
+    </sdx:softwarePlatforms>
+</sdx:platform>
