@@ -127,7 +127,7 @@ ACCUMULATE_OUTPUT_TILE:
             }
         ACCUMULATE_ROW_BLOCK:
             for (int rb = 0; rb < SEQ_LEN * (OUT_TILE_O / OUT_O_PAR); ++rb) {
-#pragma HLS PIPELINE II=4
+#pragma HLS PIPELINE II=2
 #pragma HLS DEPENDENCE variable=projected inter false
                 const int s = rb / (OUT_TILE_O / OUT_O_PAR);
                 const int out_block = (rb % (OUT_TILE_O / OUT_O_PAR)) * OUT_O_PAR;

@@ -555,3 +555,352 @@ LUT <= 175,000
 URAM <= 30
 Core slack >= 0 ns
 ```
+
+## Attention Out/Norm v8.0 projection throughput
+
+The latest Out/Norm baseline is dominated by the output projection rather
+than residual load or layer normalization:
+
+```text
+Out/Norm top                         2,549,842 cycles
+Out/Norm group                         413,134 cycles
+accumulate_projection_group            411,080 cycles
+ACCUMULATE_ROW_BLOCK latency              2,100 cycles
+ACCUMULATE_ROW_BLOCK final II                  4
+projection module slack                    +0.09 ns
+Out/Norm top slack                         -0.04 ns
+DSP                                           201
+FF                                         79,557
+LUT                                        78,764
+URAM                                           32
+```
+
+The row-block loop processes distinct projected output locations, and the
+source already declares the inter-iteration dependency on `projected` false.
+V8.0 changes only its requested pipeline interval from four to two. It does
+not change arithmetic order, weight layout, stream order, word count, public
+ABI, or the SLR mapping.
+
+The expected group latency is approximately 215,000 cycles. Even if the
+projection multiplier count doubles, Out/Norm plus the routed FFN UP remains
+well below the SLR2 DSP capacity. Acceptance gates are:
+
+```text
+ACCUMULATE_ROW_BLOCK final II <= 2
+Out/Norm group latency <= 240,000 cycles
+Out/Norm top latency <= 1,520,000 cycles
+DSP <= 450
+FF <= 150,000
+LUT <= 140,000
+URAM <= 40
+projection module slack >= 0 ns
+top slack must not regress below -0.04 ns
+```
+
+If HLS cannot achieve II=2 or violates a resource gate, revert to II=3 before
+changing tile sizes or numerical operations. Layer-normalization timing is a
+separate follow-up because it contributes only about 58,225 cycles to the top
+latency and currently owns the small negative top-level slack.
+
+## Attention Out/Norm v8.0 measured result
+
+V8.0 passed every projection throughput, latency, and resource gate:
+
+```text
+Out/Norm top                         1,365,586 cycles
+Out/Norm group                         215,758 cycles
+accumulate_projection_group            213,704 cycles
+ACCUMULATE_ROW_BLOCK latency              1,072 cycles
+ACCUMULATE_ROW_BLOCK final II                  2
+projection module slack                    +0.09 ns
+DSP                                           393
+FF                                         98,649
+LUT                                        91,363
+URAM                                           32
+top slack                                  -0.04 ns
+```
+
+Compared with the II=4 baseline, top latency fell by 1,184,256 cycles and the
+per-group latency fell by 197,376 cycles. Projection DSP increased by 192 as
+expected. Including the routed FFN UP and platform proxy, the SLR2 estimate is
+approximately 54.6% DSP, 33.4% FF, 47.0% LUT, 36.9% BRAM36, and 20.0% URAM.
+
+The pipeline bottleneck is now QKV at 369,738 cycles per group; Out/Norm at
+215,758 cycles no longer determines the six-group pipeline interval. With the
+latest QKV and Core results, the twelve-layer latency estimate is:
+
+```text
+attention/layer = 6*369,738 + 325,901 + 215,758 + 71,038
+                = 2,831,125 cycles
+encoder layer   = 2,831,125 + 1,655,260
+                = 4,486,385 cycles
+12 layers at 300 MHz = 179.4554 ms
+```
+
+V8.0 is therefore the locked Out/Norm latency baseline. Its remaining negative
+slack belongs to `NORM_REDUCE_PACK` (II=4, 209 cycles per row), not the output
+projection. Do not alter projection tiling or parallelism while diagnosing
+that timing path.
+
+## Attention Out/Norm v8.1 norm timing
+
+The complete v8.0 log identifies a single timing path in
+`NORM_REDUCE_PACK`:
+
+```text
+estimated module period                  2.470 ns
+effective HLS delay budget               2.433 ns
+critical operation                       sum_bank fadd
+critical operation delay                 2.080 ns
+implementation                           fabric
+operator latency                         4 cycles
+loop final II                            4
+```
+
+This is an arithmetic recurrence, not a memory-port or high-fanout path. V8.1
+keeps the accumulation order intact and requests one additional pipeline stage
+for both the sum and square-sum fabric adders. The loop II is set to five to
+match the new recurrence latency. Projection remains unchanged at II=2.
+
+Expected cost is 47 additional cycles per row, or 6,016 cycles for the kernel.
+This does not affect the inter-kernel pipeline interval because QKV remains the
+slowest stage. V8.1 acceptance gates are:
+
+```text
+sum_bank and square_bank implement as fabric fadd latency=5
+NORM_REDUCE_PACK final II = 5
+NORM_REDUCE_PACK slack >= 0 ns
+Out/Norm top slack >= 0 ns
+ACCUMULATE_ROW_BLOCK final II = 2
+Out/Norm top latency <= 1,375,000 cycles
+DSP <= 410
+FF <= 115,000
+LUT <= 105,000
+URAM = 32
+```
+
+If Vitis ignores the requested fabric latency or timing remains negative,
+revert v8.1 to the locked v8.0 baseline. The next isolated experiment is a
+full-DSP fadd with its reported native latency. The measured v8.1 result below
+supersedes that provisional experiment path.
+
+## Attention Out/Norm v8.1 rejection and v8.2 timing constraint
+
+V8.1 is rejected. Vitis recorded both `BIND_OP latency=5` directives but kept
+the generated sum and square-sum operators as fabric fadd latency four. The
+loop II increased to five, top latency increased by 6,144 cycles, and slack
+remained -0.04 ns:
+
+```text
+Out/Norm top                         1,371,730 cycles
+NORM_REDUCE_PACK                         257 cycles, II=5
+implemented accumulator                  fabric fadd latency=4
+DSP                                           393
+FF                                         98,405
+LUT                                        90,721
+URAM                                           32
+slack                                      -0.04 ns
+```
+
+The actual v8.0 estimated period is 2.470 ns, corresponding to 404.86 MHz and
+comfortably below the required 3.333 ns clock. Its negative HLS slack comes
+only from the default 27% uncertainty, which reduces the scheduling budget to
+2.43309 ns. SLR2 is estimated at approximately 54.6% DSP and 47.0% LUT after
+including FFN UP and the platform proxy, so v8.2 uses an explicit 25% margin
+for Out/Norm only:
+
+```text
+clock period                             3.33300 ns
+clock uncertainty                        0.83325 ns
+effective scheduling budget              2.49975 ns
+expected Out/Norm slack                     +0.03 ns
+```
+
+V8.2 restores the locked v8.0 datapath: no accumulator binding and a requested
+II=1 that naturally resolves to II=4. QKV and Core retain the Vitis default
+27% uncertainty. Acceptance gates are:
+
+```text
+log reports Out/Norm clock uncertainty = 0.83325 ns
+NORM_REDUCE_PACK final II = 4
+ACCUMULATE_ROW_BLOCK final II = 2
+Out/Norm top latency <= 1,370,000 cycles
+Out/Norm top slack >= 0 ns
+DSP <= 400
+FF <= 105,000
+LUT <= 100,000
+URAM = 32
+```
+
+## QKV v6.7 timing constraint
+
+The locked QKV v6.3 datapath already reaches II=1 and the required model
+latency. Its remaining -0.30 ns HLS slack is caused by the default 27% timing
+margin around an approximately 2.729 ns `PROJECT_INPUT_STEP` implementation.
+The later FRP hint was rejected by Vitis HLS and produced the same RTL metrics,
+so v6.7 removes that ineffective hint and restores the v6.3 pipeline source.
+
+Increasing `QKV_O_PAR` would approximately double the compute fabric and push
+SLR0 LUT usage out of the route-friendly range. Increasing `QKV_K_PAR` would
+also increase the already high URAM banking footprint. Since the current model
+estimate is about 179.45 ms, neither resource expansion is justified.
+
+V6.7 applies an explicit 15% implementation margin to QKV only:
+
+```text
+clock period                             3.33300 ns
+clock uncertainty                        0.49995 ns
+effective scheduling budget              2.83305 ns
+estimated QKV period                     ~2.72900 ns
+expected QKV slack                       ~+0.10 ns
+```
+
+Core remains at the Vitis default 27% margin and Out/Norm remains at its
+measured 25% margin. V6.7 acceptance gates are:
+
+```text
+log reports QKV clock uncertainty = 0.49995 ns
+PROJECT_INPUT_STEP final II = 1
+REDUCE_OUTPUT final II = 1
+QKV group latency <= 375,000 cycles
+QKV top latency <= 2,240,000 cycles
+QKV top slack >= 0 ns
+DSP <= 1,000
+FF <= 300,000
+LUT <= 190,000
+URAM <= 220
+```
+
+## Timing-constraint correction
+
+The per-kernel 25% Out/Norm and 15% QKV uncertainty settings are withdrawn.
+They changed only the scheduling budget and did not improve either RTL
+datapath. All three kernels again use the Vitis HLS 2022.1 default 27%
+uncertainty so timing comparisons remain honest and directly comparable.
+
+Consequently, the positive Out/Norm v8.2 report is retained only as a
+constraint-calibration measurement, not as timing closure. The accepted
+datapaths remain QKV v6.3 without the rejected FRP hint, Core v7.1, and
+Out/Norm projection II=2. Their default-margin csynth slack values must be
+reported as negative until the datapath is improved or downstream RTL timing
+provides evidence at the real 3.333 ns clock.
+
+## QKV v6.7 measured diagnosis and v6.8 targeted fadd
+
+With the default 27% uncertainty restored and the rejected FRP hint removed,
+v6.7 reproduces the locked v6.3 latency and resources:
+
+```text
+QKV top                             2,230,737 cycles
+QKV group                             369,738 cycles
+PROJECT_INPUT_STEP                         II=1
+REDUCE_OUTPUT                              II=1
+DSP                                         960
+FF                                      283,348
+LUT                                     178,060
+URAM                                        216
+slack                                    -0.30 ns
+```
+
+The complete operator inventory explains the timing asymmetry. The input-step
+pipeline contains 192 max-DSP multipliers, 191 full-DSP accumulator adders, and
+only one fabric accumulator adder. That last fabric instance is reported as
+`updated_192` (`updated_191` in zero-based internal naming) and is the complete
+critical path:
+
+```text
+fabric fadd                              2.340 ns
+updated register store                   0.387 ns
+estimated pipeline period                2.729 ns
+effective 27% budget                     2.433 ns
+```
+
+After complete unrolling, the 192nd Q/K/V accumulator call is the last V lane,
+`vpartial[QKV_O_PAR-1][QKV_K_PAR-1]`. V6.8 gives only this call a distinct
+inline helper whose result is bound to the same full-DSP latency-six core
+already used by the other 191 lanes. It does not bind the common helper, so it
+avoids the previous global operator-sharing regression.
+
+V6.8 acceptance gates are:
+
+```text
+PROJECT_INPUT_STEP final II = 1
+REDUCE_OUTPUT final II = 1
+PROJECT_INPUT_STEP contains no fabric fadd
+PROJECT_INPUT_STEP full-DSP fadd count = 192
+QKV group latency <= 375,000 cycles
+QKV top latency <= 2,240,000 cycles
+DSP <= 970
+FF <= 300,000
+LUT <= 190,000
+URAM <= 220
+PROJECT_INPUT_STEP slack > -0.05 ns
+```
+
+The existing 2.532 ns module-call path may become the next reported bottleneck.
+If so, v6.8 is retained as a valid arithmetic timing fix and the next pass
+targets only that control boundary; uncertainty remains at the default 27%.
+
+## QKV v6.8 rejection and v6.9 direct binding
+
+V6.8 correctly isolated the final V accumulator, but Vitis recorded the helper
+pragma and then discarded its implementation request during inlining. The
+generated operator remained a fabric fadd latency four, and every latency,
+resource, and timing value reproduced v6.7 exactly. V6.8 is rejected.
+
+V6.9 removes the special inline helper. The final V update is excluded from
+the completely unrolled common loop and emitted directly in
+`PROJECT_INPUT_STEP`. Its result variable is declared before `BIND_OP`, and the
+addition assignment follows the directive. This makes the operator ownership
+unambiguous in the actual pipelined scope while preserving the original FP32
+addition and register-rotation order.
+
+V6.9 acceptance gates are:
+
+```text
+updated_last_v implements as full-DSP fadd latency=6
+PROJECT_INPUT_STEP contains no fabric fadd
+PROJECT_INPUT_STEP final II = 1
+REDUCE_OUTPUT final II = 1
+QKV group latency <= 375,000 cycles
+QKV top latency <= 2,240,000 cycles
+DSP <= 970
+FF <= 300,000
+LUT <= 190,000
+URAM <= 220
+PROJECT_INPUT_STEP slack > -0.05 ns
+```
+
+If the direct-scope binding is still ignored, no further operator-binding
+variants are allowed. The source returns to v6.7 and subsequent work targets
+the pipeline control/module boundary or downstream RTL timing at 3.333 ns.
+
+## QKV v6.9 rejection and RTL synthesis check
+
+V6.9 is rejected. Although the direct-scope `BIND_OP` appears in the directive
+table, Vitis again implements `updated_last_v` as the same latency-four fabric
+fadd. V6.7, v6.8, and v6.9 are identical in latency, resource use, operator
+inventory, fanout, and timing. No further operator-binding variant is allowed.
+
+The active QKV source is restored to v6.7: the common rotating accumulator,
+II=1, no FRP hint, no special binding, and default 27% HLS uncertainty. To
+measure the generated RTL against the actual 3.333 ns clock without the cost of
+place-and-route, the QKV build now runs Vivado logic synthesis after csynth:
+
+```tcl
+export_design -flow syn -rtl verilog
+```
+
+This is not timing closure and does not include route delay, but it is a more
+direct 300 MHz timing check than the HLS scheduler's 2.433 ns budget. QKV is the
+only kernel receiving this extra step. Its implementation reports are copied
+to:
+
+```text
+reports/rtl_syn/bert_qkv_kernel/
+```
+
+Acceptance requires successful logic synthesis, a non-empty timing report,
+and non-negative setup slack at 3.333 ns. If synthesis setup slack is negative,
+the next source pass must split the high-fanout input-step control boundary;
+clock uncertainty and arithmetic bindings remain unchanged.

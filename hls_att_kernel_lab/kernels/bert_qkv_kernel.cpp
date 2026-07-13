@@ -227,7 +227,7 @@ GROUP_OUTPUT_TILE:
                 for (int step = 0;
                      step < PACKS * (PACK_SIZE / QKV_K_PAR);
                      ++step) {
-#pragma HLS PIPELINE II=1 style=frp
+#pragma HLS PIPELINE II=1
                     const int ip = step / (PACK_SIZE / QKV_K_PAR);
                     const int half = step % (PACK_SIZE / QKV_K_PAR);
                     const int input_base = ip * PACK_SIZE + half * QKV_K_PAR;

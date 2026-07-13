@@ -1,0 +1,181 @@
+
+
+================================================================
+== Vitis HLS Report for 'initialize_projection_Pipeline_INIT_PROJECTION_ROW_INIT_PROJECTION_OUT'
+================================================================
+* Date:           Mon Jul 13 10:38:54 2026
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:47:01 MDT 2022)
+* Project:        proj_bert_attn_out_norm_kernel
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu250-figd2104-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.466 ns|     0.83 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      514|      514|  1.713 us|  1.713 us|  514|  514|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                                           |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |                 Loop Name                 |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- INIT_PROJECTION_ROW_INIT_PROJECTION_OUT  |      512|      512|         2|          1|          1|   512|       yes|
+        +-------------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+-------+---------+---------+------+
+|         Name        | BRAM_18K|  DSP  |    FF   |   LUT   | URAM |
++---------------------+---------+-------+---------+---------+------+
+|DSP                  |        -|      -|        -|        -|     -|
+|Expression           |        -|      -|        0|      104|     -|
+|FIFO                 |        -|      -|        -|        -|     -|
+|Instance             |        -|      -|        -|        -|     -|
+|Memory               |        -|      -|        -|        -|     -|
+|Multiplexer          |        -|      -|        -|       72|     -|
+|Register             |        -|      -|       41|        -|     -|
++---------------------+---------+-------+---------+---------+------+
+|Total                |        0|      0|       41|      176|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available SLR        |     1344|   3072|   864000|   432000|   320|
++---------------------+---------+-------+---------+---------+------+
+|Utilization SLR (%)  |        0|      0|       ~0|       ~0|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available            |     5376|  12288|  3456000|  1728000|  1280|
++---------------------+---------+-------+---------+---------+------+
+|Utilization (%)      |        0|      0|       ~0|       ~0|     0|
++---------------------+---------+-------+---------+---------+------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-------------------------+----------+----+---+----+------------+------------+
+    |      Variable Name      | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-------------------------+----------+----+---+----+------------+------------+
+    |add_ln83_1_fu_249_p2     |         +|   0|  0|  17|          10|           1|
+    |add_ln83_fu_261_p2       |         +|   0|  0|  15|           8|           1|
+    |add_ln85_fu_361_p2       |         +|   0|  0|  13|           6|           4|
+    |add_ln90_fu_355_p2       |         +|   0|  0|  16|          14|          14|
+    |sub_ln90_fu_315_p2       |         -|   0|  0|  16|          14|          14|
+    |icmp_ln83_fu_243_p2      |      icmp|   0|  0|  11|          10|          11|
+    |select_ln83_1_fu_283_p3  |    select|   0|  0|   8|           1|           8|
+    |select_ln83_fu_275_p3    |    select|   0|  0|   6|           1|           1|
+    |ap_enable_pp0            |       xor|   0|  0|   2|           1|           2|
+    +-------------------------+----------+----+---+----+------------+------------+
+    |Total                    |          |   0|  0| 104|          65|          56|
+    +-------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------------------------+----+-----------+-----+-----------+
+    |                 Name                 | LUT| Input Size| Bits| Total Bits|
+    +--------------------------------------+----+-----------+-----+-----------+
+    |ap_done_int                           |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1               |   9|          2|    1|          2|
+    |ap_sig_allocacmp_indvar_flatten_load  |   9|          2|   10|         20|
+    |ap_sig_allocacmp_o_load               |   9|          2|    6|         12|
+    |ap_sig_allocacmp_s_load               |   9|          2|    8|         16|
+    |indvar_flatten_fu_94                  |   9|          2|   10|         20|
+    |o_fu_86                               |   9|          2|    6|         12|
+    |s_fu_90                               |   9|          2|    8|         16|
+    +--------------------------------------+----+-----------+-----+-----------+
+    |Total                                 |  72|         16|   50|        100|
+    +--------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+----+----+-----+-----------+
+    |           Name          | FF | LUT| Bits| Const Bits|
+    +-------------------------+----+----+-----+-----------+
+    |add_ln90_reg_468         |  14|   0|   14|          0|
+    |ap_CS_fsm                |   1|   0|    1|          0|
+    |ap_done_reg              |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |   1|   0|    1|          0|
+    |indvar_flatten_fu_94     |  10|   0|   10|          0|
+    |o_fu_86                  |   6|   0|    6|          0|
+    |s_fu_90                  |   8|   0|    8|          0|
+    +-------------------------+----+----+-----+-----------+
+    |Total                    |  41|   0|   41|          0|
+    +-------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------+-----+-----+------------+------------------------------------------------------------------------+--------------+
+|       RTL Ports      | Dir | Bits|  Protocol  |                              Source Object                             |    C Type    |
++----------------------+-----+-----+------------+------------------------------------------------------------------------+--------------+
+|ap_clk                |   in|    1|  ap_ctrl_hs|  initialize_projection_Pipeline_INIT_PROJECTION_ROW_INIT_PROJECTION_OUT|  return value|
+|ap_rst                |   in|    1|  ap_ctrl_hs|  initialize_projection_Pipeline_INIT_PROJECTION_ROW_INIT_PROJECTION_OUT|  return value|
+|ap_start              |   in|    1|  ap_ctrl_hs|  initialize_projection_Pipeline_INIT_PROJECTION_ROW_INIT_PROJECTION_OUT|  return value|
+|ap_done               |  out|    1|  ap_ctrl_hs|  initialize_projection_Pipeline_INIT_PROJECTION_ROW_INIT_PROJECTION_OUT|  return value|
+|ap_idle               |  out|    1|  ap_ctrl_hs|  initialize_projection_Pipeline_INIT_PROJECTION_ROW_INIT_PROJECTION_OUT|  return value|
+|ap_ready              |  out|    1|  ap_ctrl_hs|  initialize_projection_Pipeline_INIT_PROJECTION_ROW_INIT_PROJECTION_OUT|  return value|
+|bias_tile_address0    |  out|    2|   ap_memory|                                                               bias_tile|         array|
+|bias_tile_ce0         |  out|    1|   ap_memory|                                                               bias_tile|         array|
+|bias_tile_q0          |   in|   32|   ap_memory|                                                               bias_tile|         array|
+|tile                  |   in|    5|     ap_none|                                                                    tile|        scalar|
+|projected_address1    |  out|   14|   ap_memory|                                                               projected|         array|
+|projected_ce1         |  out|    1|   ap_memory|                                                               projected|         array|
+|projected_we1         |  out|    1|   ap_memory|                                                               projected|         array|
+|projected_d1          |  out|  256|   ap_memory|                                                               projected|         array|
+|bias_tile_1_address0  |  out|    2|   ap_memory|                                                             bias_tile_1|         array|
+|bias_tile_1_ce0       |  out|    1|   ap_memory|                                                             bias_tile_1|         array|
+|bias_tile_1_q0        |   in|   32|   ap_memory|                                                             bias_tile_1|         array|
+|bias_tile_2_address0  |  out|    2|   ap_memory|                                                             bias_tile_2|         array|
+|bias_tile_2_ce0       |  out|    1|   ap_memory|                                                             bias_tile_2|         array|
+|bias_tile_2_q0        |   in|   32|   ap_memory|                                                             bias_tile_2|         array|
+|bias_tile_3_address0  |  out|    2|   ap_memory|                                                             bias_tile_3|         array|
+|bias_tile_3_ce0       |  out|    1|   ap_memory|                                                             bias_tile_3|         array|
+|bias_tile_3_q0        |   in|   32|   ap_memory|                                                             bias_tile_3|         array|
+|bias_tile_4_address0  |  out|    2|   ap_memory|                                                             bias_tile_4|         array|
+|bias_tile_4_ce0       |  out|    1|   ap_memory|                                                             bias_tile_4|         array|
+|bias_tile_4_q0        |   in|   32|   ap_memory|                                                             bias_tile_4|         array|
+|bias_tile_5_address0  |  out|    2|   ap_memory|                                                             bias_tile_5|         array|
+|bias_tile_5_ce0       |  out|    1|   ap_memory|                                                             bias_tile_5|         array|
+|bias_tile_5_q0        |   in|   32|   ap_memory|                                                             bias_tile_5|         array|
+|bias_tile_6_address0  |  out|    2|   ap_memory|                                                             bias_tile_6|         array|
+|bias_tile_6_ce0       |  out|    1|   ap_memory|                                                             bias_tile_6|         array|
+|bias_tile_6_q0        |   in|   32|   ap_memory|                                                             bias_tile_6|         array|
+|bias_tile_7_address0  |  out|    2|   ap_memory|                                                             bias_tile_7|         array|
+|bias_tile_7_ce0       |  out|    1|   ap_memory|                                                             bias_tile_7|         array|
+|bias_tile_7_q0        |   in|   32|   ap_memory|                                                             bias_tile_7|         array|
++----------------------+-----+-----+------------+------------------------------------------------------------------------+--------------+
+

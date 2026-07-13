@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'bert_qkv_kernel'
 ================================================================
 + General Information: 
-    * Date:           Mon Jul 13 11:02:28 2026
+    * Date:           Mon Jul 13 11:08:30 2026
     * Version:        2022.1 (Build 3526262 on Mon Apr 18 15:47:01 MDT 2022)
     * Project:        proj_bert_qkv_kernel
     * Solution:       solution1 (Vivado IP Flow Target)
@@ -209,12 +209,12 @@
 | + bert_qkv_kernel                                                      | 960 |        |                  |      |         |         |
 |   weight_offset_fu_323_p2                                              | -   |        | weight_offset    | add  | fabric  | 0       |
 |   bias_offset_fu_339_p2                                                | -   |        | bias_offset      | sub  | fabric  | 0       |
-|   empty_54_fu_357_p2                                                   | -   |        | empty_54         | add  | fabric  | 0       |
-|   empty_55_fu_374_p2                                                   | -   |        | empty_55         | add  | fabric  | 0       |
-|   empty_56_fu_379_p2                                                   | -   |        | empty_56         | add  | fabric  | 0       |
-|   empty_57_fu_384_p2                                                   | -   |        | empty_57         | add  | fabric  | 0       |
-|   empty_58_fu_389_p2                                                   | -   |        | empty_58         | add  | fabric  | 0       |
-|   empty_59_fu_394_p2                                                   | -   |        | empty_59         | add  | fabric  | 0       |
+|   empty_245_fu_357_p2                                                  | -   |        | empty_245        | add  | fabric  | 0       |
+|   empty_246_fu_374_p2                                                  | -   |        | empty_246        | add  | fabric  | 0       |
+|   empty_247_fu_379_p2                                                  | -   |        | empty_247        | add  | fabric  | 0       |
+|   empty_248_fu_384_p2                                                  | -   |        | empty_248        | add  | fabric  | 0       |
+|   empty_249_fu_389_p2                                                  | -   |        | empty_249        | add  | fabric  | 0       |
+|   empty_250_fu_394_p2                                                  | -   |        | empty_250        | add  | fabric  | 0       |
 |   group_2_fu_417_p2                                                    | -   |        | group_2          | add  | fabric  | 0       |
 |  + load_hidden_matrix                                                  | 0   |        |                  |      |         |         |
 |   + load_hidden_matrix_Pipeline_LOAD_HIDDEN_ROW_LOAD_HIDDEN_PACK       | 0   |        |                  |      |         |         |
@@ -251,209 +251,209 @@
 |      add_ln137_1_fu_6248_p2                                            | -   |        | add_ln137_1      | add  | fabric  | 0       |
 |      add_ln127_fu_5995_p2                                              | -   |        | add_ln127        | add  | fabric  | 0       |
 |   + project_qkv_group_Pipeline_PROJECT_INPUT_STEP                      | 576 |        |                  |      |         |         |
-|     step_2_fu_32197_p2                                                 | -   |        | step_2           | add  | fabric  | 0       |
-|     add_ln240_fu_32211_p2                                              | -   |        | add_ln240        | add  | fabric  | 0       |
-|     add_ln241_fu_32222_p2                                              | -   |        | add_ln241        | add  | fabric  | 0       |
+|     step_2_fu_32183_p2                                                 | -   |        | step_2           | add  | fabric  | 0       |
+|     add_ln240_fu_32197_p2                                              | -   |        | add_ln240        | add  | fabric  | 0       |
+|     add_ln241_fu_32208_p2                                              | -   |        | add_ln241        | add  | fabric  | 0       |
 |     fmul_32ns_32ns_32_4_max_dsp_1_U657                                 | 3   |        | value_assign     | fmul | maxdsp  | 3       |
 |     fmul_32ns_32ns_32_4_max_dsp_1_U658                                 | 3   |        | value_assign_1   | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U659                                 | 3   |        | vproduct_1       | fmul | maxdsp  | 3       |
-|     fadd_32ns_32ns_32_5_no_dsp_1_U656                                  | -   |        | updated          | fadd | fabric  | 4       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U659                                 | 3   |        | value_assign_2   | fmul | maxdsp  | 3       |
+|     fadd_32ns_32ns_32_5_no_dsp_1_U656                                  | -   |        | updated_192      | fadd | fabric  | 4       |
 |     fmul_32ns_32ns_32_4_max_dsp_1_U660                                 | 3   |        | value_assign_3   | fmul | maxdsp  | 3       |
 |     fmul_32ns_32ns_32_4_max_dsp_1_U661                                 | 3   |        | value_assign_4   | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U662                                 | 3   |        | vproduct_2       | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U662                                 | 3   |        | value_assign_5   | fmul | maxdsp  | 3       |
 |     fmul_32ns_32ns_32_4_max_dsp_1_U663                                 | 3   |        | value_assign_6   | fmul | maxdsp  | 3       |
 |     fmul_32ns_32ns_32_4_max_dsp_1_U664                                 | 3   |        | value_assign_7   | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U665                                 | 3   |        | vproduct_3       | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U665                                 | 3   |        | value_assign_8   | fmul | maxdsp  | 3       |
 |     fmul_32ns_32ns_32_4_max_dsp_1_U666                                 | 3   |        | value_assign_9   | fmul | maxdsp  | 3       |
 |     fmul_32ns_32ns_32_4_max_dsp_1_U667                                 | 3   |        | value_assign_s   | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U668                                 | 3   |        | vproduct_4       | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U669                                 | 3   |        | value_assign_2   | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U670                                 | 3   |        | value_assign_5   | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U671                                 | 3   |        | vproduct_5       | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U672                                 | 3   |        | value_assign_8   | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U673                                 | 3   |        | value_assign_10  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U674                                 | 3   |        | vproduct_6       | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U675                                 | 3   |        | value_assign_11  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U676                                 | 3   |        | value_assign_12  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U677                                 | 3   |        | vproduct_7       | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U678                                 | 3   |        | value_assign_13  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U679                                 | 3   |        | value_assign_14  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U680                                 | 3   |        | vproduct_8       | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U681                                 | 3   |        | value_assign_15  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U682                                 | 3   |        | value_assign_16  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U683                                 | 3   |        | vproduct_9       | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U684                                 | 3   |        | value_assign_17  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U685                                 | 3   |        | value_assign_18  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U686                                 | 3   |        | vproduct_10      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U687                                 | 3   |        | value_assign_19  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U688                                 | 3   |        | value_assign_20  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U689                                 | 3   |        | vproduct_11      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U690                                 | 3   |        | value_assign_21  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U691                                 | 3   |        | value_assign_22  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U692                                 | 3   |        | vproduct_12      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U693                                 | 3   |        | value_assign_23  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U694                                 | 3   |        | value_assign_24  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U695                                 | 3   |        | vproduct_13      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U696                                 | 3   |        | value_assign_25  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U697                                 | 3   |        | value_assign_26  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U698                                 | 3   |        | vproduct_14      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U699                                 | 3   |        | value_assign_27  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U700                                 | 3   |        | value_assign_28  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U701                                 | 3   |        | vproduct_15      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U702                                 | 3   |        | value_assign_29  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U703                                 | 3   |        | value_assign_30  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U704                                 | 3   |        | vproduct_16      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U705                                 | 3   |        | value_assign_31  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U706                                 | 3   |        | value_assign_32  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U707                                 | 3   |        | vproduct_17      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U708                                 | 3   |        | value_assign_33  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U709                                 | 3   |        | value_assign_34  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U710                                 | 3   |        | vproduct_18      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U711                                 | 3   |        | value_assign_35  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U712                                 | 3   |        | value_assign_36  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U713                                 | 3   |        | vproduct_19      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U714                                 | 3   |        | value_assign_37  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U715                                 | 3   |        | value_assign_38  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U716                                 | 3   |        | vproduct_20      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U717                                 | 3   |        | value_assign_39  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U718                                 | 3   |        | value_assign_40  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U719                                 | 3   |        | vproduct_21      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U720                                 | 3   |        | value_assign_41  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U721                                 | 3   |        | value_assign_42  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U722                                 | 3   |        | vproduct_22      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U723                                 | 3   |        | value_assign_43  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U724                                 | 3   |        | value_assign_44  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U725                                 | 3   |        | vproduct_23      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U726                                 | 3   |        | value_assign_45  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U727                                 | 3   |        | value_assign_46  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U728                                 | 3   |        | vproduct_24      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U729                                 | 3   |        | value_assign_47  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U730                                 | 3   |        | value_assign_48  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U731                                 | 3   |        | vproduct_25      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U732                                 | 3   |        | value_assign_49  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U733                                 | 3   |        | value_assign_50  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U734                                 | 3   |        | vproduct_26      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U735                                 | 3   |        | value_assign_51  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U736                                 | 3   |        | value_assign_52  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U737                                 | 3   |        | vproduct_27      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U738                                 | 3   |        | value_assign_53  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U739                                 | 3   |        | value_assign_54  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U740                                 | 3   |        | vproduct_28      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U741                                 | 3   |        | value_assign_55  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U742                                 | 3   |        | value_assign_56  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U743                                 | 3   |        | vproduct_29      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U744                                 | 3   |        | value_assign_57  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U745                                 | 3   |        | value_assign_58  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U746                                 | 3   |        | vproduct_30      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U747                                 | 3   |        | value_assign_59  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U748                                 | 3   |        | value_assign_60  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U749                                 | 3   |        | vproduct_31      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U750                                 | 3   |        | value_assign_61  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U751                                 | 3   |        | value_assign_62  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U752                                 | 3   |        | vproduct_32      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U753                                 | 3   |        | value_assign_63  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U754                                 | 3   |        | value_assign_64  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U755                                 | 3   |        | vproduct_33      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U756                                 | 3   |        | value_assign_65  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U757                                 | 3   |        | value_assign_66  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U758                                 | 3   |        | vproduct_34      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U759                                 | 3   |        | value_assign_67  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U760                                 | 3   |        | value_assign_68  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U761                                 | 3   |        | vproduct_35      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U762                                 | 3   |        | value_assign_69  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U763                                 | 3   |        | value_assign_70  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U764                                 | 3   |        | vproduct_36      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U765                                 | 3   |        | value_assign_71  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U766                                 | 3   |        | value_assign_72  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U767                                 | 3   |        | vproduct_37      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U768                                 | 3   |        | value_assign_73  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U769                                 | 3   |        | value_assign_74  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U770                                 | 3   |        | vproduct_38      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U771                                 | 3   |        | value_assign_75  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U772                                 | 3   |        | value_assign_76  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U773                                 | 3   |        | vproduct_39      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U774                                 | 3   |        | value_assign_77  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U775                                 | 3   |        | value_assign_78  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U776                                 | 3   |        | vproduct_40      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U777                                 | 3   |        | value_assign_79  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U778                                 | 3   |        | value_assign_80  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U779                                 | 3   |        | vproduct_41      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U780                                 | 3   |        | value_assign_81  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U781                                 | 3   |        | value_assign_82  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U782                                 | 3   |        | vproduct_42      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U783                                 | 3   |        | value_assign_83  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U784                                 | 3   |        | value_assign_84  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U785                                 | 3   |        | vproduct_43      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U786                                 | 3   |        | value_assign_85  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U787                                 | 3   |        | value_assign_86  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U788                                 | 3   |        | vproduct_44      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U789                                 | 3   |        | value_assign_87  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U790                                 | 3   |        | value_assign_88  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U791                                 | 3   |        | vproduct_45      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U792                                 | 3   |        | value_assign_89  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U793                                 | 3   |        | value_assign_90  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U794                                 | 3   |        | vproduct_46      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U795                                 | 3   |        | value_assign_91  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U796                                 | 3   |        | value_assign_92  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U797                                 | 3   |        | vproduct_47      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U798                                 | 3   |        | value_assign_93  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U799                                 | 3   |        | value_assign_94  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U800                                 | 3   |        | vproduct_48      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U801                                 | 3   |        | value_assign_95  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U802                                 | 3   |        | value_assign_96  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U803                                 | 3   |        | vproduct_49      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U804                                 | 3   |        | value_assign_97  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U805                                 | 3   |        | value_assign_98  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U806                                 | 3   |        | vproduct_50      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U807                                 | 3   |        | value_assign_99  | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U808                                 | 3   |        | value_assign_100 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U809                                 | 3   |        | vproduct_51      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U810                                 | 3   |        | value_assign_101 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U811                                 | 3   |        | value_assign_102 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U812                                 | 3   |        | vproduct_52      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U813                                 | 3   |        | value_assign_103 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U814                                 | 3   |        | value_assign_104 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U815                                 | 3   |        | vproduct_53      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U816                                 | 3   |        | value_assign_105 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U817                                 | 3   |        | value_assign_106 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U818                                 | 3   |        | vproduct_54      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U819                                 | 3   |        | value_assign_107 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U820                                 | 3   |        | value_assign_108 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U821                                 | 3   |        | vproduct_55      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U822                                 | 3   |        | value_assign_109 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U823                                 | 3   |        | value_assign_110 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U824                                 | 3   |        | vproduct_56      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U825                                 | 3   |        | value_assign_111 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U826                                 | 3   |        | value_assign_112 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U827                                 | 3   |        | vproduct_57      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U828                                 | 3   |        | value_assign_113 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U829                                 | 3   |        | value_assign_114 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U830                                 | 3   |        | vproduct_58      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U831                                 | 3   |        | value_assign_115 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U832                                 | 3   |        | value_assign_116 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U833                                 | 3   |        | vproduct_59      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U834                                 | 3   |        | value_assign_117 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U835                                 | 3   |        | value_assign_118 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U836                                 | 3   |        | vproduct_60      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U837                                 | 3   |        | value_assign_119 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U838                                 | 3   |        | value_assign_120 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U839                                 | 3   |        | vproduct_61      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U840                                 | 3   |        | value_assign_121 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U841                                 | 3   |        | value_assign_122 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U842                                 | 3   |        | vproduct_62      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U843                                 | 3   |        | value_assign_123 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U844                                 | 3   |        | value_assign_124 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U845                                 | 3   |        | vproduct_63      | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U846                                 | 3   |        | value_assign_125 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U847                                 | 3   |        | value_assign_126 | fmul | maxdsp  | 3       |
-|     fmul_32ns_32ns_32_4_max_dsp_1_U848                                 | 3   |        | vproduct         | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U668                                 | 3   |        | value_assign_10  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U669                                 | 3   |        | value_assign_11  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U670                                 | 3   |        | value_assign_12  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U671                                 | 3   |        | value_assign_13  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U672                                 | 3   |        | value_assign_14  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U673                                 | 3   |        | value_assign_15  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U674                                 | 3   |        | value_assign_16  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U675                                 | 3   |        | value_assign_17  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U676                                 | 3   |        | value_assign_18  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U677                                 | 3   |        | value_assign_19  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U678                                 | 3   |        | value_assign_20  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U679                                 | 3   |        | value_assign_21  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U680                                 | 3   |        | value_assign_22  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U681                                 | 3   |        | value_assign_23  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U682                                 | 3   |        | value_assign_24  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U683                                 | 3   |        | value_assign_25  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U684                                 | 3   |        | value_assign_26  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U685                                 | 3   |        | value_assign_27  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U686                                 | 3   |        | value_assign_28  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U687                                 | 3   |        | value_assign_29  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U688                                 | 3   |        | value_assign_30  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U689                                 | 3   |        | value_assign_31  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U690                                 | 3   |        | value_assign_32  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U691                                 | 3   |        | value_assign_33  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U692                                 | 3   |        | value_assign_34  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U693                                 | 3   |        | value_assign_35  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U694                                 | 3   |        | value_assign_36  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U695                                 | 3   |        | value_assign_37  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U696                                 | 3   |        | value_assign_38  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U697                                 | 3   |        | value_assign_39  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U698                                 | 3   |        | value_assign_40  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U699                                 | 3   |        | value_assign_41  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U700                                 | 3   |        | value_assign_42  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U701                                 | 3   |        | value_assign_43  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U702                                 | 3   |        | value_assign_44  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U703                                 | 3   |        | value_assign_45  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U704                                 | 3   |        | value_assign_46  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U705                                 | 3   |        | value_assign_47  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U706                                 | 3   |        | value_assign_48  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U707                                 | 3   |        | value_assign_49  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U708                                 | 3   |        | value_assign_50  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U709                                 | 3   |        | value_assign_51  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U710                                 | 3   |        | value_assign_52  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U711                                 | 3   |        | value_assign_53  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U712                                 | 3   |        | value_assign_54  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U713                                 | 3   |        | value_assign_55  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U714                                 | 3   |        | value_assign_56  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U715                                 | 3   |        | value_assign_57  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U716                                 | 3   |        | value_assign_58  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U717                                 | 3   |        | value_assign_59  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U718                                 | 3   |        | value_assign_60  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U719                                 | 3   |        | value_assign_61  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U720                                 | 3   |        | value_assign_62  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U721                                 | 3   |        | value_assign_63  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U722                                 | 3   |        | value_assign_64  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U723                                 | 3   |        | value_assign_65  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U724                                 | 3   |        | value_assign_66  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U725                                 | 3   |        | value_assign_67  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U726                                 | 3   |        | value_assign_68  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U727                                 | 3   |        | value_assign_69  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U728                                 | 3   |        | value_assign_70  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U729                                 | 3   |        | value_assign_71  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U730                                 | 3   |        | value_assign_72  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U731                                 | 3   |        | value_assign_73  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U732                                 | 3   |        | value_assign_74  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U733                                 | 3   |        | value_assign_75  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U734                                 | 3   |        | value_assign_76  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U735                                 | 3   |        | value_assign_77  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U736                                 | 3   |        | value_assign_78  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U737                                 | 3   |        | value_assign_79  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U738                                 | 3   |        | value_assign_80  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U739                                 | 3   |        | value_assign_81  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U740                                 | 3   |        | value_assign_82  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U741                                 | 3   |        | value_assign_83  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U742                                 | 3   |        | value_assign_84  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U743                                 | 3   |        | value_assign_85  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U744                                 | 3   |        | value_assign_86  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U745                                 | 3   |        | value_assign_87  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U746                                 | 3   |        | value_assign_88  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U747                                 | 3   |        | value_assign_89  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U748                                 | 3   |        | value_assign_90  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U749                                 | 3   |        | value_assign_91  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U750                                 | 3   |        | value_assign_92  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U751                                 | 3   |        | value_assign_93  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U752                                 | 3   |        | value_assign_94  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U753                                 | 3   |        | value_assign_95  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U754                                 | 3   |        | value_assign_96  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U755                                 | 3   |        | value_assign_97  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U756                                 | 3   |        | value_assign_98  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U757                                 | 3   |        | value_assign_99  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U758                                 | 3   |        | value_assign_100 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U759                                 | 3   |        | value_assign_101 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U760                                 | 3   |        | value_assign_102 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U761                                 | 3   |        | value_assign_103 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U762                                 | 3   |        | value_assign_104 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U763                                 | 3   |        | value_assign_105 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U764                                 | 3   |        | value_assign_106 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U765                                 | 3   |        | value_assign_107 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U766                                 | 3   |        | value_assign_108 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U767                                 | 3   |        | value_assign_109 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U768                                 | 3   |        | value_assign_110 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U769                                 | 3   |        | value_assign_111 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U770                                 | 3   |        | value_assign_112 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U771                                 | 3   |        | value_assign_113 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U772                                 | 3   |        | value_assign_114 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U773                                 | 3   |        | value_assign_115 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U774                                 | 3   |        | value_assign_116 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U775                                 | 3   |        | value_assign_117 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U776                                 | 3   |        | value_assign_118 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U777                                 | 3   |        | value_assign_119 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U778                                 | 3   |        | value_assign_120 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U779                                 | 3   |        | value_assign_121 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U780                                 | 3   |        | value_assign_122 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U781                                 | 3   |        | value_assign_123 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U782                                 | 3   |        | value_assign_124 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U783                                 | 3   |        | value_assign_125 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U784                                 | 3   |        | value_assign_126 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U785                                 | 3   |        | value_assign_127 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U786                                 | 3   |        | value_assign_128 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U787                                 | 3   |        | value_assign_129 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U788                                 | 3   |        | value_assign_130 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U789                                 | 3   |        | value_assign_131 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U790                                 | 3   |        | value_assign_132 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U791                                 | 3   |        | value_assign_133 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U792                                 | 3   |        | value_assign_134 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U793                                 | 3   |        | value_assign_135 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U794                                 | 3   |        | value_assign_136 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U795                                 | 3   |        | value_assign_137 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U796                                 | 3   |        | value_assign_138 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U797                                 | 3   |        | value_assign_139 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U798                                 | 3   |        | value_assign_140 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U799                                 | 3   |        | value_assign_141 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U800                                 | 3   |        | value_assign_142 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U801                                 | 3   |        | value_assign_143 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U802                                 | 3   |        | value_assign_144 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U803                                 | 3   |        | value_assign_145 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U804                                 | 3   |        | value_assign_146 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U805                                 | 3   |        | value_assign_147 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U806                                 | 3   |        | value_assign_148 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U807                                 | 3   |        | value_assign_149 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U808                                 | 3   |        | value_assign_150 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U809                                 | 3   |        | value_assign_151 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U810                                 | 3   |        | value_assign_152 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U811                                 | 3   |        | value_assign_153 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U812                                 | 3   |        | value_assign_154 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U813                                 | 3   |        | value_assign_155 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U814                                 | 3   |        | value_assign_156 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U815                                 | 3   |        | value_assign_157 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U816                                 | 3   |        | value_assign_158 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U817                                 | 3   |        | value_assign_159 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U818                                 | 3   |        | value_assign_160 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U819                                 | 3   |        | value_assign_161 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U820                                 | 3   |        | value_assign_162 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U821                                 | 3   |        | value_assign_163 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U822                                 | 3   |        | value_assign_164 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U823                                 | 3   |        | value_assign_165 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U824                                 | 3   |        | value_assign_166 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U825                                 | 3   |        | value_assign_167 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U826                                 | 3   |        | value_assign_168 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U827                                 | 3   |        | value_assign_169 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U828                                 | 3   |        | value_assign_170 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U829                                 | 3   |        | value_assign_171 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U830                                 | 3   |        | value_assign_172 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U831                                 | 3   |        | value_assign_173 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U832                                 | 3   |        | value_assign_174 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U833                                 | 3   |        | value_assign_175 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U834                                 | 3   |        | value_assign_176 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U835                                 | 3   |        | value_assign_177 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U836                                 | 3   |        | value_assign_178 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U837                                 | 3   |        | value_assign_179 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U838                                 | 3   |        | value_assign_180 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U839                                 | 3   |        | value_assign_181 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U840                                 | 3   |        | value_assign_182 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U841                                 | 3   |        | value_assign_183 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U842                                 | 3   |        | value_assign_184 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U843                                 | 3   |        | value_assign_185 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U844                                 | 3   |        | value_assign_186 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U845                                 | 3   |        | value_assign_187 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U846                                 | 3   |        | value_assign_188 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U847                                 | 3   |        | value_assign_189 | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U848                                 | 3   |        | value_assign_190 | fmul | maxdsp  | 3       |
 |   + project_qkv_group_Pipeline_REDUCE_OUTPUT                           | 2   |        |                  |      |         |         |
-|     add_ln280_fu_13384_p2                                              | -   |        | add_ln280        | add  | fabric  | 0       |
+|     add_ln252_fu_13384_p2                                              | -   |        | add_ln252        | add  | fabric  | 0       |
 |     fadd_32ns_32ns_32_7_full_dsp_1_U2773                               | 2   |        | add2             | fadd | fulldsp | 6       |
 |  + write_qkv_group                                                     | 0   |        |                  |      |         |         |
-|    add_ln326_1_fu_206_p2                                               | -   |        | add_ln326_1      | add  | fabric  | 0       |
-|    add_ln326_fu_218_p2                                                 | -   |        | add_ln326        | add  | fabric  | 0       |
-|    add_ln328_fu_254_p2                                                 | -   |        | add_ln328        | add  | fabric  | 0       |
+|    add_ln298_1_fu_206_p2                                               | -   |        | add_ln298_1      | add  | fabric  | 0       |
+|    add_ln298_fu_218_p2                                                 | -   |        | add_ln298        | add  | fabric  | 0       |
+|    add_ln300_fu_254_p2                                                 | -   |        | add_ln300        | add  | fabric  | 0       |
 +------------------------------------------------------------------------+-----+--------+------------------+------+---------+---------+
 
 
@@ -692,135 +692,134 @@
 == Pragma Report
 ================================================================
 * Valid Pragma Syntax
-+-----------------+-----------------------------------------------------------------------+-------------------------------------------------------------------------+
-| Type            | Options                                                               | Location                                                                |
-+-----------------+-----------------------------------------------------------------------+-------------------------------------------------------------------------+
-| inline          |                                                                       | ../include/bert_math.h:9 in uint32_to_float                             |
-| inline          |                                                                       | ../include/bert_math.h:16 in float_to_uint32                            |
-| inline          |                                                                       | ../include/bert_math.h:23 in unpack_bus16                               |
-| array_partition | variable=lane complete dim=1                                          | ../include/bert_math.h:24 in unpack_bus16, lane                         |
-| unroll          |                                                                       | ../include/bert_math.h:26 in unpack_bus16                               |
-| inline          |                                                                       | ../include/bert_math.h:32 in pack_bus16                                 |
-| array_partition | variable=lane complete dim=1                                          | ../include/bert_math.h:33 in pack_bus16, lane                           |
-| unroll          |                                                                       | ../include/bert_math.h:36 in pack_bus16                                 |
-| inline          |                                                                       | ../include/bert_math.h:44 in fp32_sum8_tree                             |
-| array_partition | variable=value complete dim=1                                         | ../include/bert_math.h:45 in fp32_sum8_tree, value                      |
-| array_partition | variable=s4 complete dim=1                                            | ../include/bert_math.h:48 in fp32_sum8_tree, s4                         |
-| array_partition | variable=s2 complete dim=1                                            | ../include/bert_math.h:49 in fp32_sum8_tree, s2                         |
-| unroll          |                                                                       | ../include/bert_math.h:52 in fp32_sum8_tree                             |
-| unroll          |                                                                       | ../include/bert_math.h:57 in fp32_sum8_tree                             |
-| inline          |                                                                       | ../include/bert_math.h:65 in fp32_sum4_tree                             |
-| array_partition | variable=value complete dim=1                                         | ../include/bert_math.h:66 in fp32_sum4_tree, value                      |
-| array_partition | variable=s2 complete dim=1                                            | ../include/bert_math.h:68 in fp32_sum4_tree, s2                         |
-| unroll          |                                                                       | ../include/bert_math.h:71 in fp32_sum4_tree                             |
-| inline          |                                                                       | ../include/bert_math.h:81 in fp32_dot8_tree                             |
-| array_partition | variable=lhs complete dim=1                                           | ../include/bert_math.h:82 in fp32_dot8_tree, lhs                        |
-| array_partition | variable=rhs complete dim=1                                           | ../include/bert_math.h:83 in fp32_dot8_tree, rhs                        |
-| array_partition | variable=product complete dim=1                                       | ../include/bert_math.h:85 in fp32_dot8_tree, product                    |
-| bind_op         | variable=product op=fmul impl=maxdsp                                  | ../include/bert_math.h:86 in fp32_dot8_tree, product                    |
-| unroll          |                                                                       | ../include/bert_math.h:89 in fp32_dot8_tree                             |
-| inline          |                                                                       | ../include/bert_math.h:99 in fp32_dot4_tree                             |
-| array_partition | variable=lhs complete dim=1                                           | ../include/bert_math.h:100 in fp32_dot4_tree, lhs                       |
-| array_partition | variable=rhs complete dim=1                                           | ../include/bert_math.h:101 in fp32_dot4_tree, rhs                       |
-| array_partition | variable=product complete dim=1                                       | ../include/bert_math.h:104 in fp32_dot4_tree, product                   |
-| array_partition | variable=s2 complete dim=1                                            | ../include/bert_math.h:105 in fp32_dot4_tree, s2                        |
-| bind_op         | variable=product op=fmul impl=maxdsp                                  | ../include/bert_math.h:106 in fp32_dot4_tree, product                   |
-| unroll          |                                                                       | ../include/bert_math.h:109 in fp32_dot4_tree                            |
-| unroll          |                                                                       | ../include/bert_math.h:114 in fp32_dot4_tree                            |
-| inline          |                                                                       | ../kernels/bert_qkv_kernel.cpp:20 in qkv_acc8_clear                     |
-| inline          |                                                                       | ../kernels/bert_qkv_kernel.cpp:33 in qkv_acc8_rotate_add                |
-| inline          |                                                                       | ../kernels/bert_qkv_kernel.cpp:47 in qkv_acc8_read                      |
-| array_partition | variable=lane complete dim=1                                          | ../kernels/bert_qkv_kernel.cpp:48 in qkv_acc8_read, lane                |
-| inline          | off                                                                   | ../kernels/bert_qkv_kernel.cpp:63 in load_hidden_matrix                 |
-| pipeline        | II=1                                                                  | ../kernels/bert_qkv_kernel.cpp:68 in load_hidden_matrix                 |
-| array_partition | variable=lane complete dim=1                                          | ../kernels/bert_qkv_kernel.cpp:70 in load_hidden_matrix, lane           |
-| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:74 in load_hidden_matrix                 |
-| inline          | off                                                                   | ../kernels/bert_qkv_kernel.cpp:90 in load_qkv_bias64                    |
-| pipeline        | II=1                                                                  | ../kernels/bert_qkv_kernel.cpp:93 in load_qkv_bias64                    |
-| array_partition | variable=qlane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:97 in load_qkv_bias64, qlane             |
-| array_partition | variable=klane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:98 in load_qkv_bias64, klane             |
-| array_partition | variable=vlane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:99 in load_qkv_bias64, vlane             |
-| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:106 in load_qkv_bias64                   |
-| inline          | off                                                                   | ../kernels/bert_qkv_kernel.cpp:123 in load_qkv_weight_tile              |
-| pipeline        | II=1                                                                  | ../kernels/bert_qkv_kernel.cpp:128 in load_qkv_weight_tile              |
-| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:135 in load_qkv_weight_tile              |
-| inline          | off                                                                   | ../kernels/bert_qkv_kernel.cpp:161 in project_qkv_group                 |
-| bind_storage    | variable=wq type=RAM_2P impl=URAM                                     | ../kernels/bert_qkv_kernel.cpp:168 in project_qkv_group, wq             |
-| bind_storage    | variable=wk type=RAM_2P impl=URAM                                     | ../kernels/bert_qkv_kernel.cpp:169 in project_qkv_group, wk             |
-| bind_storage    | variable=wv type=RAM_2P impl=URAM                                     | ../kernels/bert_qkv_kernel.cpp:170 in project_qkv_group, wv             |
-| array_partition | variable=wq cyclic factor=QKV_O_PAR dim=1                             | ../kernels/bert_qkv_kernel.cpp:171 in project_qkv_group, wq             |
-| array_partition | variable=wk cyclic factor=QKV_O_PAR dim=1                             | ../kernels/bert_qkv_kernel.cpp:172 in project_qkv_group, wk             |
-| array_partition | variable=wv cyclic factor=QKV_O_PAR dim=1                             | ../kernels/bert_qkv_kernel.cpp:173 in project_qkv_group, wv             |
-| array_partition | variable=wq cyclic factor=QKV_K_PAR dim=2                             | ../kernels/bert_qkv_kernel.cpp:174 in project_qkv_group, wq             |
-| array_partition | variable=wk cyclic factor=QKV_K_PAR dim=2                             | ../kernels/bert_qkv_kernel.cpp:175 in project_qkv_group, wk             |
-| array_partition | variable=wv cyclic factor=QKV_K_PAR dim=2                             | ../kernels/bert_qkv_kernel.cpp:176 in project_qkv_group, wv             |
-| array_partition | variable=qb cyclic factor=QKV_O_PAR dim=1                             | ../kernels/bert_qkv_kernel.cpp:177 in project_qkv_group, qb             |
-| array_partition | variable=kb cyclic factor=QKV_O_PAR dim=1                             | ../kernels/bert_qkv_kernel.cpp:178 in project_qkv_group, kb             |
-| array_partition | variable=vb cyclic factor=QKV_O_PAR dim=1                             | ../kernels/bert_qkv_kernel.cpp:179 in project_qkv_group, vb             |
-| array_partition | variable=qpartial complete dim=1                                      | ../kernels/bert_qkv_kernel.cpp:198 in project_qkv_group, qpartial       |
-| array_partition | variable=qpartial complete dim=2                                      | ../kernels/bert_qkv_kernel.cpp:199 in project_qkv_group, qpartial       |
-| array_partition | variable=kpartial complete dim=1                                      | ../kernels/bert_qkv_kernel.cpp:200 in project_qkv_group, kpartial       |
-| array_partition | variable=kpartial complete dim=2                                      | ../kernels/bert_qkv_kernel.cpp:201 in project_qkv_group, kpartial       |
-| array_partition | variable=vpartial complete dim=1                                      | ../kernels/bert_qkv_kernel.cpp:202 in project_qkv_group, vpartial       |
-| array_partition | variable=vpartial complete dim=2                                      | ../kernels/bert_qkv_kernel.cpp:203 in project_qkv_group, vpartial       |
-| array_partition | variable=qproduct complete dim=1                                      | ../kernels/bert_qkv_kernel.cpp:204 in project_qkv_group, qproduct       |
-| array_partition | variable=qproduct complete dim=2                                      | ../kernels/bert_qkv_kernel.cpp:205 in project_qkv_group, qproduct       |
-| array_partition | variable=kproduct complete dim=1                                      | ../kernels/bert_qkv_kernel.cpp:206 in project_qkv_group, kproduct       |
-| array_partition | variable=kproduct complete dim=2                                      | ../kernels/bert_qkv_kernel.cpp:207 in project_qkv_group, kproduct       |
-| array_partition | variable=vproduct complete dim=1                                      | ../kernels/bert_qkv_kernel.cpp:208 in project_qkv_group, vproduct       |
-| array_partition | variable=vproduct complete dim=2                                      | ../kernels/bert_qkv_kernel.cpp:209 in project_qkv_group, vproduct       |
-| bind_op         | variable=qproduct op=fmul impl=maxdsp                                 | ../kernels/bert_qkv_kernel.cpp:210 in project_qkv_group, qproduct       |
-| bind_op         | variable=kproduct op=fmul impl=maxdsp                                 | ../kernels/bert_qkv_kernel.cpp:211 in project_qkv_group, kproduct       |
-| bind_op         | variable=vproduct op=fmul impl=maxdsp                                 | ../kernels/bert_qkv_kernel.cpp:212 in project_qkv_group, vproduct       |
-| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:216 in project_qkv_group                 |
-| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:219 in project_qkv_group                 |
-| pipeline        | II=1                                                                  | ../kernels/bert_qkv_kernel.cpp:230 in project_qkv_group                 |
-| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:236 in project_qkv_group                 |
-| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:239 in project_qkv_group                 |
-| bind_op         | variable=updated_last_v op=fadd impl=fulldsp latency=6                | ../kernels/bert_qkv_kernel.cpp:257 in project_qkv_group, updated_last_v |
-| pipeline        | II=1                                                                  | ../kernels/bert_qkv_kernel.cpp:281 in project_qkv_group                 |
-| array_partition | variable=qlane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:285 in project_qkv_group, qlane          |
-| array_partition | variable=klane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:286 in project_qkv_group, klane          |
-| array_partition | variable=vlane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:287 in project_qkv_group, vlane          |
-| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:290 in project_qkv_group                 |
-| array_partition | variable=qbank complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:294 in project_qkv_group, qbank          |
-| array_partition | variable=kbank complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:295 in project_qkv_group, kbank          |
-| array_partition | variable=vbank complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:296 in project_qkv_group, vbank          |
-| inline          | off                                                                   | ../kernels/bert_qkv_kernel.cpp:324 in write_qkv_group                   |
-| pipeline        | II=1                                                                  | ../kernels/bert_qkv_kernel.cpp:329 in write_qkv_group                   |
-| array_partition | variable=qlane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:333 in write_qkv_group, qlane            |
-| array_partition | variable=klane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:334 in write_qkv_group, klane            |
-| array_partition | variable=vlane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:335 in write_qkv_group, vlane            |
-| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:338 in write_qkv_group                   |
-| interface       | m_axi port=hidden_in offset=slave bundle=gmem_hidden depth=6144       | ../kernels/bert_qkv_kernel.cpp:364 in bert_qkv_kernel, hidden_in        |
-| interface       | m_axi port=hidden_ready offset=slave bundle=gmem_hidden_ready depth=1 | ../kernels/bert_qkv_kernel.cpp:365 in bert_qkv_kernel, hidden_ready     |
-| interface       | m_axi port=attn_q_w_all offset=slave bundle=gmem_q depth=442368       | ../kernels/bert_qkv_kernel.cpp:366 in bert_qkv_kernel, attn_q_w_all     |
-| interface       | m_axi port=attn_q_b_all offset=slave bundle=gmem_q depth=576          | ../kernels/bert_qkv_kernel.cpp:367 in bert_qkv_kernel, attn_q_b_all     |
-| interface       | m_axi port=attn_k_w_all offset=slave bundle=gmem_k depth=442368       | ../kernels/bert_qkv_kernel.cpp:368 in bert_qkv_kernel, attn_k_w_all     |
-| interface       | m_axi port=attn_k_b_all offset=slave bundle=gmem_k depth=576          | ../kernels/bert_qkv_kernel.cpp:369 in bert_qkv_kernel, attn_k_b_all     |
-| interface       | m_axi port=attn_v_w_all offset=slave bundle=gmem_v depth=442368       | ../kernels/bert_qkv_kernel.cpp:370 in bert_qkv_kernel, attn_v_w_all     |
-| interface       | m_axi port=attn_v_b_all offset=slave bundle=gmem_v depth=576          | ../kernels/bert_qkv_kernel.cpp:371 in bert_qkv_kernel, attn_v_b_all     |
-| interface       | axis port=q_stream                                                    | ../kernels/bert_qkv_kernel.cpp:372 in bert_qkv_kernel, q_stream         |
-| interface       | axis port=k_stream                                                    | ../kernels/bert_qkv_kernel.cpp:373 in bert_qkv_kernel, k_stream         |
-| interface       | axis port=v_stream                                                    | ../kernels/bert_qkv_kernel.cpp:374 in bert_qkv_kernel, v_stream         |
-| interface       | s_axilite port=hidden_in bundle=control                               | ../kernels/bert_qkv_kernel.cpp:375 in bert_qkv_kernel, hidden_in        |
-| interface       | s_axilite port=hidden_ready bundle=control                            | ../kernels/bert_qkv_kernel.cpp:376 in bert_qkv_kernel, hidden_ready     |
-| interface       | s_axilite port=attn_q_w_all bundle=control                            | ../kernels/bert_qkv_kernel.cpp:377 in bert_qkv_kernel, attn_q_w_all     |
-| interface       | s_axilite port=attn_q_b_all bundle=control                            | ../kernels/bert_qkv_kernel.cpp:378 in bert_qkv_kernel, attn_q_b_all     |
-| interface       | s_axilite port=attn_k_w_all bundle=control                            | ../kernels/bert_qkv_kernel.cpp:379 in bert_qkv_kernel, attn_k_w_all     |
-| interface       | s_axilite port=attn_k_b_all bundle=control                            | ../kernels/bert_qkv_kernel.cpp:380 in bert_qkv_kernel, attn_k_b_all     |
-| interface       | s_axilite port=attn_v_w_all bundle=control                            | ../kernels/bert_qkv_kernel.cpp:381 in bert_qkv_kernel, attn_v_w_all     |
-| interface       | s_axilite port=attn_v_b_all bundle=control                            | ../kernels/bert_qkv_kernel.cpp:382 in bert_qkv_kernel, attn_v_b_all     |
-| interface       | s_axilite port=layer_id bundle=control                                | ../kernels/bert_qkv_kernel.cpp:383 in bert_qkv_kernel, layer_id         |
-| interface       | s_axilite port=return bundle=control                                  | ../kernels/bert_qkv_kernel.cpp:384 in bert_qkv_kernel, return           |
-| bind_storage    | variable=hidden type=RAM_2P impl=URAM                                 | ../kernels/bert_qkv_kernel.cpp:393 in bert_qkv_kernel, hidden           |
-| bind_storage    | variable=q_group type=RAM_2P impl=URAM                                | ../kernels/bert_qkv_kernel.cpp:394 in bert_qkv_kernel, q_group          |
-| bind_storage    | variable=k_group type=RAM_2P impl=URAM                                | ../kernels/bert_qkv_kernel.cpp:395 in bert_qkv_kernel, k_group          |
-| bind_storage    | variable=v_group type=RAM_2P impl=URAM                                | ../kernels/bert_qkv_kernel.cpp:396 in bert_qkv_kernel, v_group          |
-| array_reshape   | variable=hidden cyclic factor=QKV_K_PAR dim=2                         | ../kernels/bert_qkv_kernel.cpp:397 in bert_qkv_kernel, hidden           |
-| array_reshape   | variable=q_group cyclic factor=QKV_O_PAR dim=2                        | ../kernels/bert_qkv_kernel.cpp:398 in bert_qkv_kernel, q_group          |
-| array_reshape   | variable=k_group cyclic factor=QKV_O_PAR dim=2                        | ../kernels/bert_qkv_kernel.cpp:399 in bert_qkv_kernel, k_group          |
-| array_reshape   | variable=v_group cyclic factor=QKV_O_PAR dim=2                        | ../kernels/bert_qkv_kernel.cpp:400 in bert_qkv_kernel, v_group          |
-+-----------------+-----------------------------------------------------------------------+-------------------------------------------------------------------------+
++-----------------+-----------------------------------------------------------------------+---------------------------------------------------------------------+
+| Type            | Options                                                               | Location                                                            |
++-----------------+-----------------------------------------------------------------------+---------------------------------------------------------------------+
+| inline          |                                                                       | ../include/bert_math.h:9 in uint32_to_float                         |
+| inline          |                                                                       | ../include/bert_math.h:16 in float_to_uint32                        |
+| inline          |                                                                       | ../include/bert_math.h:23 in unpack_bus16                           |
+| array_partition | variable=lane complete dim=1                                          | ../include/bert_math.h:24 in unpack_bus16, lane                     |
+| unroll          |                                                                       | ../include/bert_math.h:26 in unpack_bus16                           |
+| inline          |                                                                       | ../include/bert_math.h:32 in pack_bus16                             |
+| array_partition | variable=lane complete dim=1                                          | ../include/bert_math.h:33 in pack_bus16, lane                       |
+| unroll          |                                                                       | ../include/bert_math.h:36 in pack_bus16                             |
+| inline          |                                                                       | ../include/bert_math.h:44 in fp32_sum8_tree                         |
+| array_partition | variable=value complete dim=1                                         | ../include/bert_math.h:45 in fp32_sum8_tree, value                  |
+| array_partition | variable=s4 complete dim=1                                            | ../include/bert_math.h:48 in fp32_sum8_tree, s4                     |
+| array_partition | variable=s2 complete dim=1                                            | ../include/bert_math.h:49 in fp32_sum8_tree, s2                     |
+| unroll          |                                                                       | ../include/bert_math.h:52 in fp32_sum8_tree                         |
+| unroll          |                                                                       | ../include/bert_math.h:57 in fp32_sum8_tree                         |
+| inline          |                                                                       | ../include/bert_math.h:65 in fp32_sum4_tree                         |
+| array_partition | variable=value complete dim=1                                         | ../include/bert_math.h:66 in fp32_sum4_tree, value                  |
+| array_partition | variable=s2 complete dim=1                                            | ../include/bert_math.h:68 in fp32_sum4_tree, s2                     |
+| unroll          |                                                                       | ../include/bert_math.h:71 in fp32_sum4_tree                         |
+| inline          |                                                                       | ../include/bert_math.h:81 in fp32_dot8_tree                         |
+| array_partition | variable=lhs complete dim=1                                           | ../include/bert_math.h:82 in fp32_dot8_tree, lhs                    |
+| array_partition | variable=rhs complete dim=1                                           | ../include/bert_math.h:83 in fp32_dot8_tree, rhs                    |
+| array_partition | variable=product complete dim=1                                       | ../include/bert_math.h:85 in fp32_dot8_tree, product                |
+| bind_op         | variable=product op=fmul impl=maxdsp                                  | ../include/bert_math.h:86 in fp32_dot8_tree, product                |
+| unroll          |                                                                       | ../include/bert_math.h:89 in fp32_dot8_tree                         |
+| inline          |                                                                       | ../include/bert_math.h:99 in fp32_dot4_tree                         |
+| array_partition | variable=lhs complete dim=1                                           | ../include/bert_math.h:100 in fp32_dot4_tree, lhs                   |
+| array_partition | variable=rhs complete dim=1                                           | ../include/bert_math.h:101 in fp32_dot4_tree, rhs                   |
+| array_partition | variable=product complete dim=1                                       | ../include/bert_math.h:104 in fp32_dot4_tree, product               |
+| array_partition | variable=s2 complete dim=1                                            | ../include/bert_math.h:105 in fp32_dot4_tree, s2                    |
+| bind_op         | variable=product op=fmul impl=maxdsp                                  | ../include/bert_math.h:106 in fp32_dot4_tree, product               |
+| unroll          |                                                                       | ../include/bert_math.h:109 in fp32_dot4_tree                        |
+| unroll          |                                                                       | ../include/bert_math.h:114 in fp32_dot4_tree                        |
+| inline          |                                                                       | ../kernels/bert_qkv_kernel.cpp:20 in qkv_acc8_clear                 |
+| inline          |                                                                       | ../kernels/bert_qkv_kernel.cpp:33 in qkv_acc8_rotate_add            |
+| inline          |                                                                       | ../kernels/bert_qkv_kernel.cpp:47 in qkv_acc8_read                  |
+| array_partition | variable=lane complete dim=1                                          | ../kernels/bert_qkv_kernel.cpp:48 in qkv_acc8_read, lane            |
+| inline          | off                                                                   | ../kernels/bert_qkv_kernel.cpp:63 in load_hidden_matrix             |
+| pipeline        | II=1                                                                  | ../kernels/bert_qkv_kernel.cpp:68 in load_hidden_matrix             |
+| array_partition | variable=lane complete dim=1                                          | ../kernels/bert_qkv_kernel.cpp:70 in load_hidden_matrix, lane       |
+| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:74 in load_hidden_matrix             |
+| inline          | off                                                                   | ../kernels/bert_qkv_kernel.cpp:90 in load_qkv_bias64                |
+| pipeline        | II=1                                                                  | ../kernels/bert_qkv_kernel.cpp:93 in load_qkv_bias64                |
+| array_partition | variable=qlane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:97 in load_qkv_bias64, qlane         |
+| array_partition | variable=klane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:98 in load_qkv_bias64, klane         |
+| array_partition | variable=vlane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:99 in load_qkv_bias64, vlane         |
+| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:106 in load_qkv_bias64               |
+| inline          | off                                                                   | ../kernels/bert_qkv_kernel.cpp:123 in load_qkv_weight_tile          |
+| pipeline        | II=1                                                                  | ../kernels/bert_qkv_kernel.cpp:128 in load_qkv_weight_tile          |
+| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:135 in load_qkv_weight_tile          |
+| inline          | off                                                                   | ../kernels/bert_qkv_kernel.cpp:161 in project_qkv_group             |
+| bind_storage    | variable=wq type=RAM_2P impl=URAM                                     | ../kernels/bert_qkv_kernel.cpp:168 in project_qkv_group, wq         |
+| bind_storage    | variable=wk type=RAM_2P impl=URAM                                     | ../kernels/bert_qkv_kernel.cpp:169 in project_qkv_group, wk         |
+| bind_storage    | variable=wv type=RAM_2P impl=URAM                                     | ../kernels/bert_qkv_kernel.cpp:170 in project_qkv_group, wv         |
+| array_partition | variable=wq cyclic factor=QKV_O_PAR dim=1                             | ../kernels/bert_qkv_kernel.cpp:171 in project_qkv_group, wq         |
+| array_partition | variable=wk cyclic factor=QKV_O_PAR dim=1                             | ../kernels/bert_qkv_kernel.cpp:172 in project_qkv_group, wk         |
+| array_partition | variable=wv cyclic factor=QKV_O_PAR dim=1                             | ../kernels/bert_qkv_kernel.cpp:173 in project_qkv_group, wv         |
+| array_partition | variable=wq cyclic factor=QKV_K_PAR dim=2                             | ../kernels/bert_qkv_kernel.cpp:174 in project_qkv_group, wq         |
+| array_partition | variable=wk cyclic factor=QKV_K_PAR dim=2                             | ../kernels/bert_qkv_kernel.cpp:175 in project_qkv_group, wk         |
+| array_partition | variable=wv cyclic factor=QKV_K_PAR dim=2                             | ../kernels/bert_qkv_kernel.cpp:176 in project_qkv_group, wv         |
+| array_partition | variable=qb cyclic factor=QKV_O_PAR dim=1                             | ../kernels/bert_qkv_kernel.cpp:177 in project_qkv_group, qb         |
+| array_partition | variable=kb cyclic factor=QKV_O_PAR dim=1                             | ../kernels/bert_qkv_kernel.cpp:178 in project_qkv_group, kb         |
+| array_partition | variable=vb cyclic factor=QKV_O_PAR dim=1                             | ../kernels/bert_qkv_kernel.cpp:179 in project_qkv_group, vb         |
+| array_partition | variable=qpartial complete dim=1                                      | ../kernels/bert_qkv_kernel.cpp:198 in project_qkv_group, qpartial   |
+| array_partition | variable=qpartial complete dim=2                                      | ../kernels/bert_qkv_kernel.cpp:199 in project_qkv_group, qpartial   |
+| array_partition | variable=kpartial complete dim=1                                      | ../kernels/bert_qkv_kernel.cpp:200 in project_qkv_group, kpartial   |
+| array_partition | variable=kpartial complete dim=2                                      | ../kernels/bert_qkv_kernel.cpp:201 in project_qkv_group, kpartial   |
+| array_partition | variable=vpartial complete dim=1                                      | ../kernels/bert_qkv_kernel.cpp:202 in project_qkv_group, vpartial   |
+| array_partition | variable=vpartial complete dim=2                                      | ../kernels/bert_qkv_kernel.cpp:203 in project_qkv_group, vpartial   |
+| array_partition | variable=qproduct complete dim=1                                      | ../kernels/bert_qkv_kernel.cpp:204 in project_qkv_group, qproduct   |
+| array_partition | variable=qproduct complete dim=2                                      | ../kernels/bert_qkv_kernel.cpp:205 in project_qkv_group, qproduct   |
+| array_partition | variable=kproduct complete dim=1                                      | ../kernels/bert_qkv_kernel.cpp:206 in project_qkv_group, kproduct   |
+| array_partition | variable=kproduct complete dim=2                                      | ../kernels/bert_qkv_kernel.cpp:207 in project_qkv_group, kproduct   |
+| array_partition | variable=vproduct complete dim=1                                      | ../kernels/bert_qkv_kernel.cpp:208 in project_qkv_group, vproduct   |
+| array_partition | variable=vproduct complete dim=2                                      | ../kernels/bert_qkv_kernel.cpp:209 in project_qkv_group, vproduct   |
+| bind_op         | variable=qproduct op=fmul impl=maxdsp                                 | ../kernels/bert_qkv_kernel.cpp:210 in project_qkv_group, qproduct   |
+| bind_op         | variable=kproduct op=fmul impl=maxdsp                                 | ../kernels/bert_qkv_kernel.cpp:211 in project_qkv_group, kproduct   |
+| bind_op         | variable=vproduct op=fmul impl=maxdsp                                 | ../kernels/bert_qkv_kernel.cpp:212 in project_qkv_group, vproduct   |
+| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:216 in project_qkv_group             |
+| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:219 in project_qkv_group             |
+| pipeline        | II=1                                                                  | ../kernels/bert_qkv_kernel.cpp:230 in project_qkv_group             |
+| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:236 in project_qkv_group             |
+| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:239 in project_qkv_group             |
+| pipeline        | II=1                                                                  | ../kernels/bert_qkv_kernel.cpp:253 in project_qkv_group             |
+| array_partition | variable=qlane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:257 in project_qkv_group, qlane      |
+| array_partition | variable=klane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:258 in project_qkv_group, klane      |
+| array_partition | variable=vlane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:259 in project_qkv_group, vlane      |
+| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:262 in project_qkv_group             |
+| array_partition | variable=qbank complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:266 in project_qkv_group, qbank      |
+| array_partition | variable=kbank complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:267 in project_qkv_group, kbank      |
+| array_partition | variable=vbank complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:268 in project_qkv_group, vbank      |
+| inline          | off                                                                   | ../kernels/bert_qkv_kernel.cpp:296 in write_qkv_group               |
+| pipeline        | II=1                                                                  | ../kernels/bert_qkv_kernel.cpp:301 in write_qkv_group               |
+| array_partition | variable=qlane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:305 in write_qkv_group, qlane        |
+| array_partition | variable=klane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:306 in write_qkv_group, klane        |
+| array_partition | variable=vlane complete dim=1                                         | ../kernels/bert_qkv_kernel.cpp:307 in write_qkv_group, vlane        |
+| unroll          |                                                                       | ../kernels/bert_qkv_kernel.cpp:310 in write_qkv_group               |
+| interface       | m_axi port=hidden_in offset=slave bundle=gmem_hidden depth=6144       | ../kernels/bert_qkv_kernel.cpp:336 in bert_qkv_kernel, hidden_in    |
+| interface       | m_axi port=hidden_ready offset=slave bundle=gmem_hidden_ready depth=1 | ../kernels/bert_qkv_kernel.cpp:337 in bert_qkv_kernel, hidden_ready |
+| interface       | m_axi port=attn_q_w_all offset=slave bundle=gmem_q depth=442368       | ../kernels/bert_qkv_kernel.cpp:338 in bert_qkv_kernel, attn_q_w_all |
+| interface       | m_axi port=attn_q_b_all offset=slave bundle=gmem_q depth=576          | ../kernels/bert_qkv_kernel.cpp:339 in bert_qkv_kernel, attn_q_b_all |
+| interface       | m_axi port=attn_k_w_all offset=slave bundle=gmem_k depth=442368       | ../kernels/bert_qkv_kernel.cpp:340 in bert_qkv_kernel, attn_k_w_all |
+| interface       | m_axi port=attn_k_b_all offset=slave bundle=gmem_k depth=576          | ../kernels/bert_qkv_kernel.cpp:341 in bert_qkv_kernel, attn_k_b_all |
+| interface       | m_axi port=attn_v_w_all offset=slave bundle=gmem_v depth=442368       | ../kernels/bert_qkv_kernel.cpp:342 in bert_qkv_kernel, attn_v_w_all |
+| interface       | m_axi port=attn_v_b_all offset=slave bundle=gmem_v depth=576          | ../kernels/bert_qkv_kernel.cpp:343 in bert_qkv_kernel, attn_v_b_all |
+| interface       | axis port=q_stream                                                    | ../kernels/bert_qkv_kernel.cpp:344 in bert_qkv_kernel, q_stream     |
+| interface       | axis port=k_stream                                                    | ../kernels/bert_qkv_kernel.cpp:345 in bert_qkv_kernel, k_stream     |
+| interface       | axis port=v_stream                                                    | ../kernels/bert_qkv_kernel.cpp:346 in bert_qkv_kernel, v_stream     |
+| interface       | s_axilite port=hidden_in bundle=control                               | ../kernels/bert_qkv_kernel.cpp:347 in bert_qkv_kernel, hidden_in    |
+| interface       | s_axilite port=hidden_ready bundle=control                            | ../kernels/bert_qkv_kernel.cpp:348 in bert_qkv_kernel, hidden_ready |
+| interface       | s_axilite port=attn_q_w_all bundle=control                            | ../kernels/bert_qkv_kernel.cpp:349 in bert_qkv_kernel, attn_q_w_all |
+| interface       | s_axilite port=attn_q_b_all bundle=control                            | ../kernels/bert_qkv_kernel.cpp:350 in bert_qkv_kernel, attn_q_b_all |
+| interface       | s_axilite port=attn_k_w_all bundle=control                            | ../kernels/bert_qkv_kernel.cpp:351 in bert_qkv_kernel, attn_k_w_all |
+| interface       | s_axilite port=attn_k_b_all bundle=control                            | ../kernels/bert_qkv_kernel.cpp:352 in bert_qkv_kernel, attn_k_b_all |
+| interface       | s_axilite port=attn_v_w_all bundle=control                            | ../kernels/bert_qkv_kernel.cpp:353 in bert_qkv_kernel, attn_v_w_all |
+| interface       | s_axilite port=attn_v_b_all bundle=control                            | ../kernels/bert_qkv_kernel.cpp:354 in bert_qkv_kernel, attn_v_b_all |
+| interface       | s_axilite port=layer_id bundle=control                                | ../kernels/bert_qkv_kernel.cpp:355 in bert_qkv_kernel, layer_id     |
+| interface       | s_axilite port=return bundle=control                                  | ../kernels/bert_qkv_kernel.cpp:356 in bert_qkv_kernel, return       |
+| bind_storage    | variable=hidden type=RAM_2P impl=URAM                                 | ../kernels/bert_qkv_kernel.cpp:365 in bert_qkv_kernel, hidden       |
+| bind_storage    | variable=q_group type=RAM_2P impl=URAM                                | ../kernels/bert_qkv_kernel.cpp:366 in bert_qkv_kernel, q_group      |
+| bind_storage    | variable=k_group type=RAM_2P impl=URAM                                | ../kernels/bert_qkv_kernel.cpp:367 in bert_qkv_kernel, k_group      |
+| bind_storage    | variable=v_group type=RAM_2P impl=URAM                                | ../kernels/bert_qkv_kernel.cpp:368 in bert_qkv_kernel, v_group      |
+| array_reshape   | variable=hidden cyclic factor=QKV_K_PAR dim=2                         | ../kernels/bert_qkv_kernel.cpp:369 in bert_qkv_kernel, hidden       |
+| array_reshape   | variable=q_group cyclic factor=QKV_O_PAR dim=2                        | ../kernels/bert_qkv_kernel.cpp:370 in bert_qkv_kernel, q_group      |
+| array_reshape   | variable=k_group cyclic factor=QKV_O_PAR dim=2                        | ../kernels/bert_qkv_kernel.cpp:371 in bert_qkv_kernel, k_group      |
+| array_reshape   | variable=v_group cyclic factor=QKV_O_PAR dim=2                        | ../kernels/bert_qkv_kernel.cpp:372 in bert_qkv_kernel, v_group      |
++-----------------+-----------------------------------------------------------------------+---------------------------------------------------------------------+
 
 

@@ -4,7 +4,7 @@ set build_dir [file join $root_dir build]
 set report_dir [file join $root_dir reports]
 set part_name "xcu250-figd2104-2L-e"
 set clock_ns 3.333
-set version "attention_core_rotating_exp_sum_v7_1_2026_07_12"
+set version "attention_qkv_v6_7_rtl_synthesis_2026_07_13"
 
 file mkdir $build_dir
 file mkdir $report_dir
@@ -64,6 +64,20 @@ proc copy_detailed_reports {project_dir top report_name} {
     puts "All module reports: $detail_dir"
 }
 
+proc copy_rtl_synthesis_reports {project_dir top} {
+    global report_dir
+    set impl_report_dir [file join $project_dir solution1 impl report]
+    if {![file isdirectory $impl_report_dir]} {
+        error "RTL synthesis report directory is missing: $impl_report_dir"
+    }
+
+    set exported [file join $report_dir rtl_syn $top]
+    file delete -force $exported
+    file mkdir [file dirname $exported]
+    file copy -force $impl_report_dir $exported
+    puts "RTL synthesis reports: $exported"
+}
+
 proc synth_kernel {top source report_name} {
     global root_dir build_dir report_dir part_name clock_ns version
     set source_path [file join $root_dir kernels $source]
@@ -89,6 +103,11 @@ proc synth_kernel {top source report_name} {
         csynth_design
 
         copy_detailed_reports $project_dir $top $report_name
+        if {$top eq "bert_qkv_kernel"} {
+            # Logic synthesis only: this does not run placement or routing.
+            export_design -flow syn -rtl verilog
+            copy_rtl_synthesis_reports $project_dir $top
+        }
     } message]} {
         puts stderr "ERROR: $top: $message"
         show_failure_logs $project_dir
