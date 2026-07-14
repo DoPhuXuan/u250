@@ -42,6 +42,22 @@ static inline void qkv_acc8_rotate_add(qkv_acc8_t &acc, float value)
     acc.b7 = updated;
 }
 
+// Keep the one accumulator that Vitis HLS 2022.1 otherwise maps to a
+// latency-four fabric adder in its own scheduled hierarchy.  The seven-cycle
+// full-DSP adder is shorter than the true eight-iteration recurrence distance,
+// so PROJECT_INPUT_STEP can retain II=1.  This boundary is intentionally not
+// inline: earlier inline/direct BIND_OP variants were recorded and then
+// discarded during operator sharing.
+static float qkv_last_v_accumulate(float current, float value)
+{
+#pragma HLS INLINE off
+#pragma HLS PIPELINE II=1
+    float updated;
+#pragma HLS BIND_OP variable=updated op=fadd impl=fulldsp latency=7
+    updated = current + value;
+    return updated;
+}
+
 static inline void qkv_acc8_read(const qkv_acc8_t &acc, float lane[8])
 {
 #pragma HLS INLINE
@@ -243,9 +259,31 @@ GROUP_OUTPUT_TILE:
                             vproduct[j][k] = x * wv[ob + j][input_base + k];
                             qkv_acc8_rotate_add(qpartial[j][k], qproduct[j][k]);
                             qkv_acc8_rotate_add(kpartial[j][k], kproduct[j][k]);
-                            qkv_acc8_rotate_add(vpartial[j][k], vproduct[j][k]);
+                            if (j != QKV_O_PAR - 1 || k != QKV_K_PAR - 1) {
+                                qkv_acc8_rotate_add(
+                                    vpartial[j][k], vproduct[j][k]);
+                            }
                         }
                     }
+                    const float last_v_updated = qkv_last_v_accumulate(
+                        vpartial[QKV_O_PAR - 1][QKV_K_PAR - 1].b0,
+                        vproduct[QKV_O_PAR - 1][QKV_K_PAR - 1]);
+                    vpartial[QKV_O_PAR - 1][QKV_K_PAR - 1].b0 =
+                        vpartial[QKV_O_PAR - 1][QKV_K_PAR - 1].b1;
+                    vpartial[QKV_O_PAR - 1][QKV_K_PAR - 1].b1 =
+                        vpartial[QKV_O_PAR - 1][QKV_K_PAR - 1].b2;
+                    vpartial[QKV_O_PAR - 1][QKV_K_PAR - 1].b2 =
+                        vpartial[QKV_O_PAR - 1][QKV_K_PAR - 1].b3;
+                    vpartial[QKV_O_PAR - 1][QKV_K_PAR - 1].b3 =
+                        vpartial[QKV_O_PAR - 1][QKV_K_PAR - 1].b4;
+                    vpartial[QKV_O_PAR - 1][QKV_K_PAR - 1].b4 =
+                        vpartial[QKV_O_PAR - 1][QKV_K_PAR - 1].b5;
+                    vpartial[QKV_O_PAR - 1][QKV_K_PAR - 1].b5 =
+                        vpartial[QKV_O_PAR - 1][QKV_K_PAR - 1].b6;
+                    vpartial[QKV_O_PAR - 1][QKV_K_PAR - 1].b6 =
+                        vpartial[QKV_O_PAR - 1][QKV_K_PAR - 1].b7;
+                    vpartial[QKV_O_PAR - 1][QKV_K_PAR - 1].b7 =
+                        last_v_updated;
                 }
 
             REDUCE_OUTPUT:

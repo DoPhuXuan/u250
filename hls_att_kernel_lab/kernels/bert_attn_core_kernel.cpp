@@ -40,6 +40,21 @@ static inline void core_acc8_rotate_add(core_acc8_t &acc, float value)
     acc.b7 = updated;
 }
 
+// Isolate the second EXP-row accumulator from the parent loop's register
+// store.  Vitis HLS 2022.1 leaves one otherwise-identical accumulator in
+// fabric and reports it as the -0.30 ns path.  A real non-inline hierarchy is
+// required because earlier inline bindings were absorbed during scheduling.
+// Seven cycles remain below the eight-iteration rotating-bank recurrence.
+static float core_last_sum_accumulate(float current, float value)
+{
+#pragma HLS INLINE off
+#pragma HLS PIPELINE II=1
+    float updated;
+#pragma HLS BIND_OP variable=updated op=fadd impl=fulldsp latency=7
+    updated = current + value;
+    return updated;
+}
+
 static inline void core_acc8_read_logical(
     const core_acc8_t &acc,
     int phase,
@@ -191,7 +206,16 @@ HEAD:
                 probability0[n] = e0;
                 probability1[n] = e1;
                 core_acc8_rotate_add(sum_acc0, e0);
-                core_acc8_rotate_add(sum_acc1, e1);
+                const float sum_acc1_updated = core_last_sum_accumulate(
+                    sum_acc1.b0, e1);
+                sum_acc1.b0 = sum_acc1.b1;
+                sum_acc1.b1 = sum_acc1.b2;
+                sum_acc1.b2 = sum_acc1.b3;
+                sum_acc1.b3 = sum_acc1.b4;
+                sum_acc1.b4 = sum_acc1.b5;
+                sum_acc1.b5 = sum_acc1.b6;
+                sum_acc1.b6 = sum_acc1.b7;
+                sum_acc1.b7 = sum_acc1_updated;
             }
             float sum_lane0[ATTN_D_PAR];
             float sum_lane1[ATTN_D_PAR];
