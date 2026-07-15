@@ -1,0 +1,297 @@
+{
+  "model": "bert-base-uncased",
+  "source_contract": "FP32 weights/activations with selectable GELU approximation",
+  "gelu_mode": "pq8",
+  "sentences": [
+    "The quick brown fox jumps over the lazy dog.",
+    "Hardware acceleration can reduce neural network inference latency.",
+    "Quantization maps floating point tensors into compact integer domains.",
+    "A balanced pipeline must preserve both throughput and numerical accuracy.",
+    "Transformers use attention layers followed by feed forward networks.",
+    "The engineer measured timing, resource utilization, and output error.",
+    "Reliable experiments require deterministic inputs and reproducible reports.",
+    "Integer matrix multiplication is efficient on modern FPGA DSP blocks.",
+    "Calibration estimates activation ranges from representative model inputs.",
+    "Cosine similarity measures whether two output vectors point in similar directions.",
+    "The final implementation keeps residual connections and normalization in floating point.",
+    "Routing congestion can limit frequency even when synthesis estimates look acceptable.",
+    "Per channel weight scales usually preserve more accuracy than one global scale.",
+    "The sequence contains words of different lengths and semantic contexts.",
+    "Testing corner cases prevents signed arithmetic errors from reaching the bitstream.",
+    "This evaluation compares the optimized kernel with the original feed forward output."
+  ],
+  "valid_tokens": 228,
+  "criterion": "1 - final_hidden_global_cosine <= 0.01",
+  "independent_ffn_cosine": [
+    {
+      "layer": 0,
+      "global_cosine": 0.9999952156914197,
+      "cosine_loss": 4.784308580307872e-06,
+      "row_cosine": {
+        "mean": 0.9999936302362946,
+        "minimum": 0.9999751587887745,
+        "p05": 0.9999857477353996
+      },
+      "maximum_absolute_error": 0.021079301834106445
+    },
+    {
+      "layer": 1,
+      "global_cosine": 0.9999912210071221,
+      "cosine_loss": 8.778992877878089e-06,
+      "row_cosine": {
+        "mean": 0.9999870413949604,
+        "minimum": 0.9999698624361124,
+        "p05": 0.9999775925037967
+      },
+      "maximum_absolute_error": 0.02282130718231201
+    },
+    {
+      "layer": 2,
+      "global_cosine": 0.9999994996382077,
+      "cosine_loss": 5.003617923327042e-07,
+      "row_cosine": {
+        "mean": 0.9999797525826228,
+        "minimum": 0.9999544878009403,
+        "p05": 0.9999676300642888
+      },
+      "maximum_absolute_error": 0.020640850067138672
+    },
+    {
+      "layer": 3,
+      "global_cosine": 0.9999970065572299,
+      "cosine_loss": 2.993442770105048e-06,
+      "row_cosine": {
+        "mean": 0.9999811283440777,
+        "minimum": 0.999959291828935,
+        "p05": 0.9999681332977362
+      },
+      "maximum_absolute_error": 0.018585205078125
+    },
+    {
+      "layer": 4,
+      "global_cosine": 0.9999965425274129,
+      "cosine_loss": 3.4574725871205914e-06,
+      "row_cosine": {
+        "mean": 0.9999774193979739,
+        "minimum": 0.9999449678843353,
+        "p05": 0.9999577745464653
+      },
+      "maximum_absolute_error": 0.013821542263031006
+    },
+    {
+      "layer": 5,
+      "global_cosine": 0.9999947513327331,
+      "cosine_loss": 5.248667266921636e-06,
+      "row_cosine": {
+        "mean": 0.9999745687130527,
+        "minimum": 0.9999440177471003,
+        "p05": 0.9999586535878545
+      },
+      "maximum_absolute_error": 0.014116942882537842
+    },
+    {
+      "layer": 6,
+      "global_cosine": 0.9999899130759476,
+      "cosine_loss": 1.0086924052354895e-05,
+      "row_cosine": {
+        "mean": 0.9999731314126489,
+        "minimum": 0.9999470672091001,
+        "p05": 0.9999582620658058
+      },
+      "maximum_absolute_error": 0.01724603772163391
+    },
+    {
+      "layer": 7,
+      "global_cosine": 0.9999799901432717,
+      "cosine_loss": 2.0009856728342434e-05,
+      "row_cosine": {
+        "mean": 0.9999752307394162,
+        "minimum": 0.999943687879069,
+        "p05": 0.9999575692850715
+      },
+      "maximum_absolute_error": 0.015768051147460938
+    },
+    {
+      "layer": 8,
+      "global_cosine": 0.9999867462383394,
+      "cosine_loss": 1.3253761660614316e-05,
+      "row_cosine": {
+        "mean": 0.9999701293895168,
+        "minimum": 0.9999416008372747,
+        "p05": 0.9999497326193323
+      },
+      "maximum_absolute_error": 0.0210685133934021
+    },
+    {
+      "layer": 9,
+      "global_cosine": 0.9999999244542346,
+      "cosine_loss": 7.554576542112557e-08,
+      "row_cosine": {
+        "mean": 0.9999695129800675,
+        "minimum": 0.9999026342267417,
+        "p05": 0.9999360107447169
+      },
+      "maximum_absolute_error": 0.02061513066291809
+    },
+    {
+      "layer": 10,
+      "global_cosine": 0.9999999702722219,
+      "cosine_loss": 2.9727778128041393e-08,
+      "row_cosine": {
+        "mean": 0.9999709540992539,
+        "minimum": 0.9999167869514116,
+        "p05": 0.9999443199806638
+      },
+      "maximum_absolute_error": 0.019379138946533203
+    },
+    {
+      "layer": 11,
+      "global_cosine": 0.9999875877148946,
+      "cosine_loss": 1.2412285105400933e-05,
+      "row_cosine": {
+        "mean": 0.9999789273201285,
+        "minimum": 0.9999339111957097,
+        "p05": 0.9999569713023667
+      },
+      "maximum_absolute_error": 0.014532357454299927
+    }
+  ],
+  "encoder_layer_cosine": [
+    {
+      "layer": 0,
+      "global_cosine": 0.9999987529028601,
+      "cosine_loss": 1.2470971398892416e-06,
+      "token_cosine": {
+        "mean": 0.9999988331822263,
+        "minimum": 0.9999980062903013,
+        "p05": 0.9999982706836755
+      }
+    },
+    {
+      "layer": 1,
+      "global_cosine": 0.9999969412497087,
+      "cosine_loss": 3.058750291273782e-06,
+      "token_cosine": {
+        "mean": 0.9999972040846662,
+        "minimum": 0.9999951448860459,
+        "p05": 0.9999959530087373
+      }
+    },
+    {
+      "layer": 2,
+      "global_cosine": 0.9999954654815046,
+      "cosine_loss": 4.534518495358242e-06,
+      "token_cosine": {
+        "mean": 0.9999958365398348,
+        "minimum": 0.999992158029864,
+        "p05": 0.999993822623172
+      }
+    },
+    {
+      "layer": 3,
+      "global_cosine": 0.9999943211328033,
+      "cosine_loss": 5.6788671967122895e-06,
+      "token_cosine": {
+        "mean": 0.9999947723947463,
+        "minimum": 0.9999890835868425,
+        "p05": 0.9999915978626114
+      }
+    },
+    {
+      "layer": 4,
+      "global_cosine": 0.9999932340731935,
+      "cosine_loss": 6.765926806484579e-06,
+      "token_cosine": {
+        "mean": 0.9999937944013344,
+        "minimum": 0.9999805608689205,
+        "p05": 0.9999897833057356
+      }
+    },
+    {
+      "layer": 5,
+      "global_cosine": 0.9999921274412773,
+      "cosine_loss": 7.872558722699097e-06,
+      "token_cosine": {
+        "mean": 0.9999926346720344,
+        "minimum": 0.999979124261847,
+        "p05": 0.9999878810129469
+      }
+    },
+    {
+      "layer": 6,
+      "global_cosine": 0.9999905619874297,
+      "cosine_loss": 9.438012570250898e-06,
+      "token_cosine": {
+        "mean": 0.9999911880425283,
+        "minimum": 0.9999763575548616,
+        "p05": 0.999986730459746
+      }
+    },
+    {
+      "layer": 7,
+      "global_cosine": 0.9999900507080807,
+      "cosine_loss": 9.949291919331138e-06,
+      "token_cosine": {
+        "mean": 0.9999907173484344,
+        "minimum": 0.9999725717967247,
+        "p05": 0.9999849173058003
+      }
+    },
+    {
+      "layer": 8,
+      "global_cosine": 0.9999884868281972,
+      "cosine_loss": 1.151317180281275e-05,
+      "token_cosine": {
+        "mean": 0.999989297044701,
+        "minimum": 0.9999675859749358,
+        "p05": 0.9999828680014036
+      }
+    },
+    {
+      "layer": 9,
+      "global_cosine": 0.9999869479661706,
+      "cosine_loss": 1.3052033829397125e-05,
+      "token_cosine": {
+        "mean": 0.999988065870273,
+        "minimum": 0.9999441760163749,
+        "p05": 0.9999820532831248
+      }
+    },
+    {
+      "layer": 10,
+      "global_cosine": 0.999985735313838,
+      "cosine_loss": 1.426468616194665e-05,
+      "token_cosine": {
+        "mean": 0.9999848756361738,
+        "minimum": 0.9994208641119031,
+        "p05": 0.9999789817503374
+      }
+    },
+    {
+      "layer": 11,
+      "global_cosine": 0.9999794749738403,
+      "cosine_loss": 2.0525026159678994e-05,
+      "token_cosine": {
+        "mean": 0.9999797746247863,
+        "minimum": 0.9995562122218933,
+        "p05": 0.9999706296891344
+      }
+    }
+  ],
+  "final_hidden_global_cosine": 0.9999794749738403,
+  "final_hidden_cosine_loss": 2.0525026159678994e-05,
+  "final_hidden_token_cosine": {
+    "mean": 0.9999797746247863,
+    "minimum": 0.9995562122218933,
+    "p05": 0.9999706296891344
+  },
+  "cls_global_cosine": 0.999989709773197,
+  "cls_row_cosine": {
+    "mean": 0.9999899086475781,
+    "minimum": 0.9999845618488936,
+    "p05": 0.999985326275399
+  },
+  "passes_one_percent_cosine_loss": true,
+  "maximum_absolute_error": 0.17254352569580078,
+  "scope": "BERT hidden-state comparison; not a downstream task accuracy/F1 guarantee"
+}

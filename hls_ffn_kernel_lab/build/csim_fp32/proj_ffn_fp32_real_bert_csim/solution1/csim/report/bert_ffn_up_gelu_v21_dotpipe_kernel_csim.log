@@ -1,0 +1,11 @@
+INFO: [SIM 2] *************** CSIM start ***************
+INFO: [SIM 4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../../../tests/test_bert_ffn_fp32_csim.cpp in debug mode
+   Compiling ../../../../../../src/bert_ffn_kernel_v21.cpp in debug mode
+   Generating csim.exe
+CSIM real BERT layer0 row: cosine vs exact erf = 0.999893233234, max error = 0.0429327488
+CSIM real BERT layer0 row: cosine vs PQ8 golden = 1.000000000000, max error = 1.66893005e-006
+PASS: HLS CSim matches PQ8 golden and exceeds 0.99 cosine versus original FFN.
+INFO [HLS SIM]: The maximum depth reached by any hls::stream() instance in the design is 192
+INFO: [SIM 1] CSim done with 0 errors.
+INFO: [SIM 3] *************** CSIM finish ***************
