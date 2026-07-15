@@ -1,0 +1,203 @@
+
+
+================================================================
+== Vitis HLS Report for 'residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_BANK_REDUCE'
+================================================================
+* Date:           Wed Jul 15 12:16:19 2026
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:47:01 MDT 2022)
+* Project:        proj_bert_attn_out_norm_12layer_kernel
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu250-figd2104-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.342 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      116|      116|  0.387 us|  0.387 us|  116|  116|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                             |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |          Loop Name          |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-----------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- FULL_OUT_NORM_BANK_REDUCE  |      114|      114|        10|          7|          1|    16|       yes|
+        +-----------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+-------+---------+---------+------+
+|         Name        | BRAM_18K|  DSP  |    FF   |   LUT   | URAM |
++---------------------+---------+-------+---------+---------+------+
+|DSP                  |        -|      -|        -|        -|     -|
+|Expression           |        -|      -|        0|       24|     -|
+|FIFO                 |        -|      -|        -|        -|     -|
+|Instance             |        -|      -|        0|      130|     -|
+|Memory               |        -|      -|        -|        -|     -|
+|Multiplexer          |        -|      -|        -|      161|     -|
+|Register             |        -|      -|      176|        -|     -|
++---------------------+---------+-------+---------+---------+------+
+|Total                |        0|      0|      176|      315|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available SLR        |     1344|   3072|   864000|   432000|   320|
++---------------------+---------+-------+---------+---------+------+
+|Utilization SLR (%)  |        0|      0|       ~0|       ~0|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available            |     5376|  12288|  3456000|  1728000|  1280|
++---------------------+---------+-------+---------+---------+------+
+|Utilization (%)      |        0|      0|       ~0|       ~0|     0|
++---------------------+---------+-------+---------+---------+------+
+
++ Detail: 
+    * Instance: 
+    +---------------------+----------------+---------+----+---+----+-----+
+    |       Instance      |     Module     | BRAM_18K| DSP| FF| LUT| URAM|
+    +---------------------+----------------+---------+----+---+----+-----+
+    |mux_165_32_1_1_U610  |mux_165_32_1_1  |        0|   0|  0|  65|    0|
+    |mux_165_32_1_1_U611  |mux_165_32_1_1  |        0|   0|  0|  65|    0|
+    +---------------------+----------------+---------+----+---+----+-----+
+    |Total                |                |        0|   0|  0| 130|    0|
+    +---------------------+----------------+---------+----+---+----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |add_ln423_fu_350_p2   |         +|   0|  0|  12|           5|           1|
+    |icmp_ln423_fu_344_p2  |      icmp|   0|  0|  10|           5|           6|
+    |ap_enable_pp0         |       xor|   0|  0|   2|           1|           2|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0|  24|          11|           9|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------------+----+-----------+-----+-----------+
+    |               Name               | LUT| Input Size| Bits| Total Bits|
+    +----------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                         |  43|          8|    1|          8|
+    |ap_done_int                       |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter0           |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter0_reg       |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1           |   9|          2|    1|          2|
+    |ap_sig_allocacmp_i_1              |   9|          2|    5|         10|
+    |ap_sig_allocacmp_square_sum_load  |   9|          2|   32|         64|
+    |ap_sig_allocacmp_sum_load         |   9|          2|   32|         64|
+    |grp_fu_318_p0                     |  14|          3|   32|         96|
+    |grp_fu_318_p1                     |  14|          3|   32|         96|
+    |i_fu_108                          |   9|          2|    5|         10|
+    |square_sum_fu_104                 |   9|          2|   32|         64|
+    |sum_fu_100                        |   9|          2|   32|         64|
+    +----------------------------------+----+-----------+-----+-----------+
+    |Total                             | 161|         34|  207|        484|
+    +----------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------+----+----+-----+-----------+
+    |             Name            | FF | LUT| Bits| Const Bits|
+    +-----------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                    |   7|   0|    7|          0|
+    |ap_done_reg                  |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter0_reg  |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1      |   1|   0|    1|          0|
+    |i_fu_108                     |   5|   0|    5|          0|
+    |icmp_ln423_reg_486           |   1|   0|    1|          0|
+    |reg_322                      |  32|   0|   32|          0|
+    |square_sum_fu_104            |  32|   0|   32|          0|
+    |sum_fu_100                   |  32|   0|   32|          0|
+    |tmp_31_reg_490               |  32|   0|   32|          0|
+    |tmp_32_reg_495               |  32|   0|   32|          0|
+    +-----------------------------+----+----+-----+-----------+
+    |Total                        | 176|   0|  176|          0|
+    +-----------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-----+------------+------------------------------------------------------------------------+--------------+
+|       RTL Ports       | Dir | Bits|  Protocol  |                              Source Object                             |    C Type    |
++-----------------------+-----+-----+------------+------------------------------------------------------------------------+--------------+
+|ap_clk                 |   in|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_BANK_REDUCE|  return value|
+|ap_rst                 |   in|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_BANK_REDUCE|  return value|
+|ap_start               |   in|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_BANK_REDUCE|  return value|
+|ap_done                |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_BANK_REDUCE|  return value|
+|ap_idle                |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_BANK_REDUCE|  return value|
+|ap_ready               |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_BANK_REDUCE|  return value|
+|grp_fu_370_p_din0      |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_BANK_REDUCE|  return value|
+|grp_fu_370_p_din1      |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_BANK_REDUCE|  return value|
+|grp_fu_370_p_opcode    |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_BANK_REDUCE|  return value|
+|grp_fu_370_p_dout0     |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_BANK_REDUCE|  return value|
+|grp_fu_370_p_ce        |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_BANK_REDUCE|  return value|
+|add2832_reload         |   in|   32|     ap_none|                                                          add2832_reload|        scalar|
+|add28_134_reload       |   in|   32|     ap_none|                                                        add28_134_reload|        scalar|
+|add28_236_reload       |   in|   32|     ap_none|                                                        add28_236_reload|        scalar|
+|add28_338_reload       |   in|   32|     ap_none|                                                        add28_338_reload|        scalar|
+|add28_440_reload       |   in|   32|     ap_none|                                                        add28_440_reload|        scalar|
+|add28_542_reload       |   in|   32|     ap_none|                                                        add28_542_reload|        scalar|
+|add28_644_reload       |   in|   32|     ap_none|                                                        add28_644_reload|        scalar|
+|add28_746_reload       |   in|   32|     ap_none|                                                        add28_746_reload|        scalar|
+|add28_848_reload       |   in|   32|     ap_none|                                                        add28_848_reload|        scalar|
+|add28_950_reload       |   in|   32|     ap_none|                                                        add28_950_reload|        scalar|
+|add28_1052_reload      |   in|   32|     ap_none|                                                       add28_1052_reload|        scalar|
+|add28_1154_reload      |   in|   32|     ap_none|                                                       add28_1154_reload|        scalar|
+|add28_1256_reload      |   in|   32|     ap_none|                                                       add28_1256_reload|        scalar|
+|add28_1358_reload      |   in|   32|     ap_none|                                                       add28_1358_reload|        scalar|
+|add28_1460_reload      |   in|   32|     ap_none|                                                       add28_1460_reload|        scalar|
+|add28_1562_reload      |   in|   32|     ap_none|                                                       add28_1562_reload|        scalar|
+|add3233_reload         |   in|   32|     ap_none|                                                          add3233_reload|        scalar|
+|add32_135_reload       |   in|   32|     ap_none|                                                        add32_135_reload|        scalar|
+|add32_237_reload       |   in|   32|     ap_none|                                                        add32_237_reload|        scalar|
+|add32_339_reload       |   in|   32|     ap_none|                                                        add32_339_reload|        scalar|
+|add32_441_reload       |   in|   32|     ap_none|                                                        add32_441_reload|        scalar|
+|add32_543_reload       |   in|   32|     ap_none|                                                        add32_543_reload|        scalar|
+|add32_645_reload       |   in|   32|     ap_none|                                                        add32_645_reload|        scalar|
+|add32_747_reload       |   in|   32|     ap_none|                                                        add32_747_reload|        scalar|
+|add32_849_reload       |   in|   32|     ap_none|                                                        add32_849_reload|        scalar|
+|add32_951_reload       |   in|   32|     ap_none|                                                        add32_951_reload|        scalar|
+|add32_1053_reload      |   in|   32|     ap_none|                                                       add32_1053_reload|        scalar|
+|add32_1155_reload      |   in|   32|     ap_none|                                                       add32_1155_reload|        scalar|
+|add32_1257_reload      |   in|   32|     ap_none|                                                       add32_1257_reload|        scalar|
+|add32_1359_reload      |   in|   32|     ap_none|                                                       add32_1359_reload|        scalar|
+|add32_1461_reload      |   in|   32|     ap_none|                                                       add32_1461_reload|        scalar|
+|add32_1563_reload      |   in|   32|     ap_none|                                                       add32_1563_reload|        scalar|
+|square_sum_out         |  out|   32|      ap_vld|                                                          square_sum_out|       pointer|
+|square_sum_out_ap_vld  |  out|    1|      ap_vld|                                                          square_sum_out|       pointer|
+|sum_out                |  out|   32|      ap_vld|                                                                 sum_out|       pointer|
+|sum_out_ap_vld         |  out|    1|      ap_vld|                                                                 sum_out|       pointer|
++-----------------------+-----+-----+------------+------------------------------------------------------------------------+--------------+
+

@@ -1,0 +1,23 @@
+
+
+Implementation tool: Xilinx Vivado v.2022.1
+Project:             proj_bert_qkv_12layer_kernel
+Solution:            solution1
+Device target:       xcu250-figd2104-2L-e
+Report date:         Wed Jul 15 11:59:38 +07 2026
+
+#=== Post-Synthesis Resource usage ===
+SLICE:            0
+LUT:         132018
+FF:          245789
+DSP:            962
+BRAM:           109
+URAM:           216
+LATCH:            0
+SRL:          18786
+CLB:              0
+
+#=== Final timing ===
+CP required:                     3.333
+CP achieved post-synthesis:      2.659
+Timing met

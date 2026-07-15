@@ -1,0 +1,1260 @@
+
+
+================================================================
+== Synthesis Summary Report of 'bert_ffn_up_gelu_12layer_kernel'
+================================================================
++ General Information: 
+    * Date:           Wed Jul 15 12:23:44 2026
+    * Version:        2022.1 (Build 3526262 on Mon Apr 18 15:47:01 MDT 2022)
+    * Project:        proj_bert_ffn_up_gelu_12layer_kernel
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: virtexuplus
+    * Target device:  xcu250-figd2104-2L-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-------------------------------------------------------------------------+--------+-------+----------+-----------+----------+----------+------+----------+----------+-----------+-------------+-------------+---------+
+    |                                 Modules                                 |  Issue |       | Latency  |  Latency  | Iteration|          | Trip |          |          |           |             |             |         |
+    |                                 & Loops                                 |  Type  | Slack | (cycles) |    (ns)   |  Latency | Interval | Count| Pipelined|   BRAM   |    DSP    |      FF     |     LUT     |   URAM  |
+    +-------------------------------------------------------------------------+--------+-------+----------+-----------+----------+----------+------+----------+----------+-----------+-------------+-------------+---------+
+    |+ bert_ffn_up_gelu_12layer_kernel                                        |  Timing|  -0.00|  18443606|  6.147e+07|         -|  18443607|     -|        no|  272 (5%)|  1120 (9%)|  198704 (5%)|  107811 (6%)|  32 (2%)|
+    | o full_ffn_up_layer                                                     |       -|   2.43|  18443604|  6.147e+07|   1536967|         -|    12|        no|         -|          -|            -|            -|        -|
+    |  + v11_load_input_stream_matrix                                         |       -|   0.43|      6146|  2.048e+04|         -|      6146|     -|        no|         -|          -|    555 (~0%)|    205 (~0%)|        -|
+    |   o v11_load_input_stream_s_v11_load_input_stream_pack                  |       -|   2.43|      6144|  2.048e+04|         2|         1|  6144|       yes|         -|          -|            -|            -|        -|
+    |  + v15_ffn_up_tilemajor_producer                                        |  Timing|  -0.00|   1530817|  5.102e+06|         -|   1530817|     -|        no|  272 (5%)|  1120 (9%)|  193122 (5%)|   97164 (5%)|        -|
+    |   o v15_up_output_tile                                                  |       -|   2.43|   1530816|  5.102e+06|      7973|         -|   192|        no|         -|          -|            -|            -|        -|
+    |    + v15_ffn_up_tilemajor_producer_Pipeline_v15_up_init_s               |       -|   0.65|       130|    433.290|         -|       130|     -|        no|         -|          -|     10 (~0%)|     53 (~0%)|        -|
+    |     o v15_up_init_s                                                     |       -|   2.43|       128|    426.624|         1|         1|   128|       yes|         -|          -|            -|            -|        -|
+    |    + v15_ffn_up_tilemajor_producer_Pipeline_v15_up_write_gelu_s         |       -|   0.08|       150|    499.950|         -|       150|     -|        no|         -|   96 (~0%)|  18963 (~0%)|  16635 (~0%)|        -|
+    |     o v15_up_write_gelu_s                                               |       -|   2.43|       148|    493.284|        22|         1|   128|       yes|         -|          -|            -|            -|        -|
+    |    o v15_up_hidden_tile                                                 |       -|   2.43|      7680|  2.560e+04|       640|         -|    12|        no|         -|          -|            -|            -|        -|
+    |     + v15_ffn_up_tilemajor_producer_Pipeline_v15_up_load_w_k            |  Timing|  -0.00|        67|    223.311|         -|        67|     -|        no|         -|          -|    537 (~0%)|     76 (~0%)|        -|
+    |      o v15_up_load_w_k                                                  |       -|   2.43|        65|    216.645|         3|         1|    64|       yes|         -|          -|            -|            -|        -|
+    |     + v15_ffn_up_tilemajor_producer_Pipeline_v15_up_k_chunk_v15_up_seq  |       -|   0.09|       561|  1.870e+03|         -|       561|     -|        no|         -|   992 (8%)|  167265 (4%)|   67719 (3%)|        -|
+    |      o v15_up_k_chunk_v15_up_seq                                        |       -|   2.43|       559|  1.863e+03|        49|         1|   512|       yes|         -|          -|            -|            -|        -|
+    |       + v13_dot16_tree_margin                                           |       -|   0.09|        35|    116.655|         -|         1|     -|       yes|         -|   62 (~0%)|   9730 (~0%)|   4186 (~0%)|        -|
+    |       + v13_dot16_tree_margin                                           |       -|   0.09|        35|    116.655|         -|         1|     -|       yes|         -|   62 (~0%)|   9730 (~0%)|   4186 (~0%)|        -|
+    |       + v13_dot16_tree_margin                                           |       -|   0.09|        35|    116.655|         -|         1|     -|       yes|         -|   62 (~0%)|   9730 (~0%)|   4186 (~0%)|        -|
+    |       + v13_dot16_tree_margin                                           |       -|   0.09|        35|    116.655|         -|         1|     -|       yes|         -|   62 (~0%)|   9730 (~0%)|   4186 (~0%)|        -|
+    |       + v13_dot16_tree_margin                                           |       -|   0.09|        35|    116.655|         -|         1|     -|       yes|         -|   62 (~0%)|   9730 (~0%)|   4186 (~0%)|        -|
+    |       + v13_dot16_tree_margin                                           |       -|   0.09|        35|    116.655|         -|         1|     -|       yes|         -|   62 (~0%)|   9730 (~0%)|   4186 (~0%)|        -|
+    |       + v13_dot16_tree_margin                                           |       -|   0.09|        35|    116.655|         -|         1|     -|       yes|         -|   62 (~0%)|   9730 (~0%)|   4186 (~0%)|        -|
+    |       + v13_dot16_tree_margin                                           |       -|   0.09|        35|    116.655|         -|         1|     -|       yes|         -|   62 (~0%)|   9730 (~0%)|   4186 (~0%)|        -|
+    |       + v13_dot16_tree_margin                                           |       -|   0.09|        35|    116.655|         -|         1|     -|       yes|         -|   62 (~0%)|   9730 (~0%)|   4186 (~0%)|        -|
+    |       + v13_dot16_tree_margin                                           |       -|   0.09|        35|    116.655|         -|         1|     -|       yes|         -|   62 (~0%)|   9730 (~0%)|   4186 (~0%)|        -|
+    |       + v13_dot16_tree_margin                                           |       -|   0.09|        35|    116.655|         -|         1|     -|       yes|         -|   62 (~0%)|   9730 (~0%)|   4186 (~0%)|        -|
+    |       + v13_dot16_tree_margin                                           |       -|   0.09|        35|    116.655|         -|         1|     -|       yes|         -|   62 (~0%)|   9730 (~0%)|   4186 (~0%)|        -|
+    |       + v13_dot16_tree_margin                                           |       -|   0.09|        35|    116.655|         -|         1|     -|       yes|         -|   62 (~0%)|   9730 (~0%)|   4186 (~0%)|        -|
+    |       + v13_dot16_tree_margin                                           |       -|   0.09|        35|    116.655|         -|         1|     -|       yes|         -|   62 (~0%)|   9730 (~0%)|   4186 (~0%)|        -|
+    |       + v13_dot16_tree_margin                                           |       -|   0.09|        35|    116.655|         -|         1|     -|       yes|         -|   62 (~0%)|   9730 (~0%)|   4186 (~0%)|        -|
+    |       + v13_dot16_tree_margin                                           |       -|   0.09|        35|    116.655|         -|         1|     -|       yes|         -|   62 (~0%)|   9730 (~0%)|   4186 (~0%)|        -|
+    +-------------------------------------------------------------------------+--------+-------+----------+-----------+----------+----------+------+----------+----------+-----------+-------------+-------------+---------+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* M_AXI
++---------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+| Interface     | Data Width | Address Width | Latency | Offset | Register | Max Widen | Max Read     | Max Write    | Num Read    | Num Write   |
+|               | (SW->HW)   |               |         |        |          | Bitwidth  | Burst Length | Burst Length | Outstanding | Outstanding |
++---------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+| m_axi_gmem_w1 | 512 -> 512 | 64            | 0       | slave  | 0        | 0         | 16           | 16           | 16          | 16          |
++---------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 6             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL     | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER     | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER   | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR   | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
+| s_axi_control | w1_all_1 | 0x10   | 32    | W      | Data signal of w1_all            |                                                                      |
+| s_axi_control | w1_all_2 | 0x14   | 32    | W      | Data signal of w1_all            |                                                                      |
+| s_axi_control | b1_all_1 | 0x1c   | 32    | W      | Data signal of b1_all            |                                                                      |
+| s_axi_control | b1_all_2 | 0x20   | 32    | W      | Data signal of b1_all            |                                                                      |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* AXIS
++-----------------+---------------+-------+--------+--------+
+| Interface       | Register Mode | TDATA | TREADY | TVALID |
++-----------------+---------------+-------+--------+--------+
+| attn_mid_stream | both          | 512   | 1      | 1      |
+| gelu_stream     | both          | 512   | 1      | 1      |
++-----------------+---------------+-------+--------+--------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++-----------------+-----------+--------------------------+
+| Argument        | Direction | Datatype                 |
++-----------------+-----------+--------------------------+
+| attn_mid_stream | in        | stream<ap_uint<512>, 0>& |
+| w1_all          | in        | ap_uint<512>*            |
+| b1_all          | in        | ap_uint<512>*            |
+| gelu_stream     | out       | stream<ap_uint<512>, 0>& |
++-----------------+-----------+--------------------------+
+
+* SW-to-HW Mapping
++-----------------+-----------------+-----------+----------+------------------------------------+
+| Argument        | HW Interface    | HW Type   | HW Usage | HW Info                            |
++-----------------+-----------------+-----------+----------+------------------------------------+
+| attn_mid_stream | attn_mid_stream | interface |          |                                    |
+| w1_all          | m_axi_gmem_w1   | interface |          |                                    |
+| w1_all          | s_axi_control   | register  | offset   | name=w1_all_1 offset=0x10 range=32 |
+| w1_all          | s_axi_control   | register  | offset   | name=w1_all_2 offset=0x14 range=32 |
+| b1_all          | m_axi_gmem_w1   | interface |          |                                    |
+| b1_all          | s_axi_control   | register  | offset   | name=b1_all_1 offset=0x1c range=32 |
+| b1_all          | s_axi_control   | register  | offset   | name=b1_all_2 offset=0x20 range=32 |
+| gelu_stream     | gelu_stream     | interface |          |                                    |
++-----------------+-----------------+-----------+----------+------------------------------------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+* Inferred Burst Summary
++---------------+-----------------+-----------+--------+-------+----------------------------------------------------------------------+
+| HW Interface  | Loop            | Direction | Length | Width | Location                                                             |
++---------------+-----------------+-----------+--------+-------+----------------------------------------------------------------------+
+| m_axi_gmem_w1 | v15_up_load_w_k | read      | 64     | 512   | /home/minhphat/split_kernel/kernels/bert_ffn_fp32_kernels.cpp:364:13 |
++---------------+-----------------+-----------+--------+-------+----------------------------------------------------------------------+
+
+* Inferred Bursts and Widening Missed
++---------------+----------+-----------------+--------------------------------------------------------------------------------------------------------+------------+----------------------------------------------------------------------+
+| HW Interface  | Variable | Loop            | Problem                                                                                                | Resolution | Location                                                             |
++---------------+----------+-----------------+--------------------------------------------------------------------------------------------------------+------------+----------------------------------------------------------------------+
+| m_axi_gmem_w1 | w1       |                 | Access is clobbered by call                                                                            | 214-231    | /home/minhphat/split_kernel/kernels/bert_ffn_fp32_kernels.cpp:364:13 |
+| m_axi_gmem_w1 | w1       | v15_up_load_w_k | Could not widen since type i512 size is greater than or equal to the max_widen_bitwidth threshold of 0 | 214-353    | /home/minhphat/split_kernel/kernels/bert_ffn_fp32_kernels.cpp:364:13 |
++---------------+----------+-----------------+--------------------------------------------------------------------------------------------------------+------------+----------------------------------------------------------------------+
+
+    * Resolution URL: www.xilinx.com/cgi-bin/docs/rdoc?v=2022.1;t=hls+guidance;d=XXX-YYY.html (replace XXX-YYY with column value)
+
+================================================================
+== Bind Op Report
+================================================================
++----------------------------------------------------------------------+------+--------+-------------+------+---------+---------+
+| Name                                                                 | DSP  | Pragma | Variable    | Op   | Impl    | Latency |
++----------------------------------------------------------------------+------+--------+-------------+------+---------+---------+
+| + bert_ffn_up_gelu_12layer_kernel                                    | 1120 |        |             |      |         |         |
+|   add_ln910_fu_238_p2                                                | -    |        | add_ln910   | add  | fabric  | 0       |
+|   sub_ln915_fu_303_p2                                                | -    |        | sub_ln915   | sub  | fabric  | 0       |
+|   add_ln915_fu_313_p2                                                | -    |        | add_ln915   | add  | fabric  | 0       |
+|  + v11_load_input_stream_matrix                                      | 0    |        |             |      |         |         |
+|    add_ln227_1_fu_406_p2                                             | -    |        | add_ln227_1 | add  | fabric  | 0       |
+|    add_ln227_fu_418_p2                                               | -    |        | add_ln227   | add  | fabric  | 0       |
+|    add_ln229_fu_640_p2                                               | -    |        | add_ln229   | add  | fabric  | 0       |
+|  + v15_ffn_up_tilemajor_producer                                     | 1120 |        |             |      |         |         |
+|    empty_67_fu_2013_p2                                               | -    |        | empty_67    | add  | fabric  | 0       |
+|    add_ln364_fu_2274_p2                                              | -    |        | add_ln364   | add  | fabric  | 0       |
+|    add_ln361_fu_2299_p2                                              | -    |        | add_ln361   | add  | fabric  | 0       |
+|    add_ln361_1_fu_2305_p2                                            | -    |        | add_ln361_1 | add  | fabric  | 0       |
+|    add_ln340_fu_2311_p2                                              | -    |        | add_ln340   | add  | fabric  | 0       |
+|    add_ln340_1_fu_2316_p2                                            | -    |        | add_ln340_1 | add  | fabric  | 0       |
+|   + v15_ffn_up_tilemajor_producer_Pipeline_v15_up_init_s             | 0    |        |             |      |         |         |
+|     add_ln344_fu_502_p2                                              | -    |        | add_ln344   | add  | fabric  | 0       |
+|   + v15_ffn_up_tilemajor_producer_Pipeline_v15_up_write_gelu_s       | 96   |        |             |      |         |         |
+|     add_ln430_fu_1279_p2                                             | -    |        | add_ln430   | add  | fabric  | 0       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U694                               | 3    |        | mul_i       | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U710                               | 3    |        | mul31_i     | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U695                               | 3    |        | mul_i_1     | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U711                               | 3    |        | mul31_i_1   | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U696                               | 3    |        | mul_i_2     | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U712                               | 3    |        | mul31_i_2   | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U697                               | 3    |        | mul_i_3     | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U713                               | 3    |        | mul31_i_3   | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U698                               | 3    |        | mul_i_4     | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U714                               | 3    |        | mul31_i_4   | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U699                               | 3    |        | mul_i_5     | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U715                               | 3    |        | mul31_i_5   | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U700                               | 3    |        | mul_i_6     | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U716                               | 3    |        | mul31_i_6   | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U701                               | 3    |        | mul_i_7     | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U717                               | 3    |        | mul31_i_7   | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U702                               | 3    |        | mul_i_8     | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U718                               | 3    |        | mul31_i_8   | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U703                               | 3    |        | mul_i_9     | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U719                               | 3    |        | mul31_i_9   | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U704                               | 3    |        | mul_i_s     | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U720                               | 3    |        | mul31_i_s   | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U705                               | 3    |        | mul_i_10    | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U721                               | 3    |        | mul31_i_10  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U706                               | 3    |        | mul_i_11    | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U722                               | 3    |        | mul31_i_11  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U707                               | 3    |        | mul_i_12    | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U723                               | 3    |        | mul31_i_12  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U708                               | 3    |        | mul_i_13    | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U724                               | 3    |        | mul31_i_13  | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U709                               | 3    |        | mul_i_14    | fmul | maxdsp  | 3       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U725                               | 3    |        | mul31_i_14  | fmul | maxdsp  | 3       |
+|   + v15_ffn_up_tilemajor_producer_Pipeline_v15_up_load_w_k           | 0    |        |             |      |         |         |
+|     add_ln364_fu_5051_p2                                             | -    |        | add_ln364   | add  | fabric  | 0       |
+|   + v15_ffn_up_tilemajor_producer_Pipeline_v15_up_k_chunk_v15_up_seq | 992  |        |             |      |         |         |
+|     add_ln382_1_fu_5157_p2                                           | -    |        | add_ln382_1 | add  | fabric  | 0       |
+|     add_ln382_fu_5166_p2                                             | -    |        | add_ln382   | add  | fabric  | 0       |
+|     add_ln384_fu_5268_p2                                             | -    |        | add_ln384   | add  | fabric  | 0       |
+|    + v13_dot16_tree_margin (grp_v13_dot16_tree_margin_fu_4472)       | 62   |        |             |      |         |         |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U323                             | 2    | yes    | p0          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U324                             | 2    | yes    | p1          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U325                             | 2    | yes    | p2          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U326                             | 2    | yes    | p3          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U327                             | 2    | yes    | p4          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U328                             | 2    | yes    | p5          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U329                             | 2    | yes    | p6          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U330                             | 2    | yes    | p7          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U331                             | 2    | yes    | p8          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U332                             | 2    | yes    | p9          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U333                             | 2    | yes    | p10         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U334                             | 2    | yes    | p11         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U335                             | 2    | yes    | p12         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U336                             | 2    | yes    | p13         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U337                             | 2    | yes    | p14         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U338                             | 2    | yes    | p15         | fmul | fulldsp | 4       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U308                             | 2    |        | add         | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U309                             | 2    |        | add1        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U310                             | 2    |        | add2        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U311                             | 2    |        | add3        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U312                             | 2    |        | add4        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U313                             | 2    |        | add5        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U314                             | 2    |        | add6        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U315                             | 2    |        | add7        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U316                             | 2    |        | add8        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U317                             | 2    |        | add68_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U318                             | 2    |        | add68_2     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U319                             | 2    |        | add68_3     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U320                             | 2    |        | add9        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U321                             | 2    |        | add83_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U322                             | 2    | yes    | sum         | fadd | fulldsp | 6       |
+|    + v13_dot16_tree_margin (grp_v13_dot16_tree_margin_fu_4508)       | 62   |        |             |      |         |         |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U323                             | 2    | yes    | p0          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U324                             | 2    | yes    | p1          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U325                             | 2    | yes    | p2          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U326                             | 2    | yes    | p3          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U327                             | 2    | yes    | p4          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U328                             | 2    | yes    | p5          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U329                             | 2    | yes    | p6          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U330                             | 2    | yes    | p7          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U331                             | 2    | yes    | p8          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U332                             | 2    | yes    | p9          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U333                             | 2    | yes    | p10         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U334                             | 2    | yes    | p11         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U335                             | 2    | yes    | p12         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U336                             | 2    | yes    | p13         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U337                             | 2    | yes    | p14         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U338                             | 2    | yes    | p15         | fmul | fulldsp | 4       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U308                             | 2    |        | add         | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U309                             | 2    |        | add1        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U310                             | 2    |        | add2        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U311                             | 2    |        | add3        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U312                             | 2    |        | add4        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U313                             | 2    |        | add5        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U314                             | 2    |        | add6        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U315                             | 2    |        | add7        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U316                             | 2    |        | add8        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U317                             | 2    |        | add68_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U318                             | 2    |        | add68_2     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U319                             | 2    |        | add68_3     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U320                             | 2    |        | add9        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U321                             | 2    |        | add83_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U322                             | 2    | yes    | sum         | fadd | fulldsp | 6       |
+|    + v13_dot16_tree_margin (grp_v13_dot16_tree_margin_fu_4544)       | 62   |        |             |      |         |         |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U323                             | 2    | yes    | p0          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U324                             | 2    | yes    | p1          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U325                             | 2    | yes    | p2          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U326                             | 2    | yes    | p3          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U327                             | 2    | yes    | p4          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U328                             | 2    | yes    | p5          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U329                             | 2    | yes    | p6          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U330                             | 2    | yes    | p7          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U331                             | 2    | yes    | p8          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U332                             | 2    | yes    | p9          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U333                             | 2    | yes    | p10         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U334                             | 2    | yes    | p11         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U335                             | 2    | yes    | p12         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U336                             | 2    | yes    | p13         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U337                             | 2    | yes    | p14         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U338                             | 2    | yes    | p15         | fmul | fulldsp | 4       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U308                             | 2    |        | add         | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U309                             | 2    |        | add1        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U310                             | 2    |        | add2        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U311                             | 2    |        | add3        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U312                             | 2    |        | add4        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U313                             | 2    |        | add5        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U314                             | 2    |        | add6        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U315                             | 2    |        | add7        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U316                             | 2    |        | add8        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U317                             | 2    |        | add68_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U318                             | 2    |        | add68_2     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U319                             | 2    |        | add68_3     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U320                             | 2    |        | add9        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U321                             | 2    |        | add83_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U322                             | 2    | yes    | sum         | fadd | fulldsp | 6       |
+|    + v13_dot16_tree_margin (grp_v13_dot16_tree_margin_fu_4580)       | 62   |        |             |      |         |         |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U323                             | 2    | yes    | p0          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U324                             | 2    | yes    | p1          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U325                             | 2    | yes    | p2          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U326                             | 2    | yes    | p3          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U327                             | 2    | yes    | p4          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U328                             | 2    | yes    | p5          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U329                             | 2    | yes    | p6          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U330                             | 2    | yes    | p7          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U331                             | 2    | yes    | p8          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U332                             | 2    | yes    | p9          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U333                             | 2    | yes    | p10         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U334                             | 2    | yes    | p11         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U335                             | 2    | yes    | p12         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U336                             | 2    | yes    | p13         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U337                             | 2    | yes    | p14         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U338                             | 2    | yes    | p15         | fmul | fulldsp | 4       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U308                             | 2    |        | add         | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U309                             | 2    |        | add1        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U310                             | 2    |        | add2        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U311                             | 2    |        | add3        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U312                             | 2    |        | add4        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U313                             | 2    |        | add5        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U314                             | 2    |        | add6        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U315                             | 2    |        | add7        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U316                             | 2    |        | add8        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U317                             | 2    |        | add68_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U318                             | 2    |        | add68_2     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U319                             | 2    |        | add68_3     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U320                             | 2    |        | add9        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U321                             | 2    |        | add83_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U322                             | 2    | yes    | sum         | fadd | fulldsp | 6       |
+|    + v13_dot16_tree_margin (grp_v13_dot16_tree_margin_fu_4616)       | 62   |        |             |      |         |         |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U323                             | 2    | yes    | p0          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U324                             | 2    | yes    | p1          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U325                             | 2    | yes    | p2          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U326                             | 2    | yes    | p3          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U327                             | 2    | yes    | p4          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U328                             | 2    | yes    | p5          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U329                             | 2    | yes    | p6          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U330                             | 2    | yes    | p7          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U331                             | 2    | yes    | p8          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U332                             | 2    | yes    | p9          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U333                             | 2    | yes    | p10         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U334                             | 2    | yes    | p11         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U335                             | 2    | yes    | p12         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U336                             | 2    | yes    | p13         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U337                             | 2    | yes    | p14         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U338                             | 2    | yes    | p15         | fmul | fulldsp | 4       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U308                             | 2    |        | add         | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U309                             | 2    |        | add1        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U310                             | 2    |        | add2        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U311                             | 2    |        | add3        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U312                             | 2    |        | add4        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U313                             | 2    |        | add5        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U314                             | 2    |        | add6        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U315                             | 2    |        | add7        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U316                             | 2    |        | add8        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U317                             | 2    |        | add68_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U318                             | 2    |        | add68_2     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U319                             | 2    |        | add68_3     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U320                             | 2    |        | add9        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U321                             | 2    |        | add83_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U322                             | 2    | yes    | sum         | fadd | fulldsp | 6       |
+|    + v13_dot16_tree_margin (grp_v13_dot16_tree_margin_fu_4652)       | 62   |        |             |      |         |         |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U323                             | 2    | yes    | p0          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U324                             | 2    | yes    | p1          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U325                             | 2    | yes    | p2          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U326                             | 2    | yes    | p3          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U327                             | 2    | yes    | p4          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U328                             | 2    | yes    | p5          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U329                             | 2    | yes    | p6          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U330                             | 2    | yes    | p7          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U331                             | 2    | yes    | p8          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U332                             | 2    | yes    | p9          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U333                             | 2    | yes    | p10         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U334                             | 2    | yes    | p11         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U335                             | 2    | yes    | p12         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U336                             | 2    | yes    | p13         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U337                             | 2    | yes    | p14         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U338                             | 2    | yes    | p15         | fmul | fulldsp | 4       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U308                             | 2    |        | add         | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U309                             | 2    |        | add1        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U310                             | 2    |        | add2        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U311                             | 2    |        | add3        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U312                             | 2    |        | add4        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U313                             | 2    |        | add5        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U314                             | 2    |        | add6        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U315                             | 2    |        | add7        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U316                             | 2    |        | add8        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U317                             | 2    |        | add68_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U318                             | 2    |        | add68_2     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U319                             | 2    |        | add68_3     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U320                             | 2    |        | add9        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U321                             | 2    |        | add83_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U322                             | 2    | yes    | sum         | fadd | fulldsp | 6       |
+|    + v13_dot16_tree_margin (grp_v13_dot16_tree_margin_fu_4688)       | 62   |        |             |      |         |         |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U323                             | 2    | yes    | p0          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U324                             | 2    | yes    | p1          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U325                             | 2    | yes    | p2          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U326                             | 2    | yes    | p3          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U327                             | 2    | yes    | p4          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U328                             | 2    | yes    | p5          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U329                             | 2    | yes    | p6          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U330                             | 2    | yes    | p7          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U331                             | 2    | yes    | p8          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U332                             | 2    | yes    | p9          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U333                             | 2    | yes    | p10         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U334                             | 2    | yes    | p11         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U335                             | 2    | yes    | p12         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U336                             | 2    | yes    | p13         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U337                             | 2    | yes    | p14         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U338                             | 2    | yes    | p15         | fmul | fulldsp | 4       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U308                             | 2    |        | add         | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U309                             | 2    |        | add1        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U310                             | 2    |        | add2        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U311                             | 2    |        | add3        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U312                             | 2    |        | add4        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U313                             | 2    |        | add5        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U314                             | 2    |        | add6        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U315                             | 2    |        | add7        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U316                             | 2    |        | add8        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U317                             | 2    |        | add68_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U318                             | 2    |        | add68_2     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U319                             | 2    |        | add68_3     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U320                             | 2    |        | add9        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U321                             | 2    |        | add83_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U322                             | 2    | yes    | sum         | fadd | fulldsp | 6       |
+|    + v13_dot16_tree_margin (grp_v13_dot16_tree_margin_fu_4724)       | 62   |        |             |      |         |         |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U323                             | 2    | yes    | p0          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U324                             | 2    | yes    | p1          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U325                             | 2    | yes    | p2          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U326                             | 2    | yes    | p3          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U327                             | 2    | yes    | p4          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U328                             | 2    | yes    | p5          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U329                             | 2    | yes    | p6          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U330                             | 2    | yes    | p7          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U331                             | 2    | yes    | p8          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U332                             | 2    | yes    | p9          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U333                             | 2    | yes    | p10         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U334                             | 2    | yes    | p11         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U335                             | 2    | yes    | p12         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U336                             | 2    | yes    | p13         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U337                             | 2    | yes    | p14         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U338                             | 2    | yes    | p15         | fmul | fulldsp | 4       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U308                             | 2    |        | add         | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U309                             | 2    |        | add1        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U310                             | 2    |        | add2        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U311                             | 2    |        | add3        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U312                             | 2    |        | add4        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U313                             | 2    |        | add5        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U314                             | 2    |        | add6        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U315                             | 2    |        | add7        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U316                             | 2    |        | add8        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U317                             | 2    |        | add68_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U318                             | 2    |        | add68_2     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U319                             | 2    |        | add68_3     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U320                             | 2    |        | add9        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U321                             | 2    |        | add83_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U322                             | 2    | yes    | sum         | fadd | fulldsp | 6       |
+|    + v13_dot16_tree_margin (grp_v13_dot16_tree_margin_fu_4760)       | 62   |        |             |      |         |         |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U323                             | 2    | yes    | p0          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U324                             | 2    | yes    | p1          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U325                             | 2    | yes    | p2          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U326                             | 2    | yes    | p3          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U327                             | 2    | yes    | p4          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U328                             | 2    | yes    | p5          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U329                             | 2    | yes    | p6          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U330                             | 2    | yes    | p7          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U331                             | 2    | yes    | p8          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U332                             | 2    | yes    | p9          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U333                             | 2    | yes    | p10         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U334                             | 2    | yes    | p11         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U335                             | 2    | yes    | p12         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U336                             | 2    | yes    | p13         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U337                             | 2    | yes    | p14         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U338                             | 2    | yes    | p15         | fmul | fulldsp | 4       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U308                             | 2    |        | add         | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U309                             | 2    |        | add1        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U310                             | 2    |        | add2        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U311                             | 2    |        | add3        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U312                             | 2    |        | add4        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U313                             | 2    |        | add5        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U314                             | 2    |        | add6        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U315                             | 2    |        | add7        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U316                             | 2    |        | add8        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U317                             | 2    |        | add68_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U318                             | 2    |        | add68_2     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U319                             | 2    |        | add68_3     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U320                             | 2    |        | add9        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U321                             | 2    |        | add83_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U322                             | 2    | yes    | sum         | fadd | fulldsp | 6       |
+|    + v13_dot16_tree_margin (grp_v13_dot16_tree_margin_fu_4796)       | 62   |        |             |      |         |         |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U323                             | 2    | yes    | p0          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U324                             | 2    | yes    | p1          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U325                             | 2    | yes    | p2          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U326                             | 2    | yes    | p3          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U327                             | 2    | yes    | p4          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U328                             | 2    | yes    | p5          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U329                             | 2    | yes    | p6          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U330                             | 2    | yes    | p7          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U331                             | 2    | yes    | p8          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U332                             | 2    | yes    | p9          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U333                             | 2    | yes    | p10         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U334                             | 2    | yes    | p11         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U335                             | 2    | yes    | p12         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U336                             | 2    | yes    | p13         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U337                             | 2    | yes    | p14         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U338                             | 2    | yes    | p15         | fmul | fulldsp | 4       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U308                             | 2    |        | add         | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U309                             | 2    |        | add1        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U310                             | 2    |        | add2        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U311                             | 2    |        | add3        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U312                             | 2    |        | add4        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U313                             | 2    |        | add5        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U314                             | 2    |        | add6        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U315                             | 2    |        | add7        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U316                             | 2    |        | add8        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U317                             | 2    |        | add68_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U318                             | 2    |        | add68_2     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U319                             | 2    |        | add68_3     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U320                             | 2    |        | add9        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U321                             | 2    |        | add83_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U322                             | 2    | yes    | sum         | fadd | fulldsp | 6       |
+|    + v13_dot16_tree_margin (grp_v13_dot16_tree_margin_fu_4832)       | 62   |        |             |      |         |         |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U323                             | 2    | yes    | p0          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U324                             | 2    | yes    | p1          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U325                             | 2    | yes    | p2          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U326                             | 2    | yes    | p3          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U327                             | 2    | yes    | p4          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U328                             | 2    | yes    | p5          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U329                             | 2    | yes    | p6          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U330                             | 2    | yes    | p7          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U331                             | 2    | yes    | p8          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U332                             | 2    | yes    | p9          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U333                             | 2    | yes    | p10         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U334                             | 2    | yes    | p11         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U335                             | 2    | yes    | p12         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U336                             | 2    | yes    | p13         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U337                             | 2    | yes    | p14         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U338                             | 2    | yes    | p15         | fmul | fulldsp | 4       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U308                             | 2    |        | add         | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U309                             | 2    |        | add1        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U310                             | 2    |        | add2        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U311                             | 2    |        | add3        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U312                             | 2    |        | add4        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U313                             | 2    |        | add5        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U314                             | 2    |        | add6        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U315                             | 2    |        | add7        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U316                             | 2    |        | add8        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U317                             | 2    |        | add68_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U318                             | 2    |        | add68_2     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U319                             | 2    |        | add68_3     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U320                             | 2    |        | add9        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U321                             | 2    |        | add83_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U322                             | 2    | yes    | sum         | fadd | fulldsp | 6       |
+|    + v13_dot16_tree_margin (grp_v13_dot16_tree_margin_fu_4868)       | 62   |        |             |      |         |         |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U323                             | 2    | yes    | p0          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U324                             | 2    | yes    | p1          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U325                             | 2    | yes    | p2          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U326                             | 2    | yes    | p3          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U327                             | 2    | yes    | p4          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U328                             | 2    | yes    | p5          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U329                             | 2    | yes    | p6          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U330                             | 2    | yes    | p7          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U331                             | 2    | yes    | p8          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U332                             | 2    | yes    | p9          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U333                             | 2    | yes    | p10         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U334                             | 2    | yes    | p11         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U335                             | 2    | yes    | p12         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U336                             | 2    | yes    | p13         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U337                             | 2    | yes    | p14         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U338                             | 2    | yes    | p15         | fmul | fulldsp | 4       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U308                             | 2    |        | add         | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U309                             | 2    |        | add1        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U310                             | 2    |        | add2        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U311                             | 2    |        | add3        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U312                             | 2    |        | add4        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U313                             | 2    |        | add5        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U314                             | 2    |        | add6        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U315                             | 2    |        | add7        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U316                             | 2    |        | add8        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U317                             | 2    |        | add68_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U318                             | 2    |        | add68_2     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U319                             | 2    |        | add68_3     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U320                             | 2    |        | add9        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U321                             | 2    |        | add83_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U322                             | 2    | yes    | sum         | fadd | fulldsp | 6       |
+|    + v13_dot16_tree_margin (grp_v13_dot16_tree_margin_fu_4904)       | 62   |        |             |      |         |         |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U323                             | 2    | yes    | p0          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U324                             | 2    | yes    | p1          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U325                             | 2    | yes    | p2          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U326                             | 2    | yes    | p3          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U327                             | 2    | yes    | p4          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U328                             | 2    | yes    | p5          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U329                             | 2    | yes    | p6          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U330                             | 2    | yes    | p7          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U331                             | 2    | yes    | p8          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U332                             | 2    | yes    | p9          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U333                             | 2    | yes    | p10         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U334                             | 2    | yes    | p11         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U335                             | 2    | yes    | p12         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U336                             | 2    | yes    | p13         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U337                             | 2    | yes    | p14         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U338                             | 2    | yes    | p15         | fmul | fulldsp | 4       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U308                             | 2    |        | add         | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U309                             | 2    |        | add1        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U310                             | 2    |        | add2        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U311                             | 2    |        | add3        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U312                             | 2    |        | add4        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U313                             | 2    |        | add5        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U314                             | 2    |        | add6        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U315                             | 2    |        | add7        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U316                             | 2    |        | add8        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U317                             | 2    |        | add68_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U318                             | 2    |        | add68_2     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U319                             | 2    |        | add68_3     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U320                             | 2    |        | add9        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U321                             | 2    |        | add83_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U322                             | 2    | yes    | sum         | fadd | fulldsp | 6       |
+|    + v13_dot16_tree_margin (grp_v13_dot16_tree_margin_fu_4940)       | 62   |        |             |      |         |         |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U323                             | 2    | yes    | p0          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U324                             | 2    | yes    | p1          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U325                             | 2    | yes    | p2          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U326                             | 2    | yes    | p3          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U327                             | 2    | yes    | p4          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U328                             | 2    | yes    | p5          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U329                             | 2    | yes    | p6          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U330                             | 2    | yes    | p7          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U331                             | 2    | yes    | p8          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U332                             | 2    | yes    | p9          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U333                             | 2    | yes    | p10         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U334                             | 2    | yes    | p11         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U335                             | 2    | yes    | p12         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U336                             | 2    | yes    | p13         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U337                             | 2    | yes    | p14         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U338                             | 2    | yes    | p15         | fmul | fulldsp | 4       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U308                             | 2    |        | add         | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U309                             | 2    |        | add1        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U310                             | 2    |        | add2        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U311                             | 2    |        | add3        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U312                             | 2    |        | add4        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U313                             | 2    |        | add5        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U314                             | 2    |        | add6        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U315                             | 2    |        | add7        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U316                             | 2    |        | add8        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U317                             | 2    |        | add68_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U318                             | 2    |        | add68_2     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U319                             | 2    |        | add68_3     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U320                             | 2    |        | add9        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U321                             | 2    |        | add83_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U322                             | 2    | yes    | sum         | fadd | fulldsp | 6       |
+|    + v13_dot16_tree_margin (grp_v13_dot16_tree_margin_fu_4976)       | 62   |        |             |      |         |         |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U323                             | 2    | yes    | p0          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U324                             | 2    | yes    | p1          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U325                             | 2    | yes    | p2          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U326                             | 2    | yes    | p3          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U327                             | 2    | yes    | p4          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U328                             | 2    | yes    | p5          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U329                             | 2    | yes    | p6          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U330                             | 2    | yes    | p7          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U331                             | 2    | yes    | p8          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U332                             | 2    | yes    | p9          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U333                             | 2    | yes    | p10         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U334                             | 2    | yes    | p11         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U335                             | 2    | yes    | p12         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U336                             | 2    | yes    | p13         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U337                             | 2    | yes    | p14         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U338                             | 2    | yes    | p15         | fmul | fulldsp | 4       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U308                             | 2    |        | add         | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U309                             | 2    |        | add1        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U310                             | 2    |        | add2        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U311                             | 2    |        | add3        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U312                             | 2    |        | add4        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U313                             | 2    |        | add5        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U314                             | 2    |        | add6        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U315                             | 2    |        | add7        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U316                             | 2    |        | add8        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U317                             | 2    |        | add68_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U318                             | 2    |        | add68_2     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U319                             | 2    |        | add68_3     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U320                             | 2    |        | add9        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U321                             | 2    |        | add83_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U322                             | 2    | yes    | sum         | fadd | fulldsp | 6       |
+|    + v13_dot16_tree_margin (grp_v13_dot16_tree_margin_fu_5012)       | 62   |        |             |      |         |         |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U323                             | 2    | yes    | p0          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U324                             | 2    | yes    | p1          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U325                             | 2    | yes    | p2          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U326                             | 2    | yes    | p3          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U327                             | 2    | yes    | p4          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U328                             | 2    | yes    | p5          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U329                             | 2    | yes    | p6          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U330                             | 2    | yes    | p7          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U331                             | 2    | yes    | p8          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U332                             | 2    | yes    | p9          | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U333                             | 2    | yes    | p10         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U334                             | 2    | yes    | p11         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U335                             | 2    | yes    | p12         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U336                             | 2    | yes    | p13         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U337                             | 2    | yes    | p14         | fmul | fulldsp | 4       |
+|      fmul_32ns_32ns_32_8_full_dsp_1_U338                             | 2    | yes    | p15         | fmul | fulldsp | 4       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U308                             | 2    |        | add         | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U309                             | 2    |        | add1        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U310                             | 2    |        | add2        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U311                             | 2    |        | add3        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U312                             | 2    |        | add4        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U313                             | 2    |        | add5        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U314                             | 2    |        | add6        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U315                             | 2    |        | add7        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U316                             | 2    |        | add8        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U317                             | 2    |        | add68_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U318                             | 2    |        | add68_2     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U319                             | 2    |        | add68_3     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U320                             | 2    |        | add9        | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U321                             | 2    |        | add83_1     | fadd | fulldsp | 6       |
+|      fadd_32ns_32ns_32_7_full_dsp_1_U322                             | 2    | yes    | sum         | fadd | fulldsp | 6       |
++----------------------------------------------------------------------+------+--------+-------------+------+---------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
++---------------------------------------------------------+------+------+--------+-----------------------------------------------------+---------+------+---------+
+| Name                                                    | BRAM | URAM | Pragma | Variable                                            | Storage | Impl | Latency |
++---------------------------------------------------------+------+------+--------+-----------------------------------------------------+---------+------+---------+
+| + bert_ffn_up_gelu_12layer_kernel                       | 272  | 32   |        |                                                     |         |      |         |
+|   input_buf_U                                           | -    | 2    | pragma | input_buf                                           | ram_1p  | uram | 1       |
+|   input_buf_1_U                                         | -    | 2    | pragma | input_buf_1                                         | ram_1p  | uram | 1       |
+|   input_buf_2_U                                         | -    | 2    | pragma | input_buf_2                                         | ram_1p  | uram | 1       |
+|   input_buf_3_U                                         | -    | 2    | pragma | input_buf_3                                         | ram_1p  | uram | 1       |
+|   input_buf_4_U                                         | -    | 2    | pragma | input_buf_4                                         | ram_1p  | uram | 1       |
+|   input_buf_5_U                                         | -    | 2    | pragma | input_buf_5                                         | ram_1p  | uram | 1       |
+|   input_buf_6_U                                         | -    | 2    | pragma | input_buf_6                                         | ram_1p  | uram | 1       |
+|   input_buf_7_U                                         | -    | 2    | pragma | input_buf_7                                         | ram_1p  | uram | 1       |
+|   input_buf_8_U                                         | -    | 2    | pragma | input_buf_8                                         | ram_1p  | uram | 1       |
+|   input_buf_9_U                                         | -    | 2    | pragma | input_buf_9                                         | ram_1p  | uram | 1       |
+|   p_ZZ31bert_ffn_up_gelu_12layer_kernelE9input_buf_10_U | -    | 2    | pragma | p_ZZ31bert_ffn_up_gelu_12layer_kernelE9input_buf_10 | ram_1p  | uram | 1       |
+|   p_ZZ31bert_ffn_up_gelu_12layer_kernelE9input_buf_11_U | -    | 2    | pragma | p_ZZ31bert_ffn_up_gelu_12layer_kernelE9input_buf_11 | ram_1p  | uram | 1       |
+|   p_ZZ31bert_ffn_up_gelu_12layer_kernelE9input_buf_12_U | -    | 2    | pragma | p_ZZ31bert_ffn_up_gelu_12layer_kernelE9input_buf_12 | ram_1p  | uram | 1       |
+|   p_ZZ31bert_ffn_up_gelu_12layer_kernelE9input_buf_13_U | -    | 2    | pragma | p_ZZ31bert_ffn_up_gelu_12layer_kernelE9input_buf_13 | ram_1p  | uram | 1       |
+|   p_ZZ31bert_ffn_up_gelu_12layer_kernelE9input_buf_14_U | -    | 2    | pragma | p_ZZ31bert_ffn_up_gelu_12layer_kernelE9input_buf_14 | ram_1p  | uram | 1       |
+|   p_ZZ31bert_ffn_up_gelu_12layer_kernelE9input_buf_15_U | -    | 2    | pragma | p_ZZ31bert_ffn_up_gelu_12layer_kernelE9input_buf_15 | ram_1p  | uram | 1       |
+|  + v15_ffn_up_tilemajor_producer                        | 272  | 0    |        |                                                     |         |      |         |
+|    w_tile_U                                             | 1    | -    | yes    | w_tile                                              | ram_2p  | bram | 1       |
+|    w_tile_1_U                                           | 1    | -    | yes    | w_tile_1                                            | ram_2p  | bram | 1       |
+|    w_tile_2_U                                           | 1    | -    | yes    | w_tile_2                                            | ram_2p  | bram | 1       |
+|    w_tile_3_U                                           | 1    | -    | yes    | w_tile_3                                            | ram_2p  | bram | 1       |
+|    w_tile_4_U                                           | 1    | -    | yes    | w_tile_4                                            | ram_2p  | bram | 1       |
+|    w_tile_5_U                                           | 1    | -    | yes    | w_tile_5                                            | ram_2p  | bram | 1       |
+|    w_tile_6_U                                           | 1    | -    | yes    | w_tile_6                                            | ram_2p  | bram | 1       |
+|    w_tile_7_U                                           | 1    | -    | yes    | w_tile_7                                            | ram_2p  | bram | 1       |
+|    w_tile_8_U                                           | 1    | -    | yes    | w_tile_8                                            | ram_2p  | bram | 1       |
+|    w_tile_9_U                                           | 1    | -    | yes    | w_tile_9                                            | ram_2p  | bram | 1       |
+|    w_tile_10_U                                          | 1    | -    | yes    | w_tile_10                                           | ram_2p  | bram | 1       |
+|    w_tile_11_U                                          | 1    | -    | yes    | w_tile_11                                           | ram_2p  | bram | 1       |
+|    w_tile_12_U                                          | 1    | -    | yes    | w_tile_12                                           | ram_2p  | bram | 1       |
+|    w_tile_13_U                                          | 1    | -    | yes    | w_tile_13                                           | ram_2p  | bram | 1       |
+|    w_tile_14_U                                          | 1    | -    | yes    | w_tile_14                                           | ram_2p  | bram | 1       |
+|    w_tile_15_U                                          | 1    | -    | yes    | w_tile_15                                           | ram_2p  | bram | 1       |
+|    w_tile_16_U                                          | 1    | -    | yes    | w_tile_16                                           | ram_2p  | bram | 1       |
+|    w_tile_17_U                                          | 1    | -    | yes    | w_tile_17                                           | ram_2p  | bram | 1       |
+|    w_tile_18_U                                          | 1    | -    | yes    | w_tile_18                                           | ram_2p  | bram | 1       |
+|    w_tile_19_U                                          | 1    | -    | yes    | w_tile_19                                           | ram_2p  | bram | 1       |
+|    w_tile_20_U                                          | 1    | -    | yes    | w_tile_20                                           | ram_2p  | bram | 1       |
+|    w_tile_21_U                                          | 1    | -    | yes    | w_tile_21                                           | ram_2p  | bram | 1       |
+|    w_tile_22_U                                          | 1    | -    | yes    | w_tile_22                                           | ram_2p  | bram | 1       |
+|    w_tile_23_U                                          | 1    | -    | yes    | w_tile_23                                           | ram_2p  | bram | 1       |
+|    w_tile_24_U                                          | 1    | -    | yes    | w_tile_24                                           | ram_2p  | bram | 1       |
+|    w_tile_25_U                                          | 1    | -    | yes    | w_tile_25                                           | ram_2p  | bram | 1       |
+|    w_tile_26_U                                          | 1    | -    | yes    | w_tile_26                                           | ram_2p  | bram | 1       |
+|    w_tile_27_U                                          | 1    | -    | yes    | w_tile_27                                           | ram_2p  | bram | 1       |
+|    w_tile_28_U                                          | 1    | -    | yes    | w_tile_28                                           | ram_2p  | bram | 1       |
+|    w_tile_29_U                                          | 1    | -    | yes    | w_tile_29                                           | ram_2p  | bram | 1       |
+|    w_tile_30_U                                          | 1    | -    | yes    | w_tile_30                                           | ram_2p  | bram | 1       |
+|    w_tile_31_U                                          | 1    | -    | yes    | w_tile_31                                           | ram_2p  | bram | 1       |
+|    w_tile_32_U                                          | 1    | -    | yes    | w_tile_32                                           | ram_2p  | bram | 1       |
+|    w_tile_33_U                                          | 1    | -    | yes    | w_tile_33                                           | ram_2p  | bram | 1       |
+|    w_tile_34_U                                          | 1    | -    | yes    | w_tile_34                                           | ram_2p  | bram | 1       |
+|    w_tile_35_U                                          | 1    | -    | yes    | w_tile_35                                           | ram_2p  | bram | 1       |
+|    w_tile_36_U                                          | 1    | -    | yes    | w_tile_36                                           | ram_2p  | bram | 1       |
+|    w_tile_37_U                                          | 1    | -    | yes    | w_tile_37                                           | ram_2p  | bram | 1       |
+|    w_tile_38_U                                          | 1    | -    | yes    | w_tile_38                                           | ram_2p  | bram | 1       |
+|    w_tile_39_U                                          | 1    | -    | yes    | w_tile_39                                           | ram_2p  | bram | 1       |
+|    w_tile_40_U                                          | 1    | -    | yes    | w_tile_40                                           | ram_2p  | bram | 1       |
+|    w_tile_41_U                                          | 1    | -    | yes    | w_tile_41                                           | ram_2p  | bram | 1       |
+|    w_tile_42_U                                          | 1    | -    | yes    | w_tile_42                                           | ram_2p  | bram | 1       |
+|    w_tile_43_U                                          | 1    | -    | yes    | w_tile_43                                           | ram_2p  | bram | 1       |
+|    w_tile_44_U                                          | 1    | -    | yes    | w_tile_44                                           | ram_2p  | bram | 1       |
+|    w_tile_45_U                                          | 1    | -    | yes    | w_tile_45                                           | ram_2p  | bram | 1       |
+|    w_tile_46_U                                          | 1    | -    | yes    | w_tile_46                                           | ram_2p  | bram | 1       |
+|    w_tile_47_U                                          | 1    | -    | yes    | w_tile_47                                           | ram_2p  | bram | 1       |
+|    w_tile_48_U                                          | 1    | -    | yes    | w_tile_48                                           | ram_2p  | bram | 1       |
+|    w_tile_49_U                                          | 1    | -    | yes    | w_tile_49                                           | ram_2p  | bram | 1       |
+|    w_tile_50_U                                          | 1    | -    | yes    | w_tile_50                                           | ram_2p  | bram | 1       |
+|    w_tile_51_U                                          | 1    | -    | yes    | w_tile_51                                           | ram_2p  | bram | 1       |
+|    w_tile_52_U                                          | 1    | -    | yes    | w_tile_52                                           | ram_2p  | bram | 1       |
+|    w_tile_53_U                                          | 1    | -    | yes    | w_tile_53                                           | ram_2p  | bram | 1       |
+|    w_tile_54_U                                          | 1    | -    | yes    | w_tile_54                                           | ram_2p  | bram | 1       |
+|    w_tile_55_U                                          | 1    | -    | yes    | w_tile_55                                           | ram_2p  | bram | 1       |
+|    w_tile_56_U                                          | 1    | -    | yes    | w_tile_56                                           | ram_2p  | bram | 1       |
+|    w_tile_57_U                                          | 1    | -    | yes    | w_tile_57                                           | ram_2p  | bram | 1       |
+|    w_tile_58_U                                          | 1    | -    | yes    | w_tile_58                                           | ram_2p  | bram | 1       |
+|    w_tile_59_U                                          | 1    | -    | yes    | w_tile_59                                           | ram_2p  | bram | 1       |
+|    w_tile_60_U                                          | 1    | -    | yes    | w_tile_60                                           | ram_2p  | bram | 1       |
+|    w_tile_61_U                                          | 1    | -    | yes    | w_tile_61                                           | ram_2p  | bram | 1       |
+|    w_tile_62_U                                          | 1    | -    | yes    | w_tile_62                                           | ram_2p  | bram | 1       |
+|    w_tile_63_U                                          | 1    | -    | yes    | w_tile_63                                           | ram_2p  | bram | 1       |
+|    w_tile_64_U                                          | 1    | -    | yes    | w_tile_64                                           | ram_2p  | bram | 1       |
+|    w_tile_65_U                                          | 1    | -    | yes    | w_tile_65                                           | ram_2p  | bram | 1       |
+|    fadd_32ns_32ns_32_7_full_dsp_1_U889                  | 1    | -    | yes    | w_tile_66                                           | ram_2p  | bram | 1       |
+|    w_tile_67_U                                          | 1    | -    | yes    | w_tile_67                                           | ram_2p  | bram | 1       |
+|    w_tile_68_U                                          | 1    | -    | yes    | w_tile_68                                           | ram_2p  | bram | 1       |
+|    w_tile_69_U                                          | 1    | -    | yes    | w_tile_69                                           | ram_2p  | bram | 1       |
+|    w_tile_70_U                                          | 1    | -    | yes    | w_tile_70                                           | ram_2p  | bram | 1       |
+|    w_tile_71_U                                          | 1    | -    | yes    | w_tile_71                                           | ram_2p  | bram | 1       |
+|    w_tile_72_U                                          | 1    | -    | yes    | w_tile_72                                           | ram_2p  | bram | 1       |
+|    w_tile_73_U                                          | 1    | -    | yes    | w_tile_73                                           | ram_2p  | bram | 1       |
+|    w_tile_74_U                                          | 1    | -    | yes    | w_tile_74                                           | ram_2p  | bram | 1       |
+|    w_tile_75_U                                          | 1    | -    | yes    | w_tile_75                                           | ram_2p  | bram | 1       |
+|    w_tile_76_U                                          | 1    | -    | yes    | w_tile_76                                           | ram_2p  | bram | 1       |
+|    w_tile_77_U                                          | 1    | -    | yes    | w_tile_77                                           | ram_2p  | bram | 1       |
+|    w_tile_78_U                                          | 1    | -    | yes    | w_tile_78                                           | ram_2p  | bram | 1       |
+|    w_tile_79_U                                          | 1    | -    | yes    | w_tile_79                                           | ram_2p  | bram | 1       |
+|    w_tile_80_U                                          | 1    | -    | yes    | w_tile_80                                           | ram_2p  | bram | 1       |
+|    w_tile_81_U                                          | 1    | -    | yes    | w_tile_81                                           | ram_2p  | bram | 1       |
+|    w_tile_82_U                                          | 1    | -    | yes    | w_tile_82                                           | ram_2p  | bram | 1       |
+|    w_tile_83_U                                          | 1    | -    | yes    | w_tile_83                                           | ram_2p  | bram | 1       |
+|    w_tile_84_U                                          | 1    | -    | yes    | w_tile_84                                           | ram_2p  | bram | 1       |
+|    w_tile_85_U                                          | 1    | -    | yes    | w_tile_85                                           | ram_2p  | bram | 1       |
+|    w_tile_86_U                                          | 1    | -    | yes    | w_tile_86                                           | ram_2p  | bram | 1       |
+|    w_tile_87_U                                          | 1    | -    | yes    | w_tile_87                                           | ram_2p  | bram | 1       |
+|    w_tile_88_U                                          | 1    | -    | yes    | w_tile_88                                           | ram_2p  | bram | 1       |
+|    w_tile_89_U                                          | 1    | -    | yes    | w_tile_89                                           | ram_2p  | bram | 1       |
+|    w_tile_90_U                                          | 1    | -    | yes    | w_tile_90                                           | ram_2p  | bram | 1       |
+|    w_tile_91_U                                          | 1    | -    | yes    | w_tile_91                                           | ram_2p  | bram | 1       |
+|    w_tile_92_U                                          | 1    | -    | yes    | w_tile_92                                           | ram_2p  | bram | 1       |
+|    w_tile_93_U                                          | 1    | -    | yes    | w_tile_93                                           | ram_2p  | bram | 1       |
+|    w_tile_94_U                                          | 1    | -    | yes    | w_tile_94                                           | ram_2p  | bram | 1       |
+|    w_tile_95_U                                          | 1    | -    | yes    | w_tile_95                                           | ram_2p  | bram | 1       |
+|    w_tile_96_U                                          | 1    | -    | yes    | w_tile_96                                           | ram_2p  | bram | 1       |
+|    w_tile_97_U                                          | 1    | -    | yes    | w_tile_97                                           | ram_2p  | bram | 1       |
+|    w_tile_98_U                                          | 1    | -    | yes    | w_tile_98                                           | ram_2p  | bram | 1       |
+|    w_tile_99_U                                          | 1    | -    | yes    | w_tile_99                                           | ram_2p  | bram | 1       |
+|    w_tile_100_U                                         | 1    | -    | yes    | w_tile_100                                          | ram_2p  | bram | 1       |
+|    w_tile_101_U                                         | 1    | -    | yes    | w_tile_101                                          | ram_2p  | bram | 1       |
+|    w_tile_102_U                                         | 1    | -    | yes    | w_tile_102                                          | ram_2p  | bram | 1       |
+|    w_tile_103_U                                         | 1    | -    | yes    | w_tile_103                                          | ram_2p  | bram | 1       |
+|    w_tile_104_U                                         | 1    | -    | yes    | w_tile_104                                          | ram_2p  | bram | 1       |
+|    w_tile_105_U                                         | 1    | -    | yes    | w_tile_105                                          | ram_2p  | bram | 1       |
+|    w_tile_106_U                                         | 1    | -    | yes    | w_tile_106                                          | ram_2p  | bram | 1       |
+|    w_tile_107_U                                         | 1    | -    | yes    | w_tile_107                                          | ram_2p  | bram | 1       |
+|    w_tile_108_U                                         | 1    | -    | yes    | w_tile_108                                          | ram_2p  | bram | 1       |
+|    w_tile_109_U                                         | 1    | -    | yes    | w_tile_109                                          | ram_2p  | bram | 1       |
+|    w_tile_110_U                                         | 1    | -    | yes    | w_tile_110                                          | ram_2p  | bram | 1       |
+|    w_tile_111_U                                         | 1    | -    | yes    | w_tile_111                                          | ram_2p  | bram | 1       |
+|    w_tile_112_U                                         | 1    | -    | yes    | w_tile_112                                          | ram_2p  | bram | 1       |
+|    w_tile_113_U                                         | 1    | -    | yes    | w_tile_113                                          | ram_2p  | bram | 1       |
+|    w_tile_114_U                                         | 1    | -    | yes    | w_tile_114                                          | ram_2p  | bram | 1       |
+|    w_tile_115_U                                         | 1    | -    | yes    | w_tile_115                                          | ram_2p  | bram | 1       |
+|    w_tile_116_U                                         | 1    | -    | yes    | w_tile_116                                          | ram_2p  | bram | 1       |
+|    w_tile_117_U                                         | 1    | -    | yes    | w_tile_117                                          | ram_2p  | bram | 1       |
+|    w_tile_118_U                                         | 1    | -    | yes    | w_tile_118                                          | ram_2p  | bram | 1       |
+|    w_tile_119_U                                         | 1    | -    | yes    | w_tile_119                                          | ram_2p  | bram | 1       |
+|    w_tile_120_U                                         | 1    | -    | yes    | w_tile_120                                          | ram_2p  | bram | 1       |
+|    w_tile_121_U                                         | 1    | -    | yes    | w_tile_121                                          | ram_2p  | bram | 1       |
+|    w_tile_122_U                                         | 1    | -    | yes    | w_tile_122                                          | ram_2p  | bram | 1       |
+|    w_tile_123_U                                         | 1    | -    | yes    | w_tile_123                                          | ram_2p  | bram | 1       |
+|    w_tile_124_U                                         | 1    | -    | yes    | w_tile_124                                          | ram_2p  | bram | 1       |
+|    w_tile_125_U                                         | 1    | -    | yes    | w_tile_125                                          | ram_2p  | bram | 1       |
+|    w_tile_126_U                                         | 1    | -    | yes    | w_tile_126                                          | ram_2p  | bram | 1       |
+|    w_tile_127_U                                         | 1    | -    | yes    | w_tile_127                                          | ram_2p  | bram | 1       |
+|    w_tile_128_U                                         | 1    | -    | yes    | w_tile_128                                          | ram_2p  | bram | 1       |
+|    w_tile_129_U                                         | 1    | -    | yes    | w_tile_129                                          | ram_2p  | bram | 1       |
+|    w_tile_130_U                                         | 1    | -    | yes    | w_tile_130                                          | ram_2p  | bram | 1       |
+|    fadd_32ns_32ns_32_7_full_dsp_1_U890                  | 1    | -    | yes    | w_tile_131                                          | ram_2p  | bram | 1       |
+|    w_tile_132_U                                         | 1    | -    | yes    | w_tile_132                                          | ram_2p  | bram | 1       |
+|    w_tile_133_U                                         | 1    | -    | yes    | w_tile_133                                          | ram_2p  | bram | 1       |
+|    w_tile_134_U                                         | 1    | -    | yes    | w_tile_134                                          | ram_2p  | bram | 1       |
+|    w_tile_135_U                                         | 1    | -    | yes    | w_tile_135                                          | ram_2p  | bram | 1       |
+|    w_tile_136_U                                         | 1    | -    | yes    | w_tile_136                                          | ram_2p  | bram | 1       |
+|    w_tile_137_U                                         | 1    | -    | yes    | w_tile_137                                          | ram_2p  | bram | 1       |
+|    w_tile_138_U                                         | 1    | -    | yes    | w_tile_138                                          | ram_2p  | bram | 1       |
+|    w_tile_139_U                                         | 1    | -    | yes    | w_tile_139                                          | ram_2p  | bram | 1       |
+|    w_tile_140_U                                         | 1    | -    | yes    | w_tile_140                                          | ram_2p  | bram | 1       |
+|    w_tile_141_U                                         | 1    | -    | yes    | w_tile_141                                          | ram_2p  | bram | 1       |
+|    w_tile_142_U                                         | 1    | -    | yes    | w_tile_142                                          | ram_2p  | bram | 1       |
+|    w_tile_143_U                                         | 1    | -    | yes    | w_tile_143                                          | ram_2p  | bram | 1       |
+|    w_tile_144_U                                         | 1    | -    | yes    | w_tile_144                                          | ram_2p  | bram | 1       |
+|    w_tile_145_U                                         | 1    | -    | yes    | w_tile_145                                          | ram_2p  | bram | 1       |
+|    w_tile_146_U                                         | 1    | -    | yes    | w_tile_146                                          | ram_2p  | bram | 1       |
+|    w_tile_147_U                                         | 1    | -    | yes    | w_tile_147                                          | ram_2p  | bram | 1       |
+|    w_tile_148_U                                         | 1    | -    | yes    | w_tile_148                                          | ram_2p  | bram | 1       |
+|    w_tile_149_U                                         | 1    | -    | yes    | w_tile_149                                          | ram_2p  | bram | 1       |
+|    w_tile_150_U                                         | 1    | -    | yes    | w_tile_150                                          | ram_2p  | bram | 1       |
+|    w_tile_151_U                                         | 1    | -    | yes    | w_tile_151                                          | ram_2p  | bram | 1       |
+|    w_tile_152_U                                         | 1    | -    | yes    | w_tile_152                                          | ram_2p  | bram | 1       |
+|    w_tile_153_U                                         | 1    | -    | yes    | w_tile_153                                          | ram_2p  | bram | 1       |
+|    w_tile_154_U                                         | 1    | -    | yes    | w_tile_154                                          | ram_2p  | bram | 1       |
+|    w_tile_155_U                                         | 1    | -    | yes    | w_tile_155                                          | ram_2p  | bram | 1       |
+|    w_tile_156_U                                         | 1    | -    | yes    | w_tile_156                                          | ram_2p  | bram | 1       |
+|    w_tile_157_U                                         | 1    | -    | yes    | w_tile_157                                          | ram_2p  | bram | 1       |
+|    w_tile_158_U                                         | 1    | -    | yes    | w_tile_158                                          | ram_2p  | bram | 1       |
+|    w_tile_159_U                                         | 1    | -    | yes    | w_tile_159                                          | ram_2p  | bram | 1       |
+|    w_tile_160_U                                         | 1    | -    | yes    | w_tile_160                                          | ram_2p  | bram | 1       |
+|    w_tile_161_U                                         | 1    | -    | yes    | w_tile_161                                          | ram_2p  | bram | 1       |
+|    w_tile_162_U                                         | 1    | -    | yes    | w_tile_162                                          | ram_2p  | bram | 1       |
+|    w_tile_163_U                                         | 1    | -    | yes    | w_tile_163                                          | ram_2p  | bram | 1       |
+|    w_tile_164_U                                         | 1    | -    | yes    | w_tile_164                                          | ram_2p  | bram | 1       |
+|    w_tile_165_U                                         | 1    | -    | yes    | w_tile_165                                          | ram_2p  | bram | 1       |
+|    w_tile_166_U                                         | 1    | -    | yes    | w_tile_166                                          | ram_2p  | bram | 1       |
+|    w_tile_167_U                                         | 1    | -    | yes    | w_tile_167                                          | ram_2p  | bram | 1       |
+|    w_tile_168_U                                         | 1    | -    | yes    | w_tile_168                                          | ram_2p  | bram | 1       |
+|    w_tile_169_U                                         | 1    | -    | yes    | w_tile_169                                          | ram_2p  | bram | 1       |
+|    w_tile_170_U                                         | 1    | -    | yes    | w_tile_170                                          | ram_2p  | bram | 1       |
+|    w_tile_171_U                                         | 1    | -    | yes    | w_tile_171                                          | ram_2p  | bram | 1       |
+|    w_tile_172_U                                         | 1    | -    | yes    | w_tile_172                                          | ram_2p  | bram | 1       |
+|    w_tile_173_U                                         | 1    | -    | yes    | w_tile_173                                          | ram_2p  | bram | 1       |
+|    w_tile_174_U                                         | 1    | -    | yes    | w_tile_174                                          | ram_2p  | bram | 1       |
+|    w_tile_175_U                                         | 1    | -    | yes    | w_tile_175                                          | ram_2p  | bram | 1       |
+|    w_tile_176_U                                         | 1    | -    | yes    | w_tile_176                                          | ram_2p  | bram | 1       |
+|    w_tile_177_U                                         | 1    | -    | yes    | w_tile_177                                          | ram_2p  | bram | 1       |
+|    w_tile_178_U                                         | 1    | -    | yes    | w_tile_178                                          | ram_2p  | bram | 1       |
+|    w_tile_179_U                                         | 1    | -    | yes    | w_tile_179                                          | ram_2p  | bram | 1       |
+|    w_tile_180_U                                         | 1    | -    | yes    | w_tile_180                                          | ram_2p  | bram | 1       |
+|    w_tile_181_U                                         | 1    | -    | yes    | w_tile_181                                          | ram_2p  | bram | 1       |
+|    w_tile_182_U                                         | 1    | -    | yes    | w_tile_182                                          | ram_2p  | bram | 1       |
+|    w_tile_183_U                                         | 1    | -    | yes    | w_tile_183                                          | ram_2p  | bram | 1       |
+|    w_tile_184_U                                         | 1    | -    | yes    | w_tile_184                                          | ram_2p  | bram | 1       |
+|    w_tile_185_U                                         | 1    | -    | yes    | w_tile_185                                          | ram_2p  | bram | 1       |
+|    w_tile_186_U                                         | 1    | -    | yes    | w_tile_186                                          | ram_2p  | bram | 1       |
+|    w_tile_187_U                                         | 1    | -    | yes    | w_tile_187                                          | ram_2p  | bram | 1       |
+|    w_tile_188_U                                         | 1    | -    | yes    | w_tile_188                                          | ram_2p  | bram | 1       |
+|    w_tile_189_U                                         | 1    | -    | yes    | w_tile_189                                          | ram_2p  | bram | 1       |
+|    w_tile_190_U                                         | 1    | -    | yes    | w_tile_190                                          | ram_2p  | bram | 1       |
+|    w_tile_191_U                                         | 1    | -    | yes    | w_tile_191                                          | ram_2p  | bram | 1       |
+|    w_tile_192_U                                         | 1    | -    | yes    | w_tile_192                                          | ram_2p  | bram | 1       |
+|    w_tile_193_U                                         | 1    | -    | yes    | w_tile_193                                          | ram_2p  | bram | 1       |
+|    w_tile_194_U                                         | 1    | -    | yes    | w_tile_194                                          | ram_2p  | bram | 1       |
+|    w_tile_195_U                                         | 1    | -    | yes    | w_tile_195                                          | ram_2p  | bram | 1       |
+|    fadd_32ns_32ns_32_7_full_dsp_1_U891                  | 1    | -    | yes    | w_tile_196                                          | ram_2p  | bram | 1       |
+|    w_tile_197_U                                         | 1    | -    | yes    | w_tile_197                                          | ram_2p  | bram | 1       |
+|    w_tile_198_U                                         | 1    | -    | yes    | w_tile_198                                          | ram_2p  | bram | 1       |
+|    w_tile_199_U                                         | 1    | -    | yes    | w_tile_199                                          | ram_2p  | bram | 1       |
+|    w_tile_200_U                                         | 1    | -    | yes    | w_tile_200                                          | ram_2p  | bram | 1       |
+|    w_tile_201_U                                         | 1    | -    | yes    | w_tile_201                                          | ram_2p  | bram | 1       |
+|    w_tile_202_U                                         | 1    | -    | yes    | w_tile_202                                          | ram_2p  | bram | 1       |
+|    w_tile_203_U                                         | 1    | -    | yes    | w_tile_203                                          | ram_2p  | bram | 1       |
+|    w_tile_204_U                                         | 1    | -    | yes    | w_tile_204                                          | ram_2p  | bram | 1       |
+|    w_tile_205_U                                         | 1    | -    | yes    | w_tile_205                                          | ram_2p  | bram | 1       |
+|    w_tile_206_U                                         | 1    | -    | yes    | w_tile_206                                          | ram_2p  | bram | 1       |
+|    w_tile_207_U                                         | 1    | -    | yes    | w_tile_207                                          | ram_2p  | bram | 1       |
+|    w_tile_208_U                                         | 1    | -    | yes    | w_tile_208                                          | ram_2p  | bram | 1       |
+|    w_tile_209_U                                         | 1    | -    | yes    | w_tile_209                                          | ram_2p  | bram | 1       |
+|    w_tile_210_U                                         | 1    | -    | yes    | w_tile_210                                          | ram_2p  | bram | 1       |
+|    w_tile_211_U                                         | 1    | -    | yes    | w_tile_211                                          | ram_2p  | bram | 1       |
+|    w_tile_212_U                                         | 1    | -    | yes    | w_tile_212                                          | ram_2p  | bram | 1       |
+|    w_tile_213_U                                         | 1    | -    | yes    | w_tile_213                                          | ram_2p  | bram | 1       |
+|    w_tile_214_U                                         | 1    | -    | yes    | w_tile_214                                          | ram_2p  | bram | 1       |
+|    w_tile_215_U                                         | 1    | -    | yes    | w_tile_215                                          | ram_2p  | bram | 1       |
+|    w_tile_216_U                                         | 1    | -    | yes    | w_tile_216                                          | ram_2p  | bram | 1       |
+|    w_tile_217_U                                         | 1    | -    | yes    | w_tile_217                                          | ram_2p  | bram | 1       |
+|    w_tile_218_U                                         | 1    | -    | yes    | w_tile_218                                          | ram_2p  | bram | 1       |
+|    w_tile_219_U                                         | 1    | -    | yes    | w_tile_219                                          | ram_2p  | bram | 1       |
+|    w_tile_220_U                                         | 1    | -    | yes    | w_tile_220                                          | ram_2p  | bram | 1       |
+|    w_tile_221_U                                         | 1    | -    | yes    | w_tile_221                                          | ram_2p  | bram | 1       |
+|    w_tile_222_U                                         | 1    | -    | yes    | w_tile_222                                          | ram_2p  | bram | 1       |
+|    w_tile_223_U                                         | 1    | -    | yes    | w_tile_223                                          | ram_2p  | bram | 1       |
+|    w_tile_224_U                                         | 1    | -    | yes    | w_tile_224                                          | ram_2p  | bram | 1       |
+|    w_tile_225_U                                         | 1    | -    | yes    | w_tile_225                                          | ram_2p  | bram | 1       |
+|    w_tile_226_U                                         | 1    | -    | yes    | w_tile_226                                          | ram_2p  | bram | 1       |
+|    w_tile_227_U                                         | 1    | -    | yes    | w_tile_227                                          | ram_2p  | bram | 1       |
+|    w_tile_228_U                                         | 1    | -    | yes    | w_tile_228                                          | ram_2p  | bram | 1       |
+|    w_tile_229_U                                         | 1    | -    | yes    | w_tile_229                                          | ram_2p  | bram | 1       |
+|    w_tile_230_U                                         | 1    | -    | yes    | w_tile_230                                          | ram_2p  | bram | 1       |
+|    w_tile_231_U                                         | 1    | -    | yes    | w_tile_231                                          | ram_2p  | bram | 1       |
+|    w_tile_232_U                                         | 1    | -    | yes    | w_tile_232                                          | ram_2p  | bram | 1       |
+|    w_tile_233_U                                         | 1    | -    | yes    | w_tile_233                                          | ram_2p  | bram | 1       |
+|    w_tile_234_U                                         | 1    | -    | yes    | w_tile_234                                          | ram_2p  | bram | 1       |
+|    w_tile_235_U                                         | 1    | -    | yes    | w_tile_235                                          | ram_2p  | bram | 1       |
+|    w_tile_236_U                                         | 1    | -    | yes    | w_tile_236                                          | ram_2p  | bram | 1       |
+|    w_tile_237_U                                         | 1    | -    | yes    | w_tile_237                                          | ram_2p  | bram | 1       |
+|    w_tile_238_U                                         | 1    | -    | yes    | w_tile_238                                          | ram_2p  | bram | 1       |
+|    w_tile_239_U                                         | 1    | -    | yes    | w_tile_239                                          | ram_2p  | bram | 1       |
+|    w_tile_240_U                                         | 1    | -    | yes    | w_tile_240                                          | ram_2p  | bram | 1       |
+|    w_tile_241_U                                         | 1    | -    | yes    | w_tile_241                                          | ram_2p  | bram | 1       |
+|    w_tile_242_U                                         | 1    | -    | yes    | w_tile_242                                          | ram_2p  | bram | 1       |
+|    w_tile_243_U                                         | 1    | -    | yes    | w_tile_243                                          | ram_2p  | bram | 1       |
+|    w_tile_244_U                                         | 1    | -    | yes    | w_tile_244                                          | ram_2p  | bram | 1       |
+|    w_tile_245_U                                         | 1    | -    | yes    | w_tile_245                                          | ram_2p  | bram | 1       |
+|    w_tile_246_U                                         | 1    | -    | yes    | w_tile_246                                          | ram_2p  | bram | 1       |
+|    w_tile_247_U                                         | 1    | -    | yes    | w_tile_247                                          | ram_2p  | bram | 1       |
+|    w_tile_248_U                                         | 1    | -    | yes    | w_tile_248                                          | ram_2p  | bram | 1       |
+|    w_tile_249_U                                         | 1    | -    | yes    | w_tile_249                                          | ram_2p  | bram | 1       |
+|    w_tile_250_U                                         | 1    | -    | yes    | w_tile_250                                          | ram_2p  | bram | 1       |
+|    w_tile_251_U                                         | 1    | -    | yes    | w_tile_251                                          | ram_2p  | bram | 1       |
+|    w_tile_252_U                                         | 1    | -    | yes    | w_tile_252                                          | ram_2p  | bram | 1       |
+|    w_tile_253_U                                         | 1    | -    | yes    | w_tile_253                                          | ram_2p  | bram | 1       |
+|    w_tile_254_U                                         | 1    | -    | yes    | w_tile_254                                          | ram_2p  | bram | 1       |
+|    w_tile_255_U                                         | 1    | -    | yes    | w_tile_255                                          | ram_2p  | bram | 1       |
+|    acc_U                                                | 1    | -    | yes    | acc                                                 | ram_2p  | bram | 1       |
+|    acc_1_U                                              | 1    | -    | yes    | acc_1                                               | ram_2p  | bram | 1       |
+|    acc_2_U                                              | 1    | -    | yes    | acc_2                                               | ram_2p  | bram | 1       |
+|    acc_3_U                                              | 1    | -    | yes    | acc_3                                               | ram_2p  | bram | 1       |
+|    acc_4_U                                              | 1    | -    | yes    | acc_4                                               | ram_2p  | bram | 1       |
+|    fadd_32ns_32ns_32_7_full_dsp_1_U892                  | 1    | -    | yes    | acc_5                                               | ram_2p  | bram | 1       |
+|    acc_6_U                                              | 1    | -    | yes    | acc_6                                               | ram_2p  | bram | 1       |
+|    acc_7_U                                              | 1    | -    | yes    | acc_7                                               | ram_2p  | bram | 1       |
+|    acc_8_U                                              | 1    | -    | yes    | acc_8                                               | ram_2p  | bram | 1       |
+|    acc_9_U                                              | 1    | -    | yes    | acc_9                                               | ram_2p  | bram | 1       |
+|    acc_10_U                                             | 1    | -    | yes    | acc_10                                              | ram_2p  | bram | 1       |
+|    acc_11_U                                             | 1    | -    | yes    | acc_11                                              | ram_2p  | bram | 1       |
+|    acc_12_U                                             | 1    | -    | yes    | acc_12                                              | ram_2p  | bram | 1       |
+|    acc_13_U                                             | 1    | -    | yes    | acc_13                                              | ram_2p  | bram | 1       |
+|    acc_14_U                                             | 1    | -    | yes    | acc_14                                              | ram_2p  | bram | 1       |
+|    acc_15_U                                             | 1    | -    | yes    | acc_15                                              | ram_2p  | bram | 1       |
++---------------------------------------------------------+------+------+--------+-----------------------------------------------------+---------+------+---------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------------+-------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+
+| Type            | Options                                                                 | Location                                                                                                        |
++-----------------+-------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+
+| inline          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:60 in gelu_pwl_packed                                                   |
+| inline          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:103 in bits_to_float                                                    |
+| inline          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:114 in float_to_bits                                                    |
+| inline          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:126 in unpack_packed_float16                                            |
+| array_partition | variable=values complete dim=1                                          | ../../kernels/bert_ffn_fp32_kernels.cpp:127 in unpack_packed_float16, values                                    |
+| inline          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:148 in pack_packed_float16                                              |
+| array_partition | variable=values complete dim=1                                          | ../../kernels/bert_ffn_fp32_kernels.cpp:149 in pack_packed_float16, values                                      |
+| inline          | off                                                                     | ../../kernels/bert_ffn_fp32_kernels.cpp:174 in v10_load_input_matrix                                            |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:181 in v10_load_input_matrix                                            |
+| array_partition | variable=lanes complete dim=1                                           | ../../kernels/bert_ffn_fp32_kernels.cpp:183 in v10_load_input_matrix, lanes                                     |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:188 in v10_load_input_matrix                                            |
+| inline          | off                                                                     | ../../kernels/bert_ffn_fp32_kernels.cpp:199 in v10_store_output_matrix                                          |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:206 in v10_store_output_matrix                                          |
+| array_partition | variable=lanes complete dim=1                                           | ../../kernels/bert_ffn_fp32_kernels.cpp:208 in v10_store_output_matrix, lanes                                   |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:212 in v10_store_output_matrix                                          |
+| inline          | off                                                                     | ../../kernels/bert_ffn_fp32_kernels.cpp:224 in v11_load_input_stream_matrix                                     |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:230 in v11_load_input_stream_matrix                                     |
+| array_partition | variable=lanes complete dim=1                                           | ../../kernels/bert_ffn_fp32_kernels.cpp:232 in v11_load_input_stream_matrix, lanes                              |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:237 in v11_load_input_stream_matrix                                     |
+| inline          | off                                                                     | ../../kernels/bert_ffn_fp32_kernels.cpp:248 in v13_dot16_tree_margin                                            |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:249 in v13_dot16_tree_margin                                            |
+| array_partition | variable=lhs complete dim=1                                             | ../../kernels/bert_ffn_fp32_kernels.cpp:250 in v13_dot16_tree_margin, lhs                                       |
+| array_partition | variable=rhs complete dim=1                                             | ../../kernels/bert_ffn_fp32_kernels.cpp:251 in v13_dot16_tree_margin, rhs                                       |
+| array_partition | variable=s8 complete dim=1                                              | ../../kernels/bert_ffn_fp32_kernels.cpp:258 in v13_dot16_tree_margin, s8                                        |
+| array_partition | variable=s4 complete dim=1                                              | ../../kernels/bert_ffn_fp32_kernels.cpp:259 in v13_dot16_tree_margin, s4                                        |
+| array_partition | variable=s2 complete dim=1                                              | ../../kernels/bert_ffn_fp32_kernels.cpp:260 in v13_dot16_tree_margin, s2                                        |
+| bind_op         | variable=p0 op=fmul impl=fulldsp latency=7                              | ../../kernels/bert_ffn_fp32_kernels.cpp:261 in v13_dot16_tree_margin, p0                                        |
+| bind_op         | variable=p1 op=fmul impl=fulldsp latency=7                              | ../../kernels/bert_ffn_fp32_kernels.cpp:262 in v13_dot16_tree_margin, p1                                        |
+| bind_op         | variable=p2 op=fmul impl=fulldsp latency=7                              | ../../kernels/bert_ffn_fp32_kernels.cpp:263 in v13_dot16_tree_margin, p2                                        |
+| bind_op         | variable=p3 op=fmul impl=fulldsp latency=7                              | ../../kernels/bert_ffn_fp32_kernels.cpp:264 in v13_dot16_tree_margin, p3                                        |
+| bind_op         | variable=p4 op=fmul impl=fulldsp latency=7                              | ../../kernels/bert_ffn_fp32_kernels.cpp:265 in v13_dot16_tree_margin, p4                                        |
+| bind_op         | variable=p5 op=fmul impl=fulldsp latency=7                              | ../../kernels/bert_ffn_fp32_kernels.cpp:266 in v13_dot16_tree_margin, p5                                        |
+| bind_op         | variable=p6 op=fmul impl=fulldsp latency=7                              | ../../kernels/bert_ffn_fp32_kernels.cpp:267 in v13_dot16_tree_margin, p6                                        |
+| bind_op         | variable=p7 op=fmul impl=fulldsp latency=7                              | ../../kernels/bert_ffn_fp32_kernels.cpp:268 in v13_dot16_tree_margin, p7                                        |
+| bind_op         | variable=p8 op=fmul impl=fulldsp latency=7                              | ../../kernels/bert_ffn_fp32_kernels.cpp:269 in v13_dot16_tree_margin, p8                                        |
+| bind_op         | variable=p9 op=fmul impl=fulldsp latency=7                              | ../../kernels/bert_ffn_fp32_kernels.cpp:270 in v13_dot16_tree_margin, p9                                        |
+| bind_op         | variable=p10 op=fmul impl=fulldsp latency=7                             | ../../kernels/bert_ffn_fp32_kernels.cpp:271 in v13_dot16_tree_margin, p10                                       |
+| bind_op         | variable=p11 op=fmul impl=fulldsp latency=7                             | ../../kernels/bert_ffn_fp32_kernels.cpp:272 in v13_dot16_tree_margin, p11                                       |
+| bind_op         | variable=p12 op=fmul impl=fulldsp latency=7                             | ../../kernels/bert_ffn_fp32_kernels.cpp:273 in v13_dot16_tree_margin, p12                                       |
+| bind_op         | variable=p13 op=fmul impl=fulldsp latency=7                             | ../../kernels/bert_ffn_fp32_kernels.cpp:274 in v13_dot16_tree_margin, p13                                       |
+| bind_op         | variable=p14 op=fmul impl=fulldsp latency=7                             | ../../kernels/bert_ffn_fp32_kernels.cpp:275 in v13_dot16_tree_margin, p14                                       |
+| bind_op         | variable=p15 op=fmul impl=fulldsp latency=7                             | ../../kernels/bert_ffn_fp32_kernels.cpp:276 in v13_dot16_tree_margin, p15                                       |
+| bind_op         | variable=s8 op=fadd impl=fulldsp latency=6                              | ../../kernels/bert_ffn_fp32_kernels.cpp:277 in v13_dot16_tree_margin, s8                                        |
+| bind_op         | variable=s4 op=fadd impl=fulldsp latency=6                              | ../../kernels/bert_ffn_fp32_kernels.cpp:278 in v13_dot16_tree_margin, s4                                        |
+| bind_op         | variable=s2 op=fadd impl=fulldsp latency=6                              | ../../kernels/bert_ffn_fp32_kernels.cpp:279 in v13_dot16_tree_margin, s2                                        |
+| bind_op         | variable=sum op=fadd impl=fulldsp latency=6                             | ../../kernels/bert_ffn_fp32_kernels.cpp:280 in v13_dot16_tree_margin, sum                                       |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:310 in v13_dot16_tree_margin                                            |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:316 in v13_dot16_tree_margin                                            |
+| inline          | off                                                                     | ../../kernels/bert_ffn_fp32_kernels.cpp:330 in v15_ffn_up_tilemajor_producer                                    |
+| bind_storage    | variable=w_tile type=RAM_2P impl=BRAM latency=2                         | ../../kernels/bert_ffn_fp32_kernels.cpp:333 in v15_ffn_up_tilemajor_producer, w_tile                            |
+| bind_storage    | variable=acc type=RAM_2P impl=BRAM latency=2                            | ../../kernels/bert_ffn_fp32_kernels.cpp:334 in v15_ffn_up_tilemajor_producer, acc                               |
+| array_partition | variable=w_tile complete dim=1                                          | ../../kernels/bert_ffn_fp32_kernels.cpp:335 in v15_ffn_up_tilemajor_producer, w_tile                            |
+| array_partition | variable=w_tile cyclic factor=16 dim=2                                  | ../../kernels/bert_ffn_fp32_kernels.cpp:336 in v15_ffn_up_tilemajor_producer, w_tile                            |
+| array_partition | variable=acc complete dim=2                                             | ../../kernels/bert_ffn_fp32_kernels.cpp:337 in v15_ffn_up_tilemajor_producer, acc                               |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:347 in v15_ffn_up_tilemajor_producer                                    |
+| array_partition | variable=lanes complete dim=1                                           | ../../kernels/bert_ffn_fp32_kernels.cpp:349 in v15_ffn_up_tilemajor_producer, lanes                             |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:354 in v15_ffn_up_tilemajor_producer                                    |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:367 in v15_ffn_up_tilemajor_producer                                    |
+| array_partition | variable=lanes complete dim=1                                           | ../../kernels/bert_ffn_fp32_kernels.cpp:369 in v15_ffn_up_tilemajor_producer, lanes                             |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:374 in v15_ffn_up_tilemajor_producer                                    |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:387 in v15_ffn_up_tilemajor_producer                                    |
+| array_partition | variable=x_vec complete dim=1                                           | ../../kernels/bert_ffn_fp32_kernels.cpp:390 in v15_ffn_up_tilemajor_producer, x_vec                             |
+| array_partition | variable=acc_vec complete dim=1                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:391 in v15_ffn_up_tilemajor_producer, acc_vec                           |
+| bind_op         | variable=acc_vec op=fadd impl=fulldsp latency=5                         | ../../kernels/bert_ffn_fp32_kernels.cpp:392 in v15_ffn_up_tilemajor_producer, acc_vec                           |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:396 in v15_ffn_up_tilemajor_producer                                    |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:402 in v15_ffn_up_tilemajor_producer                                    |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:408 in v15_ffn_up_tilemajor_producer                                    |
+| array_partition | variable=w_vec complete dim=1                                           | ../../kernels/bert_ffn_fp32_kernels.cpp:410 in v15_ffn_up_tilemajor_producer, w_vec                             |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:413 in v15_ffn_up_tilemajor_producer                                    |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:421 in v15_ffn_up_tilemajor_producer                                    |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:433 in v15_ffn_up_tilemajor_producer                                    |
+| array_partition | variable=lanes complete dim=1                                           | ../../kernels/bert_ffn_fp32_kernels.cpp:435 in v15_ffn_up_tilemajor_producer, lanes                             |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:438 in v15_ffn_up_tilemajor_producer                                    |
+| inline          | off                                                                     | ../../kernels/bert_ffn_fp32_kernels.cpp:452 in v15_initialize_down_bias                                         |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:457 in v15_initialize_down_bias                                         |
+| array_partition | variable=lanes complete dim=1                                           | ../../kernels/bert_ffn_fp32_kernels.cpp:459 in v15_initialize_down_bias, lanes                                  |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:464 in v15_initialize_down_bias                                         |
+| inline          | off                                                                     | ../../kernels/bert_ffn_fp32_kernels.cpp:476 in fp32_initialize_down_bias_residual                               |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:481 in fp32_initialize_down_bias_residual                               |
+| array_partition | variable=bias_lane complete dim=1                                       | ../../kernels/bert_ffn_fp32_kernels.cpp:484 in fp32_initialize_down_bias_residual, bias_lane                    |
+| array_partition | variable=residual_lane complete dim=1                                   | ../../kernels/bert_ffn_fp32_kernels.cpp:485 in fp32_initialize_down_bias_residual, residual_lane                |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:490 in fp32_initialize_down_bias_residual                               |
+| inline          | off                                                                     | ../../kernels/bert_ffn_fp32_kernels.cpp:503 in v15_ffn_down_tilemajor_projection                                |
+| bind_storage    | variable=activation type=RAM_2P impl=BRAM latency=2                     | ../../kernels/bert_ffn_fp32_kernels.cpp:506 in v15_ffn_down_tilemajor_projection, activation                    |
+| bind_storage    | variable=w_tile type=RAM_2P impl=BRAM latency=2                         | ../../kernels/bert_ffn_fp32_kernels.cpp:507 in v15_ffn_down_tilemajor_projection, w_tile                        |
+| array_partition | variable=activation complete dim=2                                      | ../../kernels/bert_ffn_fp32_kernels.cpp:508 in v15_ffn_down_tilemajor_projection, activation                    |
+| array_partition | variable=w_tile complete dim=1                                          | ../../kernels/bert_ffn_fp32_kernels.cpp:509 in v15_ffn_down_tilemajor_projection, w_tile                        |
+| array_partition | variable=w_tile complete dim=2                                          | ../../kernels/bert_ffn_fp32_kernels.cpp:510 in v15_ffn_down_tilemajor_projection, w_tile                        |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:519 in v15_ffn_down_tilemajor_projection                                |
+| array_partition | variable=lanes complete dim=1                                           | ../../kernels/bert_ffn_fp32_kernels.cpp:521 in v15_ffn_down_tilemajor_projection, lanes                         |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:526 in v15_ffn_down_tilemajor_projection                                |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:538 in v15_ffn_down_tilemajor_projection                                |
+| array_partition | variable=lanes complete dim=1                                           | ../../kernels/bert_ffn_fp32_kernels.cpp:542 in v15_ffn_down_tilemajor_projection, lanes                         |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:547 in v15_ffn_down_tilemajor_projection                                |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:558 in v15_ffn_down_tilemajor_projection                                |
+| array_partition | variable=x_vec complete dim=1                                           | ../../kernels/bert_ffn_fp32_kernels.cpp:561 in v15_ffn_down_tilemajor_projection, x_vec                         |
+| array_partition | variable=acc_vec complete dim=1                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:562 in v15_ffn_down_tilemajor_projection, acc_vec                       |
+| bind_op         | variable=acc_vec op=fadd impl=fulldsp latency=5                         | ../../kernels/bert_ffn_fp32_kernels.cpp:563 in v15_ffn_down_tilemajor_projection, acc_vec                       |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:567 in v15_ffn_down_tilemajor_projection                                |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:573 in v15_ffn_down_tilemajor_projection                                |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:579 in v15_ffn_down_tilemajor_projection                                |
+| array_partition | variable=w_vec complete dim=1                                           | ../../kernels/bert_ffn_fp32_kernels.cpp:581 in v15_ffn_down_tilemajor_projection, w_vec                         |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:584 in v15_ffn_down_tilemajor_projection                                |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:592 in v15_ffn_down_tilemajor_projection                                |
+| inline          | off                                                                     | ../../kernels/bert_ffn_fp32_kernels.cpp:608 in fp32_layernorm_and_store                                         |
+| bind_storage    | variable=gamma_cache type=RAM_2P impl=BRAM latency=2                    | ../../kernels/bert_ffn_fp32_kernels.cpp:611 in fp32_layernorm_and_store, gamma_cache                            |
+| bind_storage    | variable=beta_cache type=RAM_2P impl=BRAM latency=2                     | ../../kernels/bert_ffn_fp32_kernels.cpp:612 in fp32_layernorm_and_store, beta_cache                             |
+| array_reshape   | variable=gamma_cache cyclic factor=16 dim=1                             | ../../kernels/bert_ffn_fp32_kernels.cpp:613 in fp32_layernorm_and_store, gamma_cache                            |
+| array_reshape   | variable=beta_cache cyclic factor=16 dim=1                              | ../../kernels/bert_ffn_fp32_kernels.cpp:614 in fp32_layernorm_and_store, beta_cache                             |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:618 in fp32_layernorm_and_store                                         |
+| array_partition | variable=gamma_lane complete dim=1                                      | ../../kernels/bert_ffn_fp32_kernels.cpp:621 in fp32_layernorm_and_store, gamma_lane                             |
+| array_partition | variable=beta_lane complete dim=1                                       | ../../kernels/bert_ffn_fp32_kernels.cpp:622 in fp32_layernorm_and_store, beta_lane                              |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:627 in fp32_layernorm_and_store                                         |
+| array_partition | variable=sum_bank complete dim=1                                        | ../../kernels/bert_ffn_fp32_kernels.cpp:638 in fp32_layernorm_and_store, sum_bank                               |
+| array_partition | variable=square_bank complete dim=1                                     | ../../kernels/bert_ffn_fp32_kernels.cpp:639 in fp32_layernorm_and_store, square_bank                            |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:642 in fp32_layernorm_and_store                                         |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:649 in fp32_layernorm_and_store                                         |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:652 in fp32_layernorm_and_store                                         |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:674 in fp32_layernorm_and_store                                         |
+| array_partition | variable=output_lane complete dim=1                                     | ../../kernels/bert_ffn_fp32_kernels.cpp:676 in fp32_layernorm_and_store, output_lane                            |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:679 in fp32_layernorm_and_store                                         |
+| inline          | off                                                                     | ../../kernels/bert_ffn_fp32_kernels.cpp:699 in fp32_layernorm_and_route_full_model                              |
+| bind_storage    | variable=gamma_cache type=RAM_2P impl=BRAM latency=2                    | ../../kernels/bert_ffn_fp32_kernels.cpp:702 in fp32_layernorm_and_route_full_model, gamma_cache                 |
+| bind_storage    | variable=beta_cache type=RAM_2P impl=BRAM latency=2                     | ../../kernels/bert_ffn_fp32_kernels.cpp:703 in fp32_layernorm_and_route_full_model, beta_cache                  |
+| array_reshape   | variable=gamma_cache cyclic factor=16 dim=1                             | ../../kernels/bert_ffn_fp32_kernels.cpp:704 in fp32_layernorm_and_route_full_model, gamma_cache                 |
+| array_reshape   | variable=beta_cache cyclic factor=16 dim=1                              | ../../kernels/bert_ffn_fp32_kernels.cpp:705 in fp32_layernorm_and_route_full_model, beta_cache                  |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:709 in fp32_layernorm_and_route_full_model                              |
+| array_partition | variable=gamma_lane complete dim=1                                      | ../../kernels/bert_ffn_fp32_kernels.cpp:712 in fp32_layernorm_and_route_full_model, gamma_lane                  |
+| array_partition | variable=beta_lane complete dim=1                                       | ../../kernels/bert_ffn_fp32_kernels.cpp:713 in fp32_layernorm_and_route_full_model, beta_lane                   |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:718 in fp32_layernorm_and_route_full_model                              |
+| array_partition | variable=sum_bank complete dim=1                                        | ../../kernels/bert_ffn_fp32_kernels.cpp:729 in fp32_layernorm_and_route_full_model, sum_bank                    |
+| array_partition | variable=square_bank complete dim=1                                     | ../../kernels/bert_ffn_fp32_kernels.cpp:730 in fp32_layernorm_and_route_full_model, square_bank                 |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:733 in fp32_layernorm_and_route_full_model                              |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:740 in fp32_layernorm_and_route_full_model                              |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:743 in fp32_layernorm_and_route_full_model                              |
+| pipeline        | II=1                                                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:765 in fp32_layernorm_and_route_full_model                              |
+| array_partition | variable=output_lane complete dim=1                                     | ../../kernels/bert_ffn_fp32_kernels.cpp:767 in fp32_layernorm_and_route_full_model, output_lane                 |
+| unroll          |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:770 in fp32_layernorm_and_route_full_model                              |
+| inline          | off                                                                     | ../../kernels/bert_ffn_fp32_kernels.cpp:795 in v15_projection_dataflow_tilemajor                                |
+| stream          | variable=gelu_stream depth=512                                          | ../../kernels/bert_ffn_fp32_kernels.cpp:797 in v15_projection_dataflow_tilemajor, gelu_stream                   |
+| dataflow        |                                                                         | ../../kernels/bert_ffn_fp32_kernels.cpp:798 in v15_projection_dataflow_tilemajor                                |
+| interface       | axis port=attn_mid_stream                                               | ../../kernels/bert_ffn_fp32_kernels.cpp:812 in bert_ffn_up_gelu_v21_dotpipe_kernel, attn_mid_stream             |
+| interface       | axis port=gelu_stream                                                   | ../../kernels/bert_ffn_fp32_kernels.cpp:813 in bert_ffn_up_gelu_v21_dotpipe_kernel, gelu_stream                 |
+| interface       | m_axi port=w1 offset=slave bundle=gmem_w1                               | ../../kernels/bert_ffn_fp32_kernels.cpp:814 in bert_ffn_up_gelu_v21_dotpipe_kernel, w1                          |
+| interface       | m_axi port=b1 offset=slave bundle=gmem_w1                               | ../../kernels/bert_ffn_fp32_kernels.cpp:815 in bert_ffn_up_gelu_v21_dotpipe_kernel, b1                          |
+| interface       | s_axilite port=w1 bundle=control                                        | ../../kernels/bert_ffn_fp32_kernels.cpp:816 in bert_ffn_up_gelu_v21_dotpipe_kernel, w1                          |
+| interface       | s_axilite port=b1 bundle=control                                        | ../../kernels/bert_ffn_fp32_kernels.cpp:817 in bert_ffn_up_gelu_v21_dotpipe_kernel, b1                          |
+| interface       | s_axilite port=return bundle=control                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:818 in bert_ffn_up_gelu_v21_dotpipe_kernel, return                      |
+| bind_storage    | variable=input_buf type=RAM_1P impl=URAM latency=2                      | ../../kernels/bert_ffn_fp32_kernels.cpp:822 in bert_ffn_up_gelu_v21_dotpipe_kernel, input_buf                   |
+| array_partition | variable=input_buf cyclic factor=16 dim=2                               | ../../kernels/bert_ffn_fp32_kernels.cpp:823 in bert_ffn_up_gelu_v21_dotpipe_kernel, input_buf                   |
+| interface       | axis port=gelu_stream                                                   | ../../kernels/bert_ffn_fp32_kernels.cpp:835 in bert_ffn_down_v21_dotpipe_kernel, gelu_stream                    |
+| interface       | m_axi port=w2 offset=slave bundle=gmem_w2                               | ../../kernels/bert_ffn_fp32_kernels.cpp:836 in bert_ffn_down_v21_dotpipe_kernel, w2                             |
+| interface       | m_axi port=b2 offset=slave bundle=gmem_w2                               | ../../kernels/bert_ffn_fp32_kernels.cpp:837 in bert_ffn_down_v21_dotpipe_kernel, b2                             |
+| interface       | m_axi port=output_hidden offset=slave bundle=gmem_out                   | ../../kernels/bert_ffn_fp32_kernels.cpp:838 in bert_ffn_down_v21_dotpipe_kernel, output_hidden                  |
+| interface       | s_axilite port=w2 bundle=control                                        | ../../kernels/bert_ffn_fp32_kernels.cpp:839 in bert_ffn_down_v21_dotpipe_kernel, w2                             |
+| interface       | s_axilite port=b2 bundle=control                                        | ../../kernels/bert_ffn_fp32_kernels.cpp:840 in bert_ffn_down_v21_dotpipe_kernel, b2                             |
+| interface       | s_axilite port=output_hidden bundle=control                             | ../../kernels/bert_ffn_fp32_kernels.cpp:841 in bert_ffn_down_v21_dotpipe_kernel, output_hidden                  |
+| interface       | s_axilite port=return bundle=control                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:842 in bert_ffn_down_v21_dotpipe_kernel, return                         |
+| bind_storage    | variable=output_buf type=RAM_2P impl=URAM latency=2                     | ../../kernels/bert_ffn_fp32_kernels.cpp:846 in bert_ffn_down_v21_dotpipe_kernel, output_buf                     |
+| array_partition | variable=output_buf cyclic factor=16 dim=2                              | ../../kernels/bert_ffn_fp32_kernels.cpp:847 in bert_ffn_down_v21_dotpipe_kernel, output_buf                     |
+| interface       | axis port=gelu_stream                                                   | ../../kernels/bert_ffn_fp32_kernels.cpp:863 in bert_ffn_down_residual_norm_fp32_kernel, gelu_stream             |
+| interface       | axis port=ffn_residual_stream                                           | ../../kernels/bert_ffn_fp32_kernels.cpp:864 in bert_ffn_down_residual_norm_fp32_kernel, ffn_residual_stream     |
+| interface       | m_axi port=w2 offset=slave bundle=gmem_w2 depth=147456                  | ../../kernels/bert_ffn_fp32_kernels.cpp:865 in bert_ffn_down_residual_norm_fp32_kernel, w2                      |
+| interface       | m_axi port=b2 offset=slave bundle=gmem_w2 depth=48                      | ../../kernels/bert_ffn_fp32_kernels.cpp:866 in bert_ffn_down_residual_norm_fp32_kernel, b2                      |
+| interface       | m_axi port=final_norm_gamma offset=slave bundle=gmem_norm depth=48      | ../../kernels/bert_ffn_fp32_kernels.cpp:867 in bert_ffn_down_residual_norm_fp32_kernel, final_norm_gamma        |
+| interface       | m_axi port=final_norm_beta offset=slave bundle=gmem_norm depth=48       | ../../kernels/bert_ffn_fp32_kernels.cpp:868 in bert_ffn_down_residual_norm_fp32_kernel, final_norm_beta         |
+| interface       | m_axi port=output_hidden offset=slave bundle=gmem_out depth=6144        | ../../kernels/bert_ffn_fp32_kernels.cpp:869 in bert_ffn_down_residual_norm_fp32_kernel, output_hidden           |
+| interface       | s_axilite port=w2 bundle=control                                        | ../../kernels/bert_ffn_fp32_kernels.cpp:870 in bert_ffn_down_residual_norm_fp32_kernel, w2                      |
+| interface       | s_axilite port=b2 bundle=control                                        | ../../kernels/bert_ffn_fp32_kernels.cpp:871 in bert_ffn_down_residual_norm_fp32_kernel, b2                      |
+| interface       | s_axilite port=final_norm_gamma bundle=control                          | ../../kernels/bert_ffn_fp32_kernels.cpp:872 in bert_ffn_down_residual_norm_fp32_kernel, final_norm_gamma        |
+| interface       | s_axilite port=final_norm_beta bundle=control                           | ../../kernels/bert_ffn_fp32_kernels.cpp:873 in bert_ffn_down_residual_norm_fp32_kernel, final_norm_beta         |
+| interface       | s_axilite port=output_hidden bundle=control                             | ../../kernels/bert_ffn_fp32_kernels.cpp:874 in bert_ffn_down_residual_norm_fp32_kernel, output_hidden           |
+| interface       | s_axilite port=return bundle=control                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:875 in bert_ffn_down_residual_norm_fp32_kernel, return                  |
+| bind_storage    | variable=output_buf type=RAM_2P impl=URAM latency=2                     | ../../kernels/bert_ffn_fp32_kernels.cpp:878 in bert_ffn_down_residual_norm_fp32_kernel, output_buf              |
+| array_partition | variable=output_buf cyclic factor=16 dim=2                              | ../../kernels/bert_ffn_fp32_kernels.cpp:879 in bert_ffn_down_residual_norm_fp32_kernel, output_buf              |
+| interface       | axis port=attn_mid_stream                                               | ../../kernels/bert_ffn_fp32_kernels.cpp:897 in bert_ffn_up_gelu_12layer_kernel, attn_mid_stream                 |
+| interface       | axis port=gelu_stream                                                   | ../../kernels/bert_ffn_fp32_kernels.cpp:898 in bert_ffn_up_gelu_12layer_kernel, gelu_stream                     |
+| interface       | m_axi port=w1_all offset=slave bundle=gmem_w1 depth=1769472             | ../../kernels/bert_ffn_fp32_kernels.cpp:899 in bert_ffn_up_gelu_12layer_kernel, w1_all                          |
+| interface       | m_axi port=b1_all offset=slave bundle=gmem_w1 depth=2304                | ../../kernels/bert_ffn_fp32_kernels.cpp:900 in bert_ffn_up_gelu_12layer_kernel, b1_all                          |
+| interface       | s_axilite port=w1_all bundle=control                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:901 in bert_ffn_up_gelu_12layer_kernel, w1_all                          |
+| interface       | s_axilite port=b1_all bundle=control                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:902 in bert_ffn_up_gelu_12layer_kernel, b1_all                          |
+| interface       | s_axilite port=return bundle=control                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:903 in bert_ffn_up_gelu_12layer_kernel, return                          |
+| bind_storage    | variable=input_buf type=RAM_1P impl=URAM latency=2                      | ../../kernels/bert_ffn_fp32_kernels.cpp:906 in bert_ffn_up_gelu_12layer_kernel, input_buf                       |
+| array_partition | variable=input_buf cyclic factor=16 dim=2                               | ../../kernels/bert_ffn_fp32_kernels.cpp:907 in bert_ffn_up_gelu_12layer_kernel, input_buf                       |
+| interface       | axis port=gelu_stream                                                   | ../../kernels/bert_ffn_fp32_kernels.cpp:930 in bert_ffn_down_norm_feedback_12layer_kernel, gelu_stream          |
+| interface       | axis port=ffn_residual_stream                                           | ../../kernels/bert_ffn_fp32_kernels.cpp:931 in bert_ffn_down_norm_feedback_12layer_kernel, ffn_residual_stream  |
+| interface       | axis port=next_hidden_stream                                            | ../../kernels/bert_ffn_fp32_kernels.cpp:932 in bert_ffn_down_norm_feedback_12layer_kernel, next_hidden_stream   |
+| interface       | m_axi port=w2_all offset=slave bundle=gmem_w2 depth=1769472             | ../../kernels/bert_ffn_fp32_kernels.cpp:933 in bert_ffn_down_norm_feedback_12layer_kernel, w2_all               |
+| interface       | m_axi port=b2_all offset=slave bundle=gmem_w2 depth=576                 | ../../kernels/bert_ffn_fp32_kernels.cpp:934 in bert_ffn_down_norm_feedback_12layer_kernel, b2_all               |
+| interface       | m_axi port=final_norm_gamma_all offset=slave bundle=gmem_norm depth=576 | ../../kernels/bert_ffn_fp32_kernels.cpp:935 in bert_ffn_down_norm_feedback_12layer_kernel, final_norm_gamma_all |
+| interface       | m_axi port=final_norm_beta_all offset=slave bundle=gmem_norm depth=576  | ../../kernels/bert_ffn_fp32_kernels.cpp:936 in bert_ffn_down_norm_feedback_12layer_kernel, final_norm_beta_all  |
+| interface       | m_axi port=final_output_hidden offset=slave bundle=gmem_out depth=6144  | ../../kernels/bert_ffn_fp32_kernels.cpp:937 in bert_ffn_down_norm_feedback_12layer_kernel, final_output_hidden  |
+| interface       | s_axilite port=w2_all bundle=control                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:938 in bert_ffn_down_norm_feedback_12layer_kernel, w2_all               |
+| interface       | s_axilite port=b2_all bundle=control                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:939 in bert_ffn_down_norm_feedback_12layer_kernel, b2_all               |
+| interface       | s_axilite port=final_norm_gamma_all bundle=control                      | ../../kernels/bert_ffn_fp32_kernels.cpp:940 in bert_ffn_down_norm_feedback_12layer_kernel, final_norm_gamma_all |
+| interface       | s_axilite port=final_norm_beta_all bundle=control                       | ../../kernels/bert_ffn_fp32_kernels.cpp:941 in bert_ffn_down_norm_feedback_12layer_kernel, final_norm_beta_all  |
+| interface       | s_axilite port=final_output_hidden bundle=control                       | ../../kernels/bert_ffn_fp32_kernels.cpp:942 in bert_ffn_down_norm_feedback_12layer_kernel, final_output_hidden  |
+| interface       | s_axilite port=return bundle=control                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:943 in bert_ffn_down_norm_feedback_12layer_kernel, return               |
+| bind_storage    | variable=output_buf type=RAM_2P impl=URAM latency=2                     | ../../kernels/bert_ffn_fp32_kernels.cpp:946 in bert_ffn_down_norm_feedback_12layer_kernel, output_buf           |
+| array_partition | variable=output_buf cyclic factor=16 dim=2                              | ../../kernels/bert_ffn_fp32_kernels.cpp:947 in bert_ffn_down_norm_feedback_12layer_kernel, output_buf           |
+| interface       | m_axi port=input_hidden offset=slave bundle=gmem_in                     | ../../kernels/bert_ffn_fp32_kernels.cpp:977 in bert_ffn_kernel_v21_dotpipe_estimate, input_hidden               |
+| interface       | m_axi port=w1 offset=slave bundle=gmem_w1                               | ../../kernels/bert_ffn_fp32_kernels.cpp:978 in bert_ffn_kernel_v21_dotpipe_estimate, w1                         |
+| interface       | m_axi port=b1 offset=slave bundle=gmem_w1                               | ../../kernels/bert_ffn_fp32_kernels.cpp:979 in bert_ffn_kernel_v21_dotpipe_estimate, b1                         |
+| interface       | m_axi port=w2 offset=slave bundle=gmem_w2                               | ../../kernels/bert_ffn_fp32_kernels.cpp:980 in bert_ffn_kernel_v21_dotpipe_estimate, w2                         |
+| interface       | m_axi port=b2 offset=slave bundle=gmem_w2                               | ../../kernels/bert_ffn_fp32_kernels.cpp:981 in bert_ffn_kernel_v21_dotpipe_estimate, b2                         |
+| interface       | m_axi port=output_hidden offset=slave bundle=gmem_out                   | ../../kernels/bert_ffn_fp32_kernels.cpp:982 in bert_ffn_kernel_v21_dotpipe_estimate, output_hidden              |
+| interface       | s_axilite port=input_hidden bundle=control                              | ../../kernels/bert_ffn_fp32_kernels.cpp:983 in bert_ffn_kernel_v21_dotpipe_estimate, input_hidden               |
+| interface       | s_axilite port=w1 bundle=control                                        | ../../kernels/bert_ffn_fp32_kernels.cpp:984 in bert_ffn_kernel_v21_dotpipe_estimate, w1                         |
+| interface       | s_axilite port=b1 bundle=control                                        | ../../kernels/bert_ffn_fp32_kernels.cpp:985 in bert_ffn_kernel_v21_dotpipe_estimate, b1                         |
+| interface       | s_axilite port=w2 bundle=control                                        | ../../kernels/bert_ffn_fp32_kernels.cpp:986 in bert_ffn_kernel_v21_dotpipe_estimate, w2                         |
+| interface       | s_axilite port=b2 bundle=control                                        | ../../kernels/bert_ffn_fp32_kernels.cpp:987 in bert_ffn_kernel_v21_dotpipe_estimate, b2                         |
+| interface       | s_axilite port=output_hidden bundle=control                             | ../../kernels/bert_ffn_fp32_kernels.cpp:988 in bert_ffn_kernel_v21_dotpipe_estimate, output_hidden              |
+| interface       | s_axilite port=return bundle=control                                    | ../../kernels/bert_ffn_fp32_kernels.cpp:989 in bert_ffn_kernel_v21_dotpipe_estimate, return                     |
+| bind_storage    | variable=input_buf type=RAM_1P impl=URAM latency=2                      | ../../kernels/bert_ffn_fp32_kernels.cpp:994 in bert_ffn_kernel_v21_dotpipe_estimate, input_buf                  |
+| bind_storage    | variable=output_buf type=RAM_2P impl=URAM latency=2                     | ../../kernels/bert_ffn_fp32_kernels.cpp:995 in bert_ffn_kernel_v21_dotpipe_estimate, output_buf                 |
+| array_partition | variable=input_buf cyclic factor=16 dim=2                               | ../../kernels/bert_ffn_fp32_kernels.cpp:996 in bert_ffn_kernel_v21_dotpipe_estimate, input_buf                  |
+| array_partition | variable=output_buf cyclic factor=16 dim=2                              | ../../kernels/bert_ffn_fp32_kernels.cpp:997 in bert_ffn_kernel_v21_dotpipe_estimate, output_buf                 |
++-----------------+-------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+
+
+

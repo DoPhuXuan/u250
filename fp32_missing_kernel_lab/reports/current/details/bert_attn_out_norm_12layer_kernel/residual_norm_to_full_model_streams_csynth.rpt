@@ -1,0 +1,716 @@
+
+
+================================================================
+== Vitis HLS Report for 'residual_norm_to_full_model_streams'
+================================================================
+* Date:           Wed Jul 15 12:16:20 2026
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:47:01 MDT 2022)
+* Project:        proj_bert_attn_out_norm_12layer_kernel
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu250-figd2104-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.470 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+-------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+    +---------+---------+----------+----------+-------+-------+---------+
+    |    57964|    57964|  0.193 ms|  0.193 ms|  57964|  57964|       no|
+    +---------+---------+----------+----------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        +-----------------------------------------------------------------------------------+------------------------------------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                                                                                   |                                                                        |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |                                      Instance                                     |                                 Module                                 |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +-----------------------------------------------------------------------------------+------------------------------------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |grp_load_norm_parameters_fu_258                                                    |load_norm_parameters                                                    |      106|      106|  0.353 us|  0.353 us|  106|  106|       no|
+        |grp_residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_REDUCE_PACK_fu_272  |residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_REDUCE_PACK  |      211|      211|  0.703 us|  0.703 us|  211|  211|       no|
+        |grp_residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_BANK_REDUCE_fu_314  |residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_BANK_REDUCE  |      116|      116|  0.387 us|  0.387 us|  116|  116|       no|
+        |grp_residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_WRITE_PACK_fu_352   |residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_WRITE_PACK   |       80|       80|  0.267 us|  0.267 us|   80|   80|       no|
+        +-----------------------------------------------------------------------------------+------------------------------------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                     |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name      |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- FULL_OUT_NORM_ROW  |    57856|    57856|       452|          -|          -|   128|        no|
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+-------+---------+---------+------+
+|         Name        | BRAM_18K|  DSP  |    FF   |   LUT   | URAM |
++---------------------+---------+-------+---------+---------+------+
+|DSP                  |        -|      -|        -|        -|     -|
+|Expression           |        -|      -|        0|       71|     -|
+|FIFO                 |        -|      -|        -|        -|     -|
+|Instance             |        -|      9|    11337|     5586|     -|
+|Memory               |       16|      -|        0|        0|     -|
+|Multiplexer          |        -|      -|        -|     1459|     -|
+|Register             |        -|      -|      237|        -|     -|
++---------------------+---------+-------+---------+---------+------+
+|Total                |       16|      9|    11574|     7116|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available SLR        |     1344|   3072|   864000|   432000|   320|
++---------------------+---------+-------+---------+---------+------+
+|Utilization SLR (%)  |        1|     ~0|        1|        1|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available            |     5376|  12288|  3456000|  1728000|  1280|
++---------------------+---------+-------+---------+---------+------+
+|Utilization (%)      |       ~0|     ~0|       ~0|       ~0|     0|
++---------------------+---------+-------+---------+---------+------+
+
++ Detail: 
+    * Instance: 
+    +-----------------------------------------------------------------------------------+------------------------------------------------------------------------+---------+----+------+------+-----+
+    |                                      Instance                                     |                                 Module                                 | BRAM_18K| DSP|  FF  |  LUT | URAM|
+    +-----------------------------------------------------------------------------------+------------------------------------------------------------------------+---------+----+------+------+-----+
+    |frsqrt_32ns_32ns_32_17_full_dsp_1_U740                                             |frsqrt_32ns_32ns_32_17_full_dsp_1                                       |        0|   9|   370|   336|    0|
+    |grp_load_norm_parameters_fu_258                                                    |load_norm_parameters                                                    |        0|   0|  1302|   363|    0|
+    |grp_residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_BANK_REDUCE_fu_314  |residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_BANK_REDUCE  |        0|   0|   176|   315|    0|
+    |grp_residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_REDUCE_PACK_fu_272  |residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_REDUCE_PACK  |        0|   0|  5143|  4354|    0|
+    |grp_residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_WRITE_PACK_fu_352   |residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_WRITE_PACK   |        0|   0|  4346|   218|    0|
+    +-----------------------------------------------------------------------------------+------------------------------------------------------------------------+---------+----+------+------+-----+
+    |Total                                                                              |                                                                        |        0|   9| 11337|  5586|    0|
+    +-----------------------------------------------------------------------------------+------------------------------------------------------------------------+---------+----+------+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +----------------+-------------------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |     Memory     |                               Module                              | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +----------------+-------------------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |gamma_cache1_U  |residual_norm_to_full_model_streams_gamma_cache1_RAM_2P_BRAM_1R1W  |        8|  0|   0|    0|    48|  512|     1|        24576|
+    |beta_cache2_U   |residual_norm_to_full_model_streams_gamma_cache1_RAM_2P_BRAM_1R1W  |        8|  0|   0|    0|    48|  512|     1|        24576|
+    +----------------+-------------------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total           |                                                                   |       16|  0|   0|    0|    96| 1024|     2|        49152|
+    +----------------+-------------------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-------------------------------------------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |                                                Variable Name                                                | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-------------------------------------------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |add_ln397_fu_413_p2                                                                                          |         +|   0|  0|  15|           8|           1|
+    |sub_ln415_1_fu_466_p2                                                                                        |         -|   0|  0|  21|          14|          14|
+    |sub_ln415_fu_439_p2                                                                                          |         -|   0|  0|  20|          13|          13|
+    |grp_residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_WRITE_PACK_fu_352_attn_mid_stream_TREADY      |       and|   0|  0|   2|           1|           1|
+    |grp_residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_WRITE_PACK_fu_352_ffn_residual_stream_TREADY  |       and|   0|  0|   2|           1|           1|
+    |icmp_ln397_fu_407_p2                                                                                         |      icmp|   0|  0|  11|           8|           9|
+    +-------------------------------------------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                                                                                        |          |   0|  0|  71|          45|          39|
+    +-------------------------------------------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+-----+-----------+-----+-----------+
+    |           Name          | LUT | Input Size| Bits| Total Bits|
+    +-------------------------+-----+-----------+-----+-----------+
+    |ap_NS_fsm                |  209|         48|    1|         48|
+    |beta_cache2_ce0          |    9|          2|    1|          2|
+    |beta_cache2_ce1          |    9|          2|    1|          2|
+    |beta_cache2_we1          |    9|          2|    1|          2|
+    |gamma_cache1_ce0         |    9|          2|    1|          2|
+    |gamma_cache1_ce1         |    9|          2|    1|          2|
+    |gamma_cache1_we1         |    9|          2|    1|          2|
+    |grp_fu_1002_ce           |    9|          2|    1|          2|
+    |grp_fu_1006_ce           |    9|          2|    1|          2|
+    |grp_fu_1010_ce           |    9|          2|    1|          2|
+    |grp_fu_1014_ce           |    9|          2|    1|          2|
+    |grp_fu_1018_ce           |    9|          2|    1|          2|
+    |grp_fu_1022_ce           |    9|          2|    1|          2|
+    |grp_fu_1026_ce           |    9|          2|    1|          2|
+    |grp_fu_1030_ce           |    9|          2|    1|          2|
+    |grp_fu_1034_ce           |    9|          2|    1|          2|
+    |grp_fu_1038_ce           |    9|          2|    1|          2|
+    |grp_fu_1042_ce           |    9|          2|    1|          2|
+    |grp_fu_1046_ce           |    9|          2|    1|          2|
+    |grp_fu_1050_ce           |    9|          2|    1|          2|
+    |grp_fu_1054_ce           |    9|          2|    1|          2|
+    |grp_fu_1058_ce           |    9|          2|    1|          2|
+    |grp_fu_1062_ce           |    9|          2|    1|          2|
+    |grp_fu_1066_ce           |    9|          2|    1|          2|
+    |grp_fu_1070_ce           |    9|          2|    1|          2|
+    |grp_fu_1074_ce           |    9|          2|    1|          2|
+    |grp_fu_1078_ce           |    9|          2|    1|          2|
+    |grp_fu_1082_ce           |    9|          2|    1|          2|
+    |grp_fu_1086_ce           |    9|          2|    1|          2|
+    |grp_fu_1090_ce           |    9|          2|    1|          2|
+    |grp_fu_1094_ce           |    9|          2|    1|          2|
+    |grp_fu_1098_ce           |    9|          2|    1|          2|
+    |grp_fu_1102_ce           |    9|          2|    1|          2|
+    |grp_fu_1106_ce           |    9|          2|    1|          2|
+    |grp_fu_1110_ce           |    9|          2|    1|          2|
+    |grp_fu_1114_ce           |    9|          2|    1|          2|
+    |grp_fu_1118_ce           |    9|          2|    1|          2|
+    |grp_fu_1122_ce           |    9|          2|    1|          2|
+    |grp_fu_1126_ce           |    9|          2|    1|          2|
+    |grp_fu_1130_ce           |    9|          2|    1|          2|
+    |grp_fu_1134_ce           |    9|          2|    1|          2|
+    |grp_fu_1138_ce           |    9|          2|    1|          2|
+    |grp_fu_1142_ce           |    9|          2|    1|          2|
+    |grp_fu_1146_ce           |    9|          2|    1|          2|
+    |grp_fu_1150_ce           |    9|          2|    1|          2|
+    |grp_fu_1154_ce           |    9|          2|    1|          2|
+    |grp_fu_1158_ce           |    9|          2|    1|          2|
+    |grp_fu_1162_ce           |    9|          2|    1|          2|
+    |grp_fu_1166_ce           |    9|          2|    1|          2|
+    |grp_fu_1170_ce           |    9|          2|    1|          2|
+    |grp_fu_1174_ce           |    9|          2|    1|          2|
+    |grp_fu_1178_ce           |    9|          2|    1|          2|
+    |grp_fu_1182_ce           |    9|          2|    1|          2|
+    |grp_fu_1186_ce           |    9|          2|    1|          2|
+    |grp_fu_1190_ce           |    9|          2|    1|          2|
+    |grp_fu_1194_ce           |    9|          2|    1|          2|
+    |grp_fu_1198_ce           |    9|          2|    1|          2|
+    |grp_fu_1202_ce           |    9|          2|    1|          2|
+    |grp_fu_1206_ce           |    9|          2|    1|          2|
+    |grp_fu_1210_ce           |    9|          2|    1|          2|
+    |grp_fu_1214_ce           |    9|          2|    1|          2|
+    |grp_fu_1218_ce           |    9|          2|    1|          2|
+    |grp_fu_1222_ce           |    9|          2|    1|          2|
+    |grp_fu_1226_ce           |    9|          2|    1|          2|
+    |grp_fu_1230_ce           |    9|          2|    1|          2|
+    |grp_fu_1234_ce           |    9|          2|    1|          2|
+    |grp_fu_1238_ce           |    9|          2|    1|          2|
+    |grp_fu_1242_ce           |    9|          2|    1|          2|
+    |grp_fu_1246_ce           |    9|          2|    1|          2|
+    |grp_fu_1250_ce           |    9|          2|    1|          2|
+    |grp_fu_1254_ce           |    9|          2|    1|          2|
+    |grp_fu_1258_ce           |    9|          2|    1|          2|
+    |grp_fu_1262_ce           |    9|          2|    1|          2|
+    |grp_fu_1266_ce           |    9|          2|    1|          2|
+    |grp_fu_1270_ce           |    9|          2|    1|          2|
+    |grp_fu_1274_ce           |    9|          2|    1|          2|
+    |grp_fu_1278_ce           |    9|          2|    1|          2|
+    |grp_fu_370_ce            |   20|          4|    1|          4|
+    |grp_fu_370_opcode        |   31|          6|    2|         12|
+    |grp_fu_370_p0            |   31|          6|   32|        192|
+    |grp_fu_370_p1            |   31|          6|   32|        192|
+    |grp_fu_375_ce            |   14|          3|    1|          3|
+    |grp_fu_375_p0            |   26|          5|   32|        160|
+    |grp_fu_375_p1            |   20|          4|   32|        128|
+    |grp_fu_380_ce            |   14|          3|    1|          3|
+    |grp_fu_380_p0            |   20|          4|   32|        128|
+    |grp_fu_380_p1            |   20|          4|   32|        128|
+    |grp_fu_974_ce            |   14|          3|    1|          3|
+    |grp_fu_974_p0            |   14|          3|   32|         96|
+    |grp_fu_974_p1            |   14|          3|   32|         96|
+    |grp_fu_978_ce            |   14|          3|    1|          3|
+    |grp_fu_978_p0            |   14|          3|   32|         96|
+    |grp_fu_978_p1            |   14|          3|   32|         96|
+    |grp_fu_982_ce            |   14|          3|    1|          3|
+    |grp_fu_982_p0            |   14|          3|   32|         96|
+    |grp_fu_982_p1            |   14|          3|   32|         96|
+    |grp_fu_986_ce            |   14|          3|    1|          3|
+    |grp_fu_986_p0            |   14|          3|   32|         96|
+    |grp_fu_986_p1            |   14|          3|   32|         96|
+    |grp_fu_990_ce            |   14|          3|    1|          3|
+    |grp_fu_990_p0            |   14|          3|   32|         96|
+    |grp_fu_990_p1            |   14|          3|   32|         96|
+    |grp_fu_994_ce            |    9|          2|    1|          2|
+    |grp_fu_998_ce            |    9|          2|    1|          2|
+    |m_axi_gmem_norm_ARVALID  |    9|          2|    1|          2|
+    |m_axi_gmem_norm_RREADY   |    9|          2|    1|          2|
+    |projected_address0       |   14|          3|   14|         42|
+    |projected_address1       |   14|          3|   14|         42|
+    |projected_ce0            |   14|          3|    1|          3|
+    |projected_ce1            |   14|          3|    1|          3|
+    |residual_address0        |   14|          3|   13|         39|
+    |residual_ce0             |   14|          3|    1|          3|
+    |s_fu_98                  |    9|          2|    8|         16|
+    +-------------------------+-----+-----------+-----+-----------+
+    |Total                    | 1459|        318|  655|       2281|
+    +-------------------------+-----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                              Name                                              | FF | LUT| Bits| Const Bits|
+    +------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                                                       |  47|   0|   47|          0|
+    |grp_load_norm_parameters_fu_258_ap_start_reg                                                    |   1|   0|    1|          0|
+    |grp_residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_BANK_REDUCE_fu_314_ap_start_reg  |   1|   0|    1|          0|
+    |grp_residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_REDUCE_PACK_fu_272_ap_start_reg  |   1|   0|    1|          0|
+    |grp_residual_norm_to_full_model_streams_Pipeline_FULL_OUT_NORM_WRITE_PACK_fu_352_ap_start_reg   |   1|   0|    1|          0|
+    |inv_std_reg_969                                                                                 |  32|   0|   32|          0|
+    |mean_reg_949                                                                                    |  32|   0|   32|          0|
+    |mul2_reg_959                                                                                    |  32|   0|   32|          0|
+    |mul3_reg_964                                                                                    |  32|   0|   32|          0|
+    |reg_389                                                                                         |  32|   0|   32|          0|
+    |s_fu_98                                                                                         |   8|   0|    8|          0|
+    |sub_ln415_1_reg_844                                                                             |   9|   0|   14|          5|
+    |sub_ln415_reg_838                                                                               |   9|   0|   13|          4|
+    +------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                                           | 237|   0|  246|          9|
+    +------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------------+-----+-----+------------+-------------------------------------+--------------+
+|          RTL Ports         | Dir | Bits|  Protocol  |            Source Object            |    C Type    |
++----------------------------+-----+-----+------------+-------------------------------------+--------------+
+|ap_clk                      |   in|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|ap_rst                      |   in|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|ap_start                    |   in|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|ap_done                     |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|ap_idle                     |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|ap_ready                    |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_445_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_445_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_445_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_445_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_445_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_449_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_449_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_449_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_449_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_449_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_453_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_453_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_453_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_453_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_453_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_457_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_457_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_457_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_457_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_457_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_461_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_461_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_461_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_461_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_461_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_465_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_465_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_465_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_465_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_465_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_469_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_469_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_469_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_469_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_469_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_473_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_473_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_473_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_473_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_473_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_477_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_477_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_477_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_477_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_477_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_481_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_481_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_481_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_481_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_481_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_485_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_485_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_485_p_opcode         |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_485_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_485_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_489_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_489_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_489_p_opcode         |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_489_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_489_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_493_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_493_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_493_p_opcode         |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_493_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_493_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_497_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_497_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_497_p_opcode         |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_497_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_497_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_501_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_501_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_501_p_opcode         |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_501_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_501_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_505_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_505_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_505_p_opcode         |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_505_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_505_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_509_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_509_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_509_p_opcode         |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_509_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_509_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_513_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_513_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_513_p_opcode         |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_513_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_513_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_517_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_517_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_517_p_opcode         |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_517_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_517_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_521_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_521_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_521_p_opcode         |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_521_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_521_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_525_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_525_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_525_p_opcode         |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_525_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_525_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_529_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_529_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_529_p_opcode         |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_529_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_529_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_533_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_533_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_533_p_opcode         |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_533_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_533_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_537_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_537_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_537_p_opcode         |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_537_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_537_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_541_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_541_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_541_p_opcode         |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_541_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_541_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_545_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_545_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_545_p_opcode         |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_545_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_545_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_549_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_549_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_549_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_549_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_549_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_553_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_553_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_553_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_553_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_553_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_557_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_557_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_557_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_557_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_557_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_561_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_561_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_561_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_561_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_561_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_565_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_565_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_565_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_565_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_565_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_569_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_569_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_569_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_569_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_569_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_573_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_573_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_573_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_573_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_573_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_577_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_577_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_577_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_577_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_577_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_581_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_581_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_581_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_581_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_581_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_585_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_585_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_585_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_585_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_585_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_589_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_589_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_589_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_589_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_589_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_593_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_593_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_593_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_593_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_593_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_597_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_597_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_597_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_597_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_597_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_601_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_601_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_601_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_601_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_601_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_605_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_605_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_605_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_605_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_605_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_609_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_609_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_609_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_609_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_609_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_629_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_629_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_629_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_629_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_633_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_633_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_633_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_633_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_637_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_637_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_637_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_637_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_641_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_641_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_641_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_641_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_645_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_645_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_645_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_645_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_649_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_649_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_649_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_649_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_653_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_653_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_653_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_653_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_657_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_657_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_657_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_657_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_661_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_661_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_661_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_661_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_665_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_665_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_665_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_665_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_669_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_669_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_669_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_669_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_673_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_673_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_673_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_673_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_677_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_677_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_677_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_677_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_681_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_681_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_681_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_681_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_685_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_685_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_685_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_685_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_689_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_689_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_689_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_689_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_693_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_693_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_693_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_693_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_697_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_697_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_697_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_697_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_701_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_701_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_701_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_701_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_705_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_705_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_705_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_705_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_709_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_709_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_709_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_709_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_713_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_713_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_713_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_713_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_717_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_717_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_717_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_717_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_721_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_721_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_721_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_721_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_725_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_725_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_725_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_725_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_729_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_729_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_729_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_729_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_733_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_733_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_733_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_733_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_737_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_737_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_737_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_737_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_421_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_421_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_421_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_421_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_421_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_613_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_613_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_613_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_613_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_617_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_617_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_617_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_617_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_425_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_425_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_425_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_425_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_425_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_429_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_429_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_429_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_429_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_429_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_433_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_433_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_433_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_433_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_433_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_621_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_621_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_621_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_621_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_625_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_625_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_625_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_625_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_437_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_437_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_437_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_437_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_437_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_441_p_din0           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_441_p_din1           |  out|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_441_p_opcode         |  out|    2|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_441_p_dout0          |   in|   32|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|grp_fu_441_p_ce             |  out|    1|  ap_ctrl_hs|  residual_norm_to_full_model_streams|  return value|
+|residual_address0           |  out|   13|   ap_memory|                             residual|         array|
+|residual_ce0                |  out|    1|   ap_memory|                             residual|         array|
+|residual_q0                 |   in|  512|   ap_memory|                             residual|         array|
+|projected_address0          |  out|   14|   ap_memory|                            projected|         array|
+|projected_ce0               |  out|    1|   ap_memory|                            projected|         array|
+|projected_q0                |   in|  256|   ap_memory|                            projected|         array|
+|projected_address1          |  out|   14|   ap_memory|                            projected|         array|
+|projected_ce1               |  out|    1|   ap_memory|                            projected|         array|
+|projected_q1                |   in|  256|   ap_memory|                            projected|         array|
+|m_axi_gmem_norm_AWVALID     |  out|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_AWREADY     |   in|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_AWADDR      |  out|   64|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_AWID        |  out|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_AWLEN       |  out|   32|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_AWSIZE      |  out|    3|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_AWBURST     |  out|    2|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_AWLOCK      |  out|    2|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_AWCACHE     |  out|    4|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_AWPROT      |  out|    3|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_AWQOS       |  out|    4|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_AWREGION    |  out|    4|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_AWUSER      |  out|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_WVALID      |  out|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_WREADY      |   in|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_WDATA       |  out|  512|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_WSTRB       |  out|   64|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_WLAST       |  out|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_WID         |  out|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_WUSER       |  out|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_ARVALID     |  out|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_ARREADY     |   in|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_ARADDR      |  out|   64|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_ARID        |  out|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_ARLEN       |  out|   32|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_ARSIZE      |  out|    3|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_ARBURST     |  out|    2|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_ARLOCK      |  out|    2|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_ARCACHE     |  out|    4|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_ARPROT      |  out|    3|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_ARQOS       |  out|    4|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_ARREGION    |  out|    4|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_ARUSER      |  out|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_RVALID      |   in|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_RREADY      |  out|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_RDATA       |   in|  512|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_RLAST       |   in|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_RID         |   in|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_RFIFONUM    |   in|    9|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_RUSER       |   in|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_RRESP       |   in|    2|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_BVALID      |   in|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_BREADY      |  out|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_BRESP       |   in|    2|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_BID         |   in|    1|       m_axi|                            gmem_norm|       pointer|
+|m_axi_gmem_norm_BUSER       |   in|    1|       m_axi|                            gmem_norm|       pointer|
+|gamma                       |   in|   64|     ap_none|                                gamma|        scalar|
+|beta                        |   in|   64|     ap_none|                                 beta|        scalar|
+|attn_mid_stream_TDATA       |  out|  512|        axis|                      attn_mid_stream|       pointer|
+|attn_mid_stream_TVALID      |  out|    1|        axis|                      attn_mid_stream|       pointer|
+|attn_mid_stream_TREADY      |   in|    1|        axis|                      attn_mid_stream|       pointer|
+|ffn_residual_stream_TDATA   |  out|  512|        axis|                  ffn_residual_stream|       pointer|
+|ffn_residual_stream_TVALID  |  out|    1|        axis|                  ffn_residual_stream|       pointer|
+|ffn_residual_stream_TREADY  |   in|    1|        axis|                  ffn_residual_stream|       pointer|
++----------------------------+-----+-----+------------+-------------------------------------+--------------+
+

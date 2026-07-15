@@ -1,0 +1,64 @@
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2022.1 (64-bit)
+  **** SW Build 3526262 on Mon Apr 18 15:47:01 MDT 2022
+  **** IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source /tools/Xilinx/Vitis_HLS/2022.1/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running '/tools/Xilinx/Vitis_HLS/2022.1/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'minhphat' on host 'minhphat' (Linux_x86_64 version 5.15.0-139-generic) on Wed Jul 15 11:33:25 +07 2026
+INFO: [HLS 200-10] On os Ubuntu 20.04.6 LTS
+INFO: [HLS 200-10] In directory '/home/minhphat/split_kernel'
+Sourcing Tcl script 'scripts/run_bert_12layer_persistent_csim.tcl'
+INFO: [HLS 200-1510] Running: open_project -reset proj_bert_12layer_persistent_csim 
+INFO: [HLS 200-10] Creating and opening project '/home/minhphat/split_kernel/build/hls/proj_bert_12layer_persistent_csim'.
+INFO: [HLS 200-1510] Running: add_files -cflags -std=c++14 -O2 -pthread -DBERT_CSIM_THREAD_SAFE_STREAM -I/home/minhphat/split_kernel/include /home/minhphat/split_kernel/kernels/bert_qkv_kernel.cpp 
+INFO: [HLS 200-10] Adding design file '/home/minhphat/split_kernel/kernels/bert_qkv_kernel.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -cflags -std=c++14 -O2 -pthread -DBERT_CSIM_THREAD_SAFE_STREAM -I/home/minhphat/split_kernel/include /home/minhphat/split_kernel/kernels/bert_attn_core_kernel.cpp 
+INFO: [HLS 200-10] Adding design file '/home/minhphat/split_kernel/kernels/bert_attn_core_kernel.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -cflags -std=c++14 -O2 -pthread -DBERT_CSIM_THREAD_SAFE_STREAM -I/home/minhphat/split_kernel/include /home/minhphat/split_kernel/kernels/bert_attn_out_norm_residual_kernel.cpp 
+INFO: [HLS 200-10] Adding design file '/home/minhphat/split_kernel/kernels/bert_attn_out_norm_residual_kernel.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -cflags -std=c++14 -O2 -pthread -DBERT_CSIM_THREAD_SAFE_STREAM -I/home/minhphat/split_kernel/include /home/minhphat/split_kernel/kernels/bert_ffn_fp32_kernels.cpp 
+INFO: [HLS 200-10] Adding design file '/home/minhphat/split_kernel/kernels/bert_ffn_fp32_kernels.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb -cflags -std=c++14 -O2 -pthread -DBERT_CSIM_THREAD_SAFE_STREAM -I/home/minhphat/split_kernel/include /home/minhphat/split_kernel/validation/tb_bert_12layer_persistent_csim.cpp 
+INFO: [HLS 200-10] Adding test bench file '/home/minhphat/split_kernel/validation/tb_bert_12layer_persistent_csim.cpp' to the project
+INFO: [HLS 200-1510] Running: set_top bert_qkv_12layer_kernel 
+INFO: [HLS 200-1510] Running: open_solution -reset solution1 -flow_target vivado 
+INFO: [HLS 200-10] Creating and opening solution '/home/minhphat/split_kernel/build/hls/proj_bert_12layer_persistent_csim/solution1'.
+INFO: [HLS 200-10] Cleaning up the solution database.
+WARNING: [HLS 200-40] No /home/minhphat/split_kernel/build/hls/proj_bert_12layer_persistent_csim/solution1/solution1.aps file found.
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2022.1;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_latency=0
+INFO: [HLS 200-1510] Running: set_part xcu250-figd2104-2L-e 
+INFO: [HLS 200-1611] Setting target device to 'xcu250-figd2104-2L-e'
+INFO: [HLS 200-1510] Running: create_clock -period 3.333 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.333ns.
+============================================================
+Persistent full-model C-sim: five CUs, one start each
+Bounded feedback FIFO model enabled
+Data:    /home/minhphat/split_kernel/validation/data/bert_base_uncased_seq128
+Outputs: /home/minhphat/split_kernel/validation/outputs/persistent_12layer
+============================================================
+INFO: [HLS 200-1510] Running: csim_design -O -clean -ldflags -pthread -argv /home/minhphat/split_kernel/validation/data/bert_base_uncased_seq128 /home/minhphat/split_kernel/validation/outputs/persistent_12layer 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../../../validation/tb_bert_12layer_persistent_csim.cpp in release mode
+   Compiling ../../../../../../kernels/bert_ffn_fp32_kernels.cpp in release mode
+   Compiling ../../../../../../kernels/bert_attn_out_norm_residual_kernel.cpp in release mode
+   Compiling ../../../../../../kernels/bert_attn_core_kernel.cpp in release mode
+   Compiling ../../../../../../kernels/bert_qkv_kernel.cpp in release mode
+   Generating csim.exe
+Loading full-model input and all 12 weight sets...
+Starting five persistent CUs once...
+Persistent 12-layer C-sim completed in 136.369 seconds.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 162.43 seconds. CPU system time: 0.96 seconds. Elapsed time: 153.74 seconds; current allocated memory: -1033.656 MB.
+INFO: [HLS 200-1510] Running: close_project 
+Comparing persistent final output with Hugging Face layer 11...
+Persistent accuracy report: /home/minhphat/split_kernel/reports/csim/persistent_12layer/persistent_accuracy_report.md
+OVERALL: PASS
+Persistent C-sim and accuracy gate passed.
+[2Kvitis_hls> [11C[2Kvitis_hls> c[12C[2Kvitis_hls> cl[13C[2Kvitis_hls> cle[14C[2Kvitis_hls> clea[15C[2Kvitis_hls> clear[16C[2Kvitis_hls> clea[15C[2Kvitis_hls> cle[14CINFO: [HLS 200-112] Total CPU user time: 163.39 seconds. Total CPU system time: 1.8 seconds. Total elapsed time: 183.28 seconds; peak allocated memory: 209.809 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Wed Jul 15 11:36:28 2026...

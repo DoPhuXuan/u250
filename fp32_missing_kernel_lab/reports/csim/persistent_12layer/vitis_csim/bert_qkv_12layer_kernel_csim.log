@@ -1,0 +1,13 @@
+INFO: [SIM 2] *************** CSIM start ***************
+INFO: [SIM 4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../../../validation/tb_bert_12layer_persistent_csim.cpp in release mode
+   Compiling ../../../../../../kernels/bert_ffn_fp32_kernels.cpp in release mode
+   Compiling ../../../../../../kernels/bert_attn_out_norm_residual_kernel.cpp in release mode
+   Compiling ../../../../../../kernels/bert_attn_core_kernel.cpp in release mode
+   Compiling ../../../../../../kernels/bert_qkv_kernel.cpp in release mode
+   Generating csim.exe
+Loading full-model input and all 12 weight sets...
+Starting five persistent CUs once...
+Persistent 12-layer C-sim completed in 136.369 seconds.
+INFO: [SIM 1] CSim done with 0 errors.
+INFO: [SIM 3] *************** CSIM finish ***************

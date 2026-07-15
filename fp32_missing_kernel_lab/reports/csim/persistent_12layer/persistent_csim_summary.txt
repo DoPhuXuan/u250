@@ -1,0 +1,5 @@
+layers=12
+kernel_starts=5
+host_layer_loop=0
+software_seconds=136.369313
+output=/home/minhphat/split_kernel/validation/outputs/persistent_12layer/final_encoder_output.f32
