@@ -1,8 +1,0 @@
-#ifndef BERT_FFN_KERNEL_LAB_H
-#define BERT_FFN_KERNEL_LAB_H
-
-#define SEQ_LEN 128
-#define HIDDEN_SIZE 768
-#define INTERMEDIATE_SIZE 3072
-
-#endif
