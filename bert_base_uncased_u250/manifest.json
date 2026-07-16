@@ -1,0 +1,228 @@
+{
+  "model": "google-bert/bert-base-uncased",
+  "sequence_length": 128,
+  "hidden_size": 768,
+  "intermediate_size": 3072,
+  "num_layers": 12,
+  "text": "Hello from the Alveo U250.",
+  "text_pair": null,
+  "files": {
+    "token_emb.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        30522,
+        768
+      ],
+      "bytes": 93763584,
+      "sha256": "ca6b51539e1d8c14f11e946a2e6f87a2f547aa0f8d17c15f1c92299d51cd8105"
+    },
+    "pos_emb.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        128,
+        768
+      ],
+      "bytes": 393216,
+      "sha256": "5150b599b3893b41afd0eb5c3265f92930292ce6a443e97457ba35583f805754"
+    },
+    "seg_emb.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        2,
+        768
+      ],
+      "bytes": 6144,
+      "sha256": "d72ce5fb1c016ed08db28345054f91d67567d87c6191b46f6875a5c03cd233ee"
+    },
+    "emb_gamma.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        768
+      ],
+      "bytes": 3072,
+      "sha256": "814625660a10e9c4f5f4bc0062733fb1e41b9307698166a7652c777afb833a1d"
+    },
+    "emb_beta.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        768
+      ],
+      "bytes": 3072,
+      "sha256": "bcb19e40f31d097497a348b212cc0b65dc3957de6f1e791b1eb3597c0ecc3267"
+    },
+    "attn_q_w.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        12,
+        768,
+        768
+      ],
+      "bytes": 28311552,
+      "sha256": "8bcc60e86a9fbfb241bc043cd85cd67f1210b6ee8ee5dc4e4032c977d817ec1f"
+    },
+    "attn_q_b.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        12,
+        768
+      ],
+      "bytes": 36864,
+      "sha256": "723e0e957e25f695986e858efb8d53eb141623bb52314fef964dadc2d5b710a6"
+    },
+    "attn_k_w.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        12,
+        768,
+        768
+      ],
+      "bytes": 28311552,
+      "sha256": "250959bb37c7c461a1cb55f094aac206042fa04bee65f8ce749d8ff81307cae5"
+    },
+    "attn_k_b.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        12,
+        768
+      ],
+      "bytes": 36864,
+      "sha256": "09fdfbcb3425c8b37368e2b435440340e5a3b37c00e1421253038c23811c8e53"
+    },
+    "attn_v_w.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        12,
+        768,
+        768
+      ],
+      "bytes": 28311552,
+      "sha256": "27ad5abcd25148938f505bef5340ac6f06940ed59f71dce6457adee5fe43a366"
+    },
+    "attn_v_b.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        12,
+        768
+      ],
+      "bytes": 36864,
+      "sha256": "4c1fa3fd9a65d24820088ae1143897adeac8ddd4a811163c880784f00e694476"
+    },
+    "attn_o_w.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        12,
+        768,
+        768
+      ],
+      "bytes": 28311552,
+      "sha256": "78d02bef93c2e619a96f13c78b2b3227fd3fe2b7ad2e5e8cc280fe77b60faef2"
+    },
+    "attn_o_b.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        12,
+        768
+      ],
+      "bytes": 36864,
+      "sha256": "3dad2e34d14a9e8108e27810e397ac072b40431f3b178a6af42098b06456a12e"
+    },
+    "attn_norm_gamma.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        12,
+        768
+      ],
+      "bytes": 36864,
+      "sha256": "6be285ae20ce99b1dfca1068442066ef939d69e116d22644d15af67f0d34b105"
+    },
+    "attn_norm_beta.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        12,
+        768
+      ],
+      "bytes": 36864,
+      "sha256": "c078b5d6c86634f7ba42361cae12b637de39c66c53f6a2ddf0a00a8eff0ec451"
+    },
+    "ffn_up_w.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        12,
+        768,
+        3072
+      ],
+      "bytes": 113246208,
+      "sha256": "a0305c8b5abe862b3e211894996d195c9cec420b709f7c74994aade15dfc5e59"
+    },
+    "ffn_up_b.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        12,
+        3072
+      ],
+      "bytes": 147456,
+      "sha256": "5a2510909090641bbb736f5ed45ec96c9a0c1c437982e4565592178e2c0eae48"
+    },
+    "ffn_down_w.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        12,
+        3072,
+        768
+      ],
+      "bytes": 113246208,
+      "sha256": "9a0fb96bb19ec5ef3be8a0619ae6220ed77b3b44f27264de3b557281fce29b2f"
+    },
+    "ffn_down_b.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        12,
+        768
+      ],
+      "bytes": 36864,
+      "sha256": "3f8d12e7b00c14887bbddac4a6a32a821b92273a4850ec90e12f3c535f5fe36e"
+    },
+    "ffn_norm_gamma.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        12,
+        768
+      ],
+      "bytes": 36864,
+      "sha256": "af6c0b158186ee3f91a56e1c3b5f7088f909d1e7a4615d81a35dbf5dffb9e40b"
+    },
+    "ffn_norm_beta.bin": {
+      "dtype": "float32-le",
+      "shape": [
+        12,
+        768
+      ],
+      "bytes": 36864,
+      "sha256": "49d98cf4963f396a7ea326616bc95e32c08767e3989ca5aec2cceea89b714c79"
+    },
+    "input_ids.bin": {
+      "dtype": "int32-le",
+      "shape": [
+        128
+      ],
+      "bytes": 512,
+      "sha256": "dd6cc871266ecb04c49b117d1dc2b79d890fbe2aa7a6902d9df9864bc390db44"
+    },
+    "token_type_ids.bin": {
+      "dtype": "int32-le",
+      "shape": [
+        128
+      ],
+      "bytes": 512,
+      "sha256": "076a27c79e5ace2a3d47f9dd2e83e4ff6ea8872b3c2218f66c92b89b55f36560"
+    },
+    "attention_mask.bin": {
+      "dtype": "int32-le",
+      "shape": [
+        128
+      ],
+      "bytes": 512,
+      "sha256": "5a43a4d7d3bf1b5164e308384c1db7d92b60c8253bb9f092aa11cc6c4b3c8614"
+    }
+  }
+}

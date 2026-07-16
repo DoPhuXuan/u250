@@ -1,0 +1,1447 @@
+<ENTRY>
+{
+ "thisFile": "/home/minhphat/gohome/build_200/bert_pipeline_hw_200.xclbin.link_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Tue Jun 30 10:15:04 2026",
+ "timestampMillis": "1782789304345",
+ "buildStep": {
+  "cmdId": "8aecc6ba-f469-43c7-8313-55e64ed934b8",
+  "name": "v++",
+  "logFile": "/home/minhphat/gohome/build_200/link_hw/link/link.steps.log",
+  "commandLine": "/tools/Xilinx/Vitis/2021.2/bin/unwrapped/lnx64.o/v++  --vivado.prop \"run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" -l -t hw --platform xilinx_u250_gen3x16_xdma_3_1_202020_1 --config system.cfg --kernel_frequency 200 --save-temps --temp_dir build_200/link_hw --log_dir build_200/link_hw/logs -o build_200/bert_pipeline_hw_200.xclbin build_200/bert_attn_core_kernel.xo build_200/bert_attn_out_norm_kernel.xo build_200/bert_embedding_prep_kernel.xo build_200/bert_ffn_down_norm_kernel.xo build_200/bert_ffn_up_gelu_kernel.xo build_200/bert_qkv_kernel.xo ",
+  "args": [
+   "-l",
+   "-t",
+   "hw",
+   "--platform",
+   "xilinx_u250_gen3x16_xdma_3_1_202020_1",
+   "--config",
+   "system.cfg",
+   "--kernel_frequency",
+   "200",
+   "--save-temps",
+   "--temp_dir",
+   "build_200/link_hw",
+   "--log_dir",
+   "build_200/link_hw/logs",
+   "-o",
+   "build_200/bert_pipeline_hw_200.xclbin",
+   "build_200/bert_attn_core_kernel.xo",
+   "build_200/bert_attn_out_norm_kernel.xo",
+   "build_200/bert_embedding_prep_kernel.xo",
+   "build_200/bert_ffn_down_norm_kernel.xo",
+   "build_200/bert_ffn_up_gelu_kernel.xo",
+   "build_200/bert_qkv_kernel.xo"
+  ],
+  "iniFiles": [
+   {
+    "path": "/home/minhphat/gohome/system.cfg",
+    "content": "[connectivity]\nnk=bert_embedding_prep_kernel:1:bert_embedding_prep_1\nnk=bert_qkv_kernel:1:bert_qkv_1\nnk=bert_attn_core_kernel:1:bert_attn_core_1\nnk=bert_attn_out_norm_kernel:1:bert_attn_out_norm_1\nnk=bert_ffn_up_gelu_kernel:1:bert_ffn_up_gelu_1\nnk=bert_ffn_down_norm_kernel:1:bert_ffn_down_norm_1\n\nstream_connect=bert_qkv_1.qkv_stream:bert_attn_core_1.qkv_stream:512\nstream_connect=bert_attn_core_1.context_stream:bert_attn_out_norm_1.context_stream:512\nstream_connect=bert_attn_out_norm_1.attn_mid_stream:bert_ffn_up_gelu_1.attn_mid_stream:256\nstream_connect=bert_ffn_up_gelu_1.gelu_stream:bert_ffn_down_norm_1.gelu_stream:512\n\nslr=bert_embedding_prep_1:SLR1\nslr=bert_qkv_1:SLR0\nslr=bert_attn_core_1:SLR1\nslr=bert_attn_out_norm_1:SLR2\nslr=bert_ffn_up_gelu_1:SLR2\nslr=bert_ffn_down_norm_1:SLR3\n\nsp=bert_embedding_prep_1.input_ids:DDR[0]\nsp=bert_embedding_prep_1.token_type_ids:DDR[0]\nsp=bert_embedding_prep_1.embedding_hidden:DDR[0]\nsp=bert_embedding_prep_1.hidden_ready:DDR[0]\nsp=bert_embedding_prep_1.token_emb:DDR[1]\nsp=bert_embedding_prep_1.pos_emb:DDR[1]\nsp=bert_embedding_prep_1.seg_emb:DDR[1]\nsp=bert_embedding_prep_1.emb_gamma:DDR[1]\nsp=bert_embedding_prep_1.emb_beta:DDR[1]\nsp=bert_qkv_1.hidden_in:DDR[0]\nsp=bert_qkv_1.hidden_ready:DDR[0]\nsp=bert_qkv_1.attn_q_w_all:DDR[0]\nsp=bert_qkv_1.attn_q_b_all:DDR[0]\nsp=bert_qkv_1.attn_k_w_all:DDR[1]\nsp=bert_qkv_1.attn_k_b_all:DDR[1]\nsp=bert_qkv_1.attn_v_w_all:DDR[2]\nsp=bert_qkv_1.attn_v_b_all:DDR[2]\n\nsp=bert_attn_core_1.attention_mask:DDR[0]\n\nsp=bert_attn_out_norm_1.residual_in:DDR[0]\nsp=bert_attn_out_norm_1.residual_ready:DDR[0]\nsp=bert_attn_out_norm_1.attn_o_w_all:DDR[3]\nsp=bert_attn_out_norm_1.attn_o_b_all:DDR[3]\nsp=bert_attn_out_norm_1.attn_norm_gamma_all:DDR[3]\nsp=bert_attn_out_norm_1.attn_norm_beta_all:DDR[3]\nsp=bert_attn_out_norm_1.attn_mid_ddr:DDR[1]\nsp=bert_attn_out_norm_1.attn_mid_done:DDR[1]\n\nsp=bert_ffn_up_gelu_1.ffn_up_w_all:DDR[2]\nsp=bert_ffn_up_gelu_1.ffn_up_b_all:DDR[2]\n\nsp=bert_ffn_down_norm_1.attn_mid_ddr:DDR[1]\nsp=bert_ffn_down_norm_1.attn_mid_done:DDR[1]\nsp=bert_ffn_down_norm_1.ffn_down_w_all:DDR[3]\nsp=bert_ffn_down_norm_1.ffn_down_b_all:DDR[3]\nsp=bert_ffn_down_norm_1.ffn_norm_gamma_all:DDR[3]\nsp=bert_ffn_down_norm_1.ffn_norm_beta_all:DDR[3]\nsp=bert_ffn_down_norm_1.hidden_out:DDR[0]\n"
+   }
+  ],
+  "cwd": "/home/minhphat/gohome"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 10:15:04 2026",
+ "timestampMillis": "1782789304345",
+ "status": {
+  "cmdId": "8aecc6ba-f469-43c7-8313-55e64ed934b8",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Tue Jun 30 10:15:09 2026",
+ "timestampMillis": "1782789309168",
+ "buildSummary": {
+  "hardwarePlatform": "xilinx_u250_gen3x16_xdma_3_1_202020_1.xpfm",
+  "hardwareDsa": "hw.xsa",
+  "platformDirectory": "/opt/xilinx/platforms/xilinx_u250_gen3x16_xdma_3_1_202020_1",
+  "runtime": "OpenCL",
+  "systemConfig": "Linux",
+  "flow": "BF_LINK",
+  "target": "TT_HW",
+  "binaryContainer": {
+   "base": {
+    "type": "BT_UKNOWN",
+    "name": "bert_pipeline_hw_200",
+    "file": "/home/minhphat/gohome/build_200/bert_pipeline_hw_200.xclbin",
+    "reports": [],
+    "uuid": ""
+   },
+   "kernels": []
+  },
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "bert_attn_core_kernel",
+     "file": "/home/minhphat/gohome/build_200/bert_attn_core_kernel.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/minhphat/gohome/build_200/link_hw/link/int/xo/bert_attn_core_kernel/bert_attn_core_kernel/cpu_sources/bert_attn_core_kernel.cpp",
+     "/home/minhphat/gohome/build_200/link_hw/link/int/xo/bert_attn_core_kernel/bert_attn_core_kernel/cpu_sources/attention_stream.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "bert_attn_core_1"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "bert_attn_out_norm_kernel",
+     "file": "/home/minhphat/gohome/build_200/bert_attn_out_norm_kernel.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/minhphat/gohome/build_200/link_hw/link/int/xo/bert_attn_out_norm_kernel/bert_attn_out_norm_kernel/cpu_sources/bert_attn_out_norm_kernel.cpp",
+     "/home/minhphat/gohome/build_200/link_hw/link/int/xo/bert_attn_out_norm_kernel/bert_attn_out_norm_kernel/cpu_sources/attention_stream.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "bert_attn_out_norm_1"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "bert_embedding_prep_kernel",
+     "file": "/home/minhphat/gohome/build_200/bert_embedding_prep_kernel.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/minhphat/gohome/build_200/link_hw/link/int/xo/bert_embedding_prep_kernel/bert_embedding_prep_kernel/cpu_sources/bert_emb_qkv_kernel.cpp",
+     "/home/minhphat/gohome/build_200/link_hw/link/int/xo/bert_embedding_prep_kernel/bert_embedding_prep_kernel/cpu_sources/embedding_stream.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "bert_embedding_prep_1"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "bert_ffn_down_norm_kernel",
+     "file": "/home/minhphat/gohome/build_200/bert_ffn_down_norm_kernel.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/minhphat/gohome/build_200/link_hw/link/int/xo/bert_ffn_down_norm_kernel/bert_ffn_down_norm_kernel/cpu_sources/ffn_stream.cpp",
+     "/home/minhphat/gohome/build_200/link_hw/link/int/xo/bert_ffn_down_norm_kernel/bert_ffn_down_norm_kernel/cpu_sources/bert_ffn_down_norm_kernel.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "bert_ffn_down_norm_1"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "bert_ffn_up_gelu_kernel",
+     "file": "/home/minhphat/gohome/build_200/bert_ffn_up_gelu_kernel.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/minhphat/gohome/build_200/link_hw/link/int/xo/bert_ffn_up_gelu_kernel/bert_ffn_up_gelu_kernel/cpu_sources/ffn_stream.cpp",
+     "/home/minhphat/gohome/build_200/link_hw/link/int/xo/bert_ffn_up_gelu_kernel/bert_ffn_up_gelu_kernel/cpu_sources/bert_ffn_up_gelu_kernel.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "bert_ffn_up_gelu_1"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "bert_qkv_kernel",
+     "file": "/home/minhphat/gohome/build_200/bert_qkv_kernel.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/minhphat/gohome/build_200/link_hw/link/int/xo/bert_qkv_kernel/bert_qkv_kernel/cpu_sources/bert_qkv_kernel.cpp",
+     "/home/minhphat/gohome/build_200/link_hw/link/int/xo/bert_qkv_kernel/bert_qkv_kernel/cpu_sources/attention_stream.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "bert_qkv_1"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "Vitis V++ Compiler Release 2021.2. SW Build 3363252 on 2021-10-14-04:41:01"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Tue Jun 30 10:15:09 2026",
+ "timestampMillis": "1782789309709",
+ "buildStep": {
+  "cmdId": "8aa69b65-c74c-4282-9daf-e3fdb473c415",
+  "name": "system_link",
+  "logFile": "",
+  "commandLine": "system_link --xo /home/minhphat/gohome/build_200/bert_attn_core_kernel.xo --xo /home/minhphat/gohome/build_200/bert_attn_out_norm_kernel.xo --xo /home/minhphat/gohome/build_200/bert_embedding_prep_kernel.xo --xo /home/minhphat/gohome/build_200/bert_ffn_down_norm_kernel.xo --xo /home/minhphat/gohome/build_200/bert_ffn_up_gelu_kernel.xo --xo /home/minhphat/gohome/build_200/bert_qkv_kernel.xo -keep --config /home/minhphat/gohome/build_200/link_hw/link/int/syslinkConfig.ini --xpfm /opt/xilinx/platforms/xilinx_u250_gen3x16_xdma_3_1_202020_1/xilinx_u250_gen3x16_xdma_3_1_202020_1.xpfm --target hw --output_dir /home/minhphat/gohome/build_200/link_hw/link/int --temp_dir /home/minhphat/gohome/build_200/link_hw/link/sys_link",
+  "args": [
+   "--xo",
+   "/home/minhphat/gohome/build_200/bert_attn_core_kernel.xo",
+   "--xo",
+   "/home/minhphat/gohome/build_200/bert_attn_out_norm_kernel.xo",
+   "--xo",
+   "/home/minhphat/gohome/build_200/bert_embedding_prep_kernel.xo",
+   "--xo",
+   "/home/minhphat/gohome/build_200/bert_ffn_down_norm_kernel.xo",
+   "--xo",
+   "/home/minhphat/gohome/build_200/bert_ffn_up_gelu_kernel.xo",
+   "--xo",
+   "/home/minhphat/gohome/build_200/bert_qkv_kernel.xo",
+   "-keep",
+   "--config",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/syslinkConfig.ini",
+   "--xpfm",
+   "/opt/xilinx/platforms/xilinx_u250_gen3x16_xdma_3_1_202020_1/xilinx_u250_gen3x16_xdma_3_1_202020_1.xpfm",
+   "--target",
+   "hw",
+   "--output_dir",
+   "/home/minhphat/gohome/build_200/link_hw/link/int",
+   "--temp_dir",
+   "/home/minhphat/gohome/build_200/link_hw/link/sys_link"
+  ],
+  "iniFiles": [
+   {
+    "path": "/home/minhphat/gohome/build_200/link_hw/link/int/syslinkConfig.ini",
+    "content": "nk=bert_embedding_prep_kernel:1:bert_embedding_prep_1\nnk=bert_qkv_kernel:1:bert_qkv_1\nnk=bert_attn_core_kernel:1:bert_attn_core_1\nnk=bert_attn_out_norm_kernel:1:bert_attn_out_norm_1\nnk=bert_ffn_up_gelu_kernel:1:bert_ffn_up_gelu_1\nnk=bert_ffn_down_norm_kernel:1:bert_ffn_down_norm_1\nsc=bert_qkv_1.qkv_stream:bert_attn_core_1.qkv_stream:512\nsc=bert_attn_core_1.context_stream:bert_attn_out_norm_1.context_stream:512\nsc=bert_attn_out_norm_1.attn_mid_stream:bert_ffn_up_gelu_1.attn_mid_stream:256\nsc=bert_ffn_up_gelu_1.gelu_stream:bert_ffn_down_norm_1.gelu_stream:512\nsp=bert_embedding_prep_1.input_ids:DDR[0]\nsp=bert_embedding_prep_1.token_type_ids:DDR[0]\nsp=bert_embedding_prep_1.embedding_hidden:DDR[0]\nsp=bert_embedding_prep_1.hidden_ready:DDR[0]\nsp=bert_embedding_prep_1.token_emb:DDR[1]\nsp=bert_embedding_prep_1.pos_emb:DDR[1]\nsp=bert_embedding_prep_1.seg_emb:DDR[1]\nsp=bert_embedding_prep_1.emb_gamma:DDR[1]\nsp=bert_embedding_prep_1.emb_beta:DDR[1]\nsp=bert_qkv_1.hidden_in:DDR[0]\nsp=bert_qkv_1.hidden_ready:DDR[0]\nsp=bert_qkv_1.attn_q_w_all:DDR[0]\nsp=bert_qkv_1.attn_q_b_all:DDR[0]\nsp=bert_qkv_1.attn_k_w_all:DDR[1]\nsp=bert_qkv_1.attn_k_b_all:DDR[1]\nsp=bert_qkv_1.attn_v_w_all:DDR[2]\nsp=bert_qkv_1.attn_v_b_all:DDR[2]\nsp=bert_attn_core_1.attention_mask:DDR[0]\nsp=bert_attn_out_norm_1.residual_in:DDR[0]\nsp=bert_attn_out_norm_1.residual_ready:DDR[0]\nsp=bert_attn_out_norm_1.attn_o_w_all:DDR[3]\nsp=bert_attn_out_norm_1.attn_o_b_all:DDR[3]\nsp=bert_attn_out_norm_1.attn_norm_gamma_all:DDR[3]\nsp=bert_attn_out_norm_1.attn_norm_beta_all:DDR[3]\nsp=bert_attn_out_norm_1.attn_mid_ddr:DDR[1]\nsp=bert_attn_out_norm_1.attn_mid_done:DDR[1]\nsp=bert_ffn_up_gelu_1.ffn_up_w_all:DDR[2]\nsp=bert_ffn_up_gelu_1.ffn_up_b_all:DDR[2]\nsp=bert_ffn_down_norm_1.attn_mid_ddr:DDR[1]\nsp=bert_ffn_down_norm_1.attn_mid_done:DDR[1]\nsp=bert_ffn_down_norm_1.ffn_down_w_all:DDR[3]\nsp=bert_ffn_down_norm_1.ffn_down_b_all:DDR[3]\nsp=bert_ffn_down_norm_1.ffn_norm_gamma_all:DDR[3]\nsp=bert_ffn_down_norm_1.ffn_norm_beta_all:DDR[3]\nsp=bert_ffn_down_norm_1.hidden_out:DDR[0]\nslr=bert_embedding_prep_1:SLR1\nslr=bert_qkv_1:SLR0\nslr=bert_attn_core_1:SLR1\nslr=bert_attn_out_norm_1:SLR2\nslr=bert_ffn_up_gelu_1:SLR2\nslr=bert_ffn_down_norm_1:SLR3\n\n"
+   }
+  ],
+  "cwd": "/home/minhphat/gohome"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 10:15:09 2026",
+ "timestampMillis": "1782789309709",
+ "status": {
+  "cmdId": "8aa69b65-c74c-4282-9daf-e3fdb473c415",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 10:15:22 2026",
+ "timestampMillis": "1782789322395",
+ "status": {
+  "cmdId": "8aa69b65-c74c-4282-9daf-e3fdb473c415",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Tue Jun 30 10:15:22 2026",
+ "timestampMillis": "1782789322396",
+ "buildStep": {
+  "cmdId": "23857907-d958-47b4-9729-85d64e884f6f",
+  "name": "cf2sw",
+  "logFile": "",
+  "commandLine": "cf2sw -sdsl /home/minhphat/gohome/build_200/link_hw/link/int/sdsl.dat -rtd /home/minhphat/gohome/build_200/link_hw/link/int/cf2sw.rtd -nofilter /home/minhphat/gohome/build_200/link_hw/link/int/cf2sw_full.rtd -xclbin /home/minhphat/gohome/build_200/link_hw/link/int/xclbin_orig.xml -o /home/minhphat/gohome/build_200/link_hw/link/int/xclbin_orig.1.xml",
+  "args": [
+   "-sdsl",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/sdsl.dat",
+   "-rtd",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/cf2sw.rtd",
+   "-nofilter",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/cf2sw_full.rtd",
+   "-xclbin",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/xclbin_orig.xml",
+   "-o",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/xclbin_orig.1.xml"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/minhphat/gohome"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 10:15:22 2026",
+ "timestampMillis": "1782789322396",
+ "status": {
+  "cmdId": "23857907-d958-47b4-9729-85d64e884f6f",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 10:15:26 2026",
+ "timestampMillis": "1782789326808",
+ "status": {
+  "cmdId": "23857907-d958-47b4-9729-85d64e884f6f",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Tue Jun 30 10:15:26 2026",
+ "timestampMillis": "1782789326809",
+ "buildStep": {
+  "cmdId": "37593535-a7b1-4114-9359-48d313a3dd9c",
+  "name": "rtd2_system_diagram",
+  "logFile": "",
+  "commandLine": "rtd2SystemDiagram",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/minhphat/gohome"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 10:15:26 2026",
+ "timestampMillis": "1782789326810",
+ "status": {
+  "cmdId": "37593535-a7b1-4114-9359-48d313a3dd9c",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 10:15:27 2026",
+ "timestampMillis": "1782789327271",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/link/int/systemDiagramModel.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 10:15:27 2026",
+ "timestampMillis": "1782789327271",
+ "status": {
+  "cmdId": "37593535-a7b1-4114-9359-48d313a3dd9c",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Tue Jun 30 10:15:27 2026",
+ "timestampMillis": "1782789327272",
+ "buildStep": {
+  "cmdId": "05b0ae50-89dd-49a3-87ee-438ad590fa21",
+  "name": "vpl",
+  "logFile": "",
+  "commandLine": "vpl -t hw -f xilinx_u250_gen3x16_xdma_3_1_202020_1 --kernel_frequency 200 --remote_ip_cache /home/minhphat/gohome/.ipcache -s --output_dir /home/minhphat/gohome/build_200/link_hw/link/int --log_dir /home/minhphat/gohome/build_200/link_hw/logs/link --report_dir /home/minhphat/gohome/build_200/link_hw/reports/link --config /home/minhphat/gohome/build_200/link_hw/link/int/vplConfig.ini -k /home/minhphat/gohome/build_200/link_hw/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /home/minhphat/gohome/build_200/link_hw/link --no-info --iprepo /home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_qkv_kernel_1_0 --iprepo /home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_ffn_up_gelu_kernel_1_0 --iprepo /home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_ffn_down_norm_kernel_1_0 --iprepo /home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_attn_out_norm_kernel_1_0 --iprepo /home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_attn_core_kernel_1_0 --iprepo /home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_embedding_prep_kernel_1_0 --messageDb /home/minhphat/gohome/build_200/link_hw/link/run_link/vpl.pb /home/minhphat/gohome/build_200/link_hw/link/int/dr.bd.tcl",
+  "args": [
+   "-t",
+   "hw",
+   "-f",
+   "xilinx_u250_gen3x16_xdma_3_1_202020_1",
+   "--kernel_frequency",
+   "200",
+   "--remote_ip_cache",
+   "/home/minhphat/gohome/.ipcache",
+   "-s",
+   "--output_dir",
+   "/home/minhphat/gohome/build_200/link_hw/link/int",
+   "--log_dir",
+   "/home/minhphat/gohome/build_200/link_hw/logs/link",
+   "--report_dir",
+   "/home/minhphat/gohome/build_200/link_hw/reports/link",
+   "--config",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/vplConfig.ini",
+   "-k",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/kernel_info.dat",
+   "--webtalk_flag",
+   "Vitis",
+   "--temp_dir",
+   "/home/minhphat/gohome/build_200/link_hw/link",
+   "--no-info",
+   "--iprepo",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_qkv_kernel_1_0",
+   "--iprepo",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_ffn_up_gelu_kernel_1_0",
+   "--iprepo",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_ffn_down_norm_kernel_1_0",
+   "--iprepo",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_attn_out_norm_kernel_1_0",
+   "--iprepo",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_attn_core_kernel_1_0",
+   "--iprepo",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_embedding_prep_kernel_1_0",
+   "--messageDb",
+   "/home/minhphat/gohome/build_200/link_hw/link/run_link/vpl.pb",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/dr.bd.tcl"
+  ],
+  "iniFiles": [
+   {
+    "path": "/home/minhphat/gohome/build_200/link_hw/link/int/vplConfig.ini",
+    "content": "[advanced]\nmisc=report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\nmisc=report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\nparam=compiler.enablePerformanceTrace=1\nparam=compiler.vppCurrentWorkingDir=/home/minhphat/gohome\nmisc=BinaryName=bert_pipeline_hw_200\n\n[connectivity]\nnk=bert_attn_core_kernel:1:bert_attn_core_1\nnk=bert_attn_out_norm_kernel:1:bert_attn_out_norm_1\nnk=bert_embedding_prep_kernel:1:bert_embedding_prep_1\nnk=bert_ffn_down_norm_kernel:1:bert_ffn_down_norm_1\nnk=bert_ffn_up_gelu_kernel:1:bert_ffn_up_gelu_1\nnk=bert_qkv_kernel:1:bert_qkv_1\n\n[vivado]\nprop=run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\n\n"
+   }
+  ],
+  "cwd": "/home/minhphat/gohome"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 10:15:27 2026",
+ "timestampMillis": "1782789327272",
+ "status": {
+  "cmdId": "05b0ae50-89dd-49a3-87ee-438ad590fa21",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Tue Jun 30 10:15:28 2026",
+ "timestampMillis": "1782789328162",
+ "buildStep": {
+  "cmdId": "cefebd78-7490-46e6-ae64-d0cffb5f75c5",
+  "name": "vpl",
+  "logFile": "/home/minhphat/gohome/build_200/link_hw/link/link.steps.log",
+  "commandLine": "/tools/Xilinx/Vitis/2021.2/bin/unwrapped/lnx64.o/vpl -t hw -f xilinx_u250_gen3x16_xdma_3_1_202020_1 --kernel_frequency 200 --remote_ip_cache /home/minhphat/gohome/.ipcache -s --output_dir /home/minhphat/gohome/build_200/link_hw/link/int --log_dir /home/minhphat/gohome/build_200/link_hw/logs/link --report_dir /home/minhphat/gohome/build_200/link_hw/reports/link --config /home/minhphat/gohome/build_200/link_hw/link/int/vplConfig.ini -k /home/minhphat/gohome/build_200/link_hw/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /home/minhphat/gohome/build_200/link_hw/link --no-info --iprepo /home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_qkv_kernel_1_0 --iprepo /home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_ffn_up_gelu_kernel_1_0 --iprepo /home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_ffn_down_norm_kernel_1_0 --iprepo /home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_attn_out_norm_kernel_1_0 --iprepo /home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_attn_core_kernel_1_0 --iprepo /home/minhphat/gohome/build_200/link_hw/link/int/xo/ip_repo/xilinx_com_hls_bert_embedding_prep_kernel_1_0 --messageDb /home/minhphat/gohome/build_200/link_hw/link/run_link/vpl.pb /home/minhphat/gohome/build_200/link_hw/link/int/dr.bd.tcl ",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/minhphat/gohome/build_200/link_hw/link/run_link"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 10:15:28 2026",
+ "timestampMillis": "1782789328162",
+ "status": {
+  "cmdId": "cefebd78-7490-46e6-ae64-d0cffb5f75c5",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_VivadoProject",
+ "dateTimestamp": "Tue Jun 30 10:15:31 2026",
+ "timestampMillis": "1782789331175",
+ "vivadoProject": {
+  "openDir": "/home/minhphat/gohome/build_200/link_hw/link/vivado/vpl",
+  "openScript": "openprj.tcl",
+  "relativeProject": "prj/prj.xpr"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Tue Jun 30 10:15:31 2026",
+ "timestampMillis": "1782789331176",
+ "buildStep": {
+  "cmdId": "b5fa8d3e-158a-4117-898c-e9c9ee2dcca2",
+  "name": "vivado",
+  "logFile": "/home/minhphat/gohome/build_200/link_hw/link/vivado/vpl/vivado.log",
+  "commandLine": "vivado -log vivado.log -applog -m64 -messageDb vivado.pb -mode batch -source vpl.tcl -notrace",
+  "args": [
+   "-log",
+   "vivado.log",
+   "-applog",
+   " -m64",
+   "-messageDb",
+   "vivado.pb",
+   "-mode",
+   "batch",
+   "-source",
+   "vpl.tcl",
+   "-notrace"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/minhphat/gohome/build_200/link_hw/link/run_link"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 10:15:31 2026",
+ "timestampMillis": "1782789331176",
+ "status": {
+  "cmdId": "b5fa8d3e-158a-4117-898c-e9c9ee2dcca2",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Tue Jun 30 10:42:22 2026",
+ "timestampMillis": "1782790942938",
+ "buildStep": {
+  "cmdId": "61fd53bf-1685-46e8-a5cd-263ea81b17ac",
+  "name": "vivado.impl",
+  "logFile": "",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/minhphat/gohome/build_200/link_hw/link/vivado/vpl"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 10:42:22 2026",
+ "timestampMillis": "1782790942955",
+ "status": {
+  "cmdId": "61fd53bf-1685-46e8-a5cd-263ea81b17ac",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Tue Jun 30 10:42:22 2026",
+ "timestampMillis": "1782790942959",
+ "buildStep": {
+  "cmdId": "86dd25ed-54ec-4ac7-a271-360cb98b192e",
+  "name": "vivado.impl.impl_1",
+  "logFile": "/home/minhphat/gohome/build_200/link_hw/link/vivado/vpl/prj/prj.runs/impl_1/runme.log",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/minhphat/gohome/build_200/link_hw/link/vivado/vpl/prj/prj.runs/impl_1"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 10:42:22 2026",
+ "timestampMillis": "1782790942960",
+ "status": {
+  "cmdId": "86dd25ed-54ec-4ac7-a271-360cb98b192e",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 14:56:30 2026",
+ "timestampMillis": "1782806190852",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/link/vivado/vpl/prj/prj.runs/impl_1/system_diagram.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM_PLUS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:00:06 2026",
+ "timestampMillis": "1782806406492",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/link/int/kernel_service.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "KERNEL_SERVICE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:00:06 2026",
+ "timestampMillis": "1782806406496",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/link/int/kernel_service.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "KERNEL_SERVICE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390293",
+ "status": {
+  "cmdId": "b5fa8d3e-158a-4117-898c-e9c9ee2dcca2",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390367",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_kernel_util_synthed.xutil",
+  "name": "",
+  "fileType": "XUTIL",
+  "reportType": "KERNEL_UTILIZATION_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390382",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_full_util_synthed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_UTILIZATION_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390382",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_full_util_synthed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_UTILIZATION_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390383",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_kernel_util_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_UTILIZATION_ROUTE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390384",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_kernel_util_synthed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_UTILIZATION_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390384",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_kernel_util_placed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_UTILIZATION_PLACEMENT",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390385",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_slr_util_placed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SLR_UTIL_PLACED",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390385",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_kernel_util_routed.xutil",
+  "name": "",
+  "fileType": "XUTIL",
+  "reportType": "KERNEL_UTILIZATION_ROUTE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390386",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_full_util_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_UTILIZATION_ROUTE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390386",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_slr_util_placed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_SLR_UTIL_PLACED",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390387",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_kernel_util_placed.xutil",
+  "name": "",
+  "fileType": "XUTIL",
+  "reportType": "KERNEL_UTILIZATION_PLACEMENT",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390388",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_slr_util_routed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_SLR_UTIL_ROUTED",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390389",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_full_util_routed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_UTILIZATION_ROUTE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390389",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_slr_util_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SLR_UTIL_ROUTED",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390436",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/syn/ulp_memory_subsystem_0_synth_1_ulp_memory_subsystem_0_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390436",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/syn/bd_b35e_interconnect_DDR4_MEM00_0_synth_1_bd_b35e_interconnect_DDR4_MEM00_0_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390437",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/syn/bd_1361_build_info_0_synth_1_bd_1361_build_info_0_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390438",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/syn/ulp_bert_ffn_down_norm_1_0_synth_1_ulp_bert_ffn_down_norm_1_0_utilization_synth.rpt",
+  "name": "bert_ffn_down_norm_kernel",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390441",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/syn/ulp_bert_ffn_up_gelu_1_0_synth_1_ulp_bert_ffn_up_gelu_1_0_utilization_synth.rpt",
+  "name": "bert_ffn_up_gelu_kernel",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390441",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/syn/ulp_bert_attn_out_norm_1_0_synth_1_ulp_bert_attn_out_norm_1_0_utilization_synth.rpt",
+  "name": "bert_attn_out_norm_kernel",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390442",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/syn/ulp_bert_embedding_prep_1_0_synth_1_ulp_bert_embedding_prep_1_0_utilization_synth.rpt",
+  "name": "bert_embedding_prep_kernel",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390442",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/syn/ulp_bert_qkv_1_0_synth_1_ulp_bert_qkv_1_0_utilization_synth.rpt",
+  "name": "bert_qkv_kernel",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390442",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/syn/ulp_bert_attn_core_1_0_synth_1_ulp_bert_attn_core_1_0_utilization_synth.rpt",
+  "name": "bert_attn_core_kernel",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390442",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/syn/bd_b35e_interconnect_SLR1_DDR4_MEM00_0_synth_1_bd_b35e_interconnect_SLR1_DDR4_MEM00_0_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390443",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/syn/bd_b35e_interconnect_DDR4_MEM02_0_synth_1_bd_b35e_interconnect_DDR4_MEM02_0_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390443",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/syn/bd_b35e_interconnect_M00_AXI_MEM00_0_synth_1_bd_b35e_interconnect_M00_AXI_MEM00_0_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390444",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_system_diagram.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM_PLUS",
+  "cmdId": "86dd25ed-54ec-4ac7-a271-360cb98b192e"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390463",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_hw_bb_locked_timing_summary_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY",
+  "cmdId": "86dd25ed-54ec-4ac7-a271-360cb98b192e"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390481",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_hw_bb_locked_timing_summary_routed.rpx",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY",
+  "cmdId": "86dd25ed-54ec-4ac7-a271-360cb98b192e"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390482",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/imp/impl_1_hw_bb_locked_timing_summary_routed.rpv",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY_CONCISE",
+  "cmdId": "86dd25ed-54ec-4ac7-a271-360cb98b192e"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390532",
+ "status": {
+  "cmdId": "cefebd78-7490-46e6-ae64-d0cffb5f75c5",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390705",
+ "status": {
+  "cmdId": "05b0ae50-89dd-49a3-87ee-438ad590fa21",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390730",
+ "buildStep": {
+  "cmdId": "ee494bbc-4b5a-43f6-bc03-9c118b99e3fc",
+  "name": "rtdgen",
+  "logFile": "",
+  "commandLine": "rtdgen",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/minhphat/gohome"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390731",
+ "status": {
+  "cmdId": "ee494bbc-4b5a-43f6-bc03-9c118b99e3fc",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390846",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/link/int/bert_pipeline_hw_200_xml.rtd",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "XCLBIN_INFO",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390859",
+ "buildStep": {
+  "cmdId": "7a03779c-5dd6-4f35-8f9f-4a934956b807",
+  "name": "cf2sw",
+  "logFile": "",
+  "commandLine": "cf2sw -a /home/minhphat/gohome/build_200/link_hw/link/int/address_map.xml -sdsl /home/minhphat/gohome/build_200/link_hw/link/int/sdsl.dat -xclbin /home/minhphat/gohome/build_200/link_hw/link/int/xclbin_orig.xml -rtd /home/minhphat/gohome/build_200/link_hw/link/int/bert_pipeline_hw_200.rtd -o /home/minhphat/gohome/build_200/link_hw/link/int/bert_pipeline_hw_200.xml",
+  "args": [
+   "-a",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/address_map.xml",
+   "-sdsl",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/sdsl.dat",
+   "-xclbin",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/xclbin_orig.xml",
+   "-rtd",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/bert_pipeline_hw_200.rtd",
+   "-o",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/bert_pipeline_hw_200.xml"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/minhphat/gohome"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 15:33:10 2026",
+ "timestampMillis": "1782808390860",
+ "status": {
+  "cmdId": "7a03779c-5dd6-4f35-8f9f-4a934956b807",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 15:33:15 2026",
+ "timestampMillis": "1782808395123",
+ "status": {
+  "cmdId": "7a03779c-5dd6-4f35-8f9f-4a934956b807",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Tue Jun 30 15:33:15 2026",
+ "timestampMillis": "1782808395124",
+ "buildStep": {
+  "cmdId": "9ced9eb0-4669-4624-8805-3ca7ac1e5833",
+  "name": "rtdgen",
+  "logFile": "",
+  "commandLine": "writeSystemDiagram",
+  "args": [
+   "/home/minhphat/gohome/build_200/link_hw/link/int/bert_pipeline_hw_200.rtd",
+   "/home/minhphat/gohome/build_200/link_hw/link/int/systemDiagramModelSlrBaseAddress.json"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/minhphat/gohome"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 15:33:15 2026",
+ "timestampMillis": "1782808395124",
+ "status": {
+  "cmdId": "9ced9eb0-4669-4624-8805-3ca7ac1e5833",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:15 2026",
+ "timestampMillis": "1782808395157",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/link/int/systemDiagramModelSlrBaseAddress.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM_PLUS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 15:33:15 2026",
+ "timestampMillis": "1782808395157",
+ "status": {
+  "cmdId": "9ced9eb0-4669-4624-8805-3ca7ac1e5833",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 15:33:15 2026",
+ "timestampMillis": "1782808395157",
+ "status": {
+  "cmdId": "ee494bbc-4b5a-43f6-bc03-9c118b99e3fc",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Tue Jun 30 15:33:15 2026",
+ "timestampMillis": "1782808395160",
+ "buildStep": {
+  "cmdId": "7c9f4fa8-43b0-401e-98df-0be30c697043",
+  "name": "xclbinutil",
+  "logFile": "",
+  "commandLine": "xclbinutil --add-section BITSTREAM:RAW:/home/minhphat/gohome/build_200/link_hw/link/int/partial.bit --force --target hw --key-value SYS:dfx_enable:true --add-section :JSON:/home/minhphat/gohome/build_200/link_hw/link/int/bert_pipeline_hw_200.rtd --append-section :JSON:/home/minhphat/gohome/build_200/link_hw/link/int/appendSection.rtd --add-section CLOCK_FREQ_TOPOLOGY:JSON:/home/minhphat/gohome/build_200/link_hw/link/int/bert_pipeline_hw_200_xml.rtd --add-section BUILD_METADATA:JSON:/home/minhphat/gohome/build_200/link_hw/link/int/bert_pipeline_hw_200_build.rtd --add-section EMBEDDED_METADATA:RAW:/home/minhphat/gohome/build_200/link_hw/link/int/bert_pipeline_hw_200.xml --add-section SYSTEM_METADATA:RAW:/home/minhphat/gohome/build_200/link_hw/link/int/systemDiagramModelSlrBaseAddress.json --key-value SYS:PlatformVBNV:xilinx_u250_gen3x16_xdma_3_1_202020_1 --output /home/minhphat/gohome/build_200/bert_pipeline_hw_200.xclbin",
+  "args": [
+   "--add-section",
+   "BITSTREAM:RAW:/home/minhphat/gohome/build_200/link_hw/link/int/partial.bit",
+   "--force",
+   "--target",
+   "hw",
+   "--key-value",
+   "SYS:dfx_enable:true",
+   "--add-section",
+   ":JSON:/home/minhphat/gohome/build_200/link_hw/link/int/bert_pipeline_hw_200.rtd",
+   "--append-section",
+   ":JSON:/home/minhphat/gohome/build_200/link_hw/link/int/appendSection.rtd",
+   "--add-section",
+   "CLOCK_FREQ_TOPOLOGY:JSON:/home/minhphat/gohome/build_200/link_hw/link/int/bert_pipeline_hw_200_xml.rtd",
+   "--add-section",
+   "BUILD_METADATA:JSON:/home/minhphat/gohome/build_200/link_hw/link/int/bert_pipeline_hw_200_build.rtd",
+   "--add-section",
+   "EMBEDDED_METADATA:RAW:/home/minhphat/gohome/build_200/link_hw/link/int/bert_pipeline_hw_200.xml",
+   "--add-section",
+   "SYSTEM_METADATA:RAW:/home/minhphat/gohome/build_200/link_hw/link/int/systemDiagramModelSlrBaseAddress.json",
+   "--key-value",
+   "SYS:PlatformVBNV:xilinx_u250_gen3x16_xdma_3_1_202020_1",
+   "--output",
+   "/home/minhphat/gohome/build_200/bert_pipeline_hw_200.xclbin"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/minhphat/gohome"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 15:33:15 2026",
+ "timestampMillis": "1782808395160",
+ "status": {
+  "cmdId": "7c9f4fa8-43b0-401e-98df-0be30c697043",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 15:33:15 2026",
+ "timestampMillis": "1782808395822",
+ "status": {
+  "cmdId": "7c9f4fa8-43b0-401e-98df-0be30c697043",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Tue Jun 30 15:33:15 2026",
+ "timestampMillis": "1782808395823",
+ "buildStep": {
+  "cmdId": "51e480e0-205d-4955-9894-33de233b3aaa",
+  "name": "xclbinutilinfo",
+  "logFile": "",
+  "commandLine": "xclbinutil --quiet --force --info /home/minhphat/gohome/build_200/bert_pipeline_hw_200.xclbin.info --input /home/minhphat/gohome/build_200/bert_pipeline_hw_200.xclbin",
+  "args": [
+   "--quiet",
+   "--force",
+   "--info",
+   "/home/minhphat/gohome/build_200/bert_pipeline_hw_200.xclbin.info",
+   "--input",
+   "/home/minhphat/gohome/build_200/bert_pipeline_hw_200.xclbin"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/minhphat/gohome"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 15:33:15 2026",
+ "timestampMillis": "1782808395823",
+ "status": {
+  "cmdId": "51e480e0-205d-4955-9894-33de233b3aaa",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 15:33:16 2026",
+ "timestampMillis": "1782808396738",
+ "status": {
+  "cmdId": "51e480e0-205d-4955-9894-33de233b3aaa",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Tue Jun 30 15:33:16 2026",
+ "timestampMillis": "1782808396739",
+ "buildStep": {
+  "cmdId": "769a9392-c1bb-41ae-809f-56edbc0488ff",
+  "name": "generate_sc_driver",
+  "logFile": "",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/minhphat/gohome"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 15:33:16 2026",
+ "timestampMillis": "1782808396739",
+ "status": {
+  "cmdId": "769a9392-c1bb-41ae-809f-56edbc0488ff",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 15:33:16 2026",
+ "timestampMillis": "1782808396740",
+ "status": {
+  "cmdId": "769a9392-c1bb-41ae-809f-56edbc0488ff",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:17 2026",
+ "timestampMillis": "1782808397020",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/system_estimate_bert_pipeline_hw_200.xtxt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SYSTEM_ESTIMATE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:17 2026",
+ "timestampMillis": "1782808397136",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/reports/link/v++_link_bert_pipeline_hw_200_guidance.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:17 2026",
+ "timestampMillis": "1782808397136",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/v++_link_bert_pipeline_hw_200_guidance.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jun 30 15:33:17 2026",
+ "timestampMillis": "1782808397146",
+ "report": {
+  "path": "/home/minhphat/gohome/build_200/link_hw/logs/optraceViewer.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "OPERATION_TRACE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jun 30 15:33:17 2026",
+ "timestampMillis": "1782808397147",
+ "status": {
+  "cmdId": "8aecc6ba-f469-43c7-8313-55e64ed934b8",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>

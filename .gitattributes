@@ -1,0 +1,2 @@
+*.xclbin filter=lfs diff=lfs merge=lfs -text
+bert_base_uncased_u250/*.bin filter=lfs diff=lfs merge=lfs -text
