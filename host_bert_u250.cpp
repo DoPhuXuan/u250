@@ -120,10 +120,8 @@ int main(int argc, char** argv) try {
   xrt::bo token_type_ids(device, bytes_i32(kSeqLen), k_emb.group_id(1));
   xrt::bo attention_mask(device, bytes_i32(kSeqLen), k_core.group_id(1));
   xrt::bo hidden_ping(device, bytes_f32(kSeqLen * kHidden), k_emb.group_id(7));
-  xrt::bo hidden_pong(device, bytes_f32(kSeqLen * kHidden), k_ffn_down.group_id(7));
+  xrt::bo hidden_pong(device, bytes_f32(kSeqLen * kHidden), k_ffn_down.group_id(6));
   xrt::bo hidden_ready(device, sizeof(std::uint32_t), k_emb.group_id(8));
-  xrt::bo attn_mid(device, bytes_f32(kSeqLen * kHidden), k_attn_out.group_id(7));
-  xrt::bo attn_mid_done(device, sizeof(std::uint32_t), k_attn_out.group_id(8));
 
   xrt::bo token_emb(device, bytes_f32(kVocab * kHidden), k_emb.group_id(2));
   xrt::bo pos_emb(device, bytes_f32(kSeqLen * kHidden), k_emb.group_id(3));
@@ -149,10 +147,10 @@ int main(int argc, char** argv) try {
   xrt::bo attn_beta(device, norm_bytes, k_attn_out.group_id(6));
   xrt::bo ffn_up_w(device, ffn_w_bytes, k_ffn_up.group_id(1));
   xrt::bo ffn_up_b(device, ffn_up_b_bytes, k_ffn_up.group_id(2));
-  xrt::bo ffn_down_w(device, ffn_w_bytes, k_ffn_down.group_id(3));
-  xrt::bo ffn_down_b(device, attn_b_bytes, k_ffn_down.group_id(4));
-  xrt::bo ffn_gamma(device, norm_bytes, k_ffn_down.group_id(5));
-  xrt::bo ffn_beta(device, norm_bytes, k_ffn_down.group_id(6));
+  xrt::bo ffn_down_w(device, ffn_w_bytes, k_ffn_down.group_id(2));
+  xrt::bo ffn_down_b(device, attn_b_bytes, k_ffn_down.group_id(3));
+  xrt::bo ffn_gamma(device, norm_bytes, k_ffn_down.group_id(4));
+  xrt::bo ffn_beta(device, norm_bytes, k_ffn_down.group_id(5));
 
   const auto file = [&](const char* name) { return join_path(options.data_dir, name); };
   std::cout << "Loading model/input BOs from " << options.data_dir << "\n";
@@ -183,8 +181,6 @@ int main(int argc, char** argv) try {
   zero_bo(hidden_ping, bytes_f32(kSeqLen * kHidden));
   zero_bo(hidden_pong, bytes_f32(kSeqLen * kHidden));
   zero_bo(hidden_ready, sizeof(std::uint32_t));
-  zero_bo(attn_mid, bytes_f32(kSeqLen * kHidden));
-  zero_bo(attn_mid_done, sizeof(std::uint32_t));
 
   const auto begin = std::chrono::steady_clock::now();
   for (std::uint32_t layer = 0; layer < kNumLayers; ++layer) {
@@ -211,18 +207,17 @@ int main(int argc, char** argv) try {
     r_attn_out.set_arg(1, hidden_in); r_attn_out.set_arg(2, hidden_ready);
     r_attn_out.set_arg(3, o_w); r_attn_out.set_arg(4, o_b);
     r_attn_out.set_arg(5, attn_gamma); r_attn_out.set_arg(6, attn_beta);
-    r_attn_out.set_arg(7, attn_mid); r_attn_out.set_arg(8, attn_mid_done);
-    r_attn_out.set_arg(9, layer);  // args 0 and 10 are connected streams.
+    r_attn_out.set_arg(7, layer);  // args 0, 8 and 9 are connected streams.
 
     xrt::run r_ffn_up(k_ffn_up);
     r_ffn_up.set_arg(1, ffn_up_w); r_ffn_up.set_arg(2, ffn_up_b);
     r_ffn_up.set_arg(3, layer);  // args 0 and 4 are connected streams.
 
     xrt::run r_ffn_down(k_ffn_down);
-    r_ffn_down.set_arg(1, attn_mid); r_ffn_down.set_arg(2, attn_mid_done);
-    r_ffn_down.set_arg(3, ffn_down_w); r_ffn_down.set_arg(4, ffn_down_b);
-    r_ffn_down.set_arg(5, ffn_gamma); r_ffn_down.set_arg(6, ffn_beta);
-    r_ffn_down.set_arg(7, hidden_out); r_ffn_down.set_arg(8, layer);
+    // args 0 and 1 are the internally connected GELU and residual streams.
+    r_ffn_down.set_arg(2, ffn_down_w); r_ffn_down.set_arg(3, ffn_down_b);
+    r_ffn_down.set_arg(4, ffn_gamma); r_ffn_down.set_arg(5, ffn_beta);
+    r_ffn_down.set_arg(6, hidden_out); r_ffn_down.set_arg(7, layer);
 
     // Start sink-to-source. This lets every connected stream have a live consumer.
     r_ffn_down.start(); r_ffn_up.start(); r_attn_out.start();

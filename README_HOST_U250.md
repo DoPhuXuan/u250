@@ -7,12 +7,10 @@ and produces the final encoder tensor with shape `[128, 768]`.
 
 ## Important compatibility note
 
-The supplied xclbin and the newest C++ kernel files in this directory are from
-different revisions. The xclbin metadata contains `attn_mid_ddr` and
-`attn_mid_done`; the newest sources replaced that DDR residual hand-off with an
-AXI stream. `host_bert_u250.cpp` intentionally follows the interface embedded
-in **the supplied xclbin**, including its original argument indices and DDR
-placement.
+The supplied `bert_pipeline_hw_200.xclbin` targets the older U250 3.1 shell and
+does not match the current stream interfaces. Build
+`bert_pipeline_u250_4_1.xclbin` from the current sources with
+`build_u250_4_1.sh`; `host_bert_u250.cpp` follows that current interface.
 
 ## 1. Prepare the U250 machine
 
